@@ -9,29 +9,8 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Tue, 28 Feb 2023 06:30:18 GMT</pubDate>
+    <pubDate>Tue, 28 Feb 2023 06:05:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
-    
-    <item>
-      <title>PHP-Study-000</title>
-      <link>http://example.com/2023/02/28/PHP-Study-000/</link>
-      <guid>http://example.com/2023/02/28/PHP-Study-000/</guid>
-      <pubDate>Tue, 28 Feb 2023 04:29:08 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;学习大厅&quot;&gt;&lt;a href=&quot;#学习大厅&quot; class=&quot;headerlink&quot; title=&quot;学习大厅&quot;&gt;&lt;/a&gt;学习大厅&lt;/h1&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="学习大厅"><a href="#学习大厅" class="headerlink" title="学习大厅"></a>学习大厅</h1><span id="more"></span><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><p>111</p>]]></content:encoded>
-      
-      
-      
-      <category domain="http://example.com/tags/PHP/">PHP</category>
-      
-      
-      <comments>http://example.com/2023/02/28/PHP-Study-000/#disqus_thread</comments>
-      
-    </item>
     
     <item>
       <title>Hello World</title>
