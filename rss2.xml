@@ -9,8 +9,33 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Tue, 28 Feb 2023 06:05:16 GMT</pubDate>
+    <pubDate>Tue, 28 Feb 2023 13:13:28 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>博客搭建</title>
+      <link>http://example.com/2023/02/28/Blog%E6%90%AD%E5%BB%BA/</link>
+      <guid>http://example.com/2023/02/28/Blog%E6%90%AD%E5%BB%BA/</guid>
+      <pubDate>Tue, 28 Feb 2023 12:36:25 GMT</pubDate>
+      
+        
+        
+      <description>&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;p&gt;经过两天的学习，在老林的帮助下成功搭建了属于自己的Blog，也学会很多关于git的命令：&lt;/p&gt;
+&lt;p&gt;git clone &lt;a href=&quot;https://github.com/name/text.git&quot;&gt;https:/</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<span id="more"></span><p>经过两天的学习，在老林的帮助下成功搭建了属于自己的Blog，也学会很多关于git的命令：</p><p>git clone <a href="https://github.com/name/text.git">https://github.com/name/text.git</a>  将远程仓库 clone 到本地<br>git push origin master  将本地仓库提交到远程仓库<br>git status 查看仓库状态<br>git log    查看仓库提交日志<br>git rm     删除文件</p><p>git pull  下载远程仓库的最新信息到本地仓库<br>git push  将本地的仓库信息推送到远程仓库</p><p>hexo clean 清除缓存文件 db.json 和已生成的静态文件 public<br>hexo g     生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)<br>hexo d     自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)<br>hexo s     查看部署<br>ctrl +c    停止运行服务器</p><p>博客搭建指导：”<a href="https://zhuanlan.zhihu.com/p/102592286">https://zhuanlan.zhihu.com/p/102592286</a>“</p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://example.com/2023/02/28/Blog%E6%90%AD%E5%BB%BA/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Hello World</title>
