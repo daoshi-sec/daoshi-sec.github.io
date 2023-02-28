@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>道士的博客</title>
+    <link>http://example.com/</link>
+    
+    <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>你的微笑是我的荣幸</description>
+    <pubDate>Tue, 28 Feb 2023 04:30:11 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PHP-Study-000</title>
+      <link>http://example.com/2023/02/28/PHP-Study-000/</link>
+      <guid>http://example.com/2023/02/28/PHP-Study-000/</guid>
+      <pubDate>Tue, 28 Feb 2023 04:29:08 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;学习大厅&quot;&gt;&lt;a href=&quot;#学习大厅&quot; class=&quot;headerlink&quot; title=&quot;学习大厅&quot;&gt;&lt;/a&gt;学习大厅&lt;/h1&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="学习大厅"><a href="#学习大厅" class="headerlink" title="学习大厅"></a>学习大厅</h1><span id="more"></span><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><p>111</p>]]></content:encoded>
+      
+      
+      
+      <category domain="http://example.com/tags/PHP/">PHP</category>
+      
+      
+      <comments>http://example.com/2023/02/28/PHP-Study-000/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://example.com/2023/02/27/hello-world/</link>
+      <guid>http://example.com/2023/02/27/hello-world/</guid>
+      <pubDate>Mon, 27 Feb 2023 01:49:04 GMT</pubDate>
+      
+      <description>&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://example.com/2023/02/27/hello-world/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
