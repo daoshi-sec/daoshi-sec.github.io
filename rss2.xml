@@ -9,8 +9,27 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Wed, 01 Mar 2023 16:38:08 GMT</pubDate>
+    <pubDate>Thu, 02 Mar 2023 13:18:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python学习日志-002</title>
+      <link>http://example.com/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/</link>
+      <guid>http://example.com/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/</guid>
+      <pubDate>Thu, 02 Mar 2023 12:52:43 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;font size=&quot;5&quot;&gt;嵌套if结构和条件表达式&lt;/font&gt;&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p><font size="5">嵌套if结构和条件表达式</font></p><span id="more"></span><p><font size="6"><strong>嵌套if结构</strong></font><br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/1.1.png" alt="1"><br>会员    &gt;&#x3D;200   8折<br>        &gt;&#x3D;100   9折<br>        &lt;100   不打折</p><p>非会员  &gt;200    9.5折<br>        &lt;100   不打折<br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/1.2.png" alt="2"><br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/1.3.png" alt="3"><br>会员购物为1000&gt;&#x3D;200,打8折；会员购物150&lt;&#x3D;200,打9折；<br>会员购物50&lt;100,不打折；非会员购物1000&gt;&#x3D;200,打9.5折；<br>非会员购物150&lt;200,不打折。</p><p><font size="6"><strong>条件表达式</strong></font><br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/2.1.png" alt="4"><br>比较两个整数的大小<br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/2.2.png" alt="5"><br>如果num_a&gt;&#x3D;num_b 为Ture,取左边；<br><img src="/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/2.3.png" alt="6"><br>如果num_a&lt;&#x3D;num_b 为Flase,取右边</p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://example.com/2023/03/02/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-002/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Python学习日志-001</title>
