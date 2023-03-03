@@ -9,8 +9,27 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Thu, 02 Mar 2023 13:27:10 GMT</pubDate>
+    <pubDate>Fri, 03 Mar 2023 17:17:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python学习日志-003</title>
+      <link>http://example.com/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/</link>
+      <guid>http://example.com/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/</guid>
+      <pubDate>Fri, 03 Mar 2023 15:55:41 GMT</pubDate>
+      
+      <description>&lt;p&gt;pass语句、renge()函数、int与not in&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>pass语句、renge()函数、int与not in</p><span id="more"></span><p><font size="6"><strong>pass语句</strong></font><br>pass语句，什么都不做，知识一个占位符，用到需要写语句的地方,这样可以使它不报错。<br><img src="/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/1.1.png" alt="1"><br><strong>pass语句可以在以下使用：</strong><br>if语句的条件执行体；for-in语句的循环体；定义函数时的函数体。</p><p><font size="6"><strong>renge()函数</strong></font><br><img src="/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/2.1.png" alt="2"><br><strong>结合上下图</strong>：<br>第一种给一个参数：renge(stop)，从0开始到stop结束，步长为1。所以这个参数是限制了终止。<br>第二种给两个参数：renge(1,10)，从1开始到10结束，步长也为1。所以第一个参数是限制了起始,第二个是限制了终止。</p><p><img src="/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/2.2.png" alt="3"><br>第三种给三个参数：renge(1,10,2)，从1开始到10结束，步长为2.所以第三个是限制了步长。结果如下图：<br><img src="/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/2.3.png" alt="4"></p><p><font size="6"><strong>int与not in</strong></font><br>判断整数序列中是非存在（不存在）指定的整数<br><img src="/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/2.5.png" alt="7"><br><strong>在第三种创建方式里:</strong><br>10不存在(10 in r)，所以flast;<br>9存在(9 in r)，所以True;<br>10不存在(10 not in r)，所以True;<br>9不存在(9 not in r)，所以flast。</p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://example.com/2023/03/03/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-003/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Python学习日志-002</title>
