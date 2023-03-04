@@ -9,8 +9,27 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Fri, 03 Mar 2023 17:17:31 GMT</pubDate>
+    <pubDate>Sat, 04 Mar 2023 17:04:52 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python学习日志-004</title>
+      <link>http://example.com/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/</link>
+      <guid>http://example.com/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/</guid>
+      <pubDate>Sat, 04 Mar 2023 16:00:47 GMT</pubDate>
+      
+      <description>&lt;p&gt;while循环与for_in循环&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<p>while循环与for_in循环</p><span id="more"></span><p><font size="6"><strong>while循环</strong></font><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.1.png" alt="1"><br>这是一条简单的while循环：<br><strong>a如果小于10就一直循环下去，直到a大于或大于10截止，其中a+&#x3D;1使循环体进行下去:例如：a&#x3D;1&lt;10,a在末置位会＋1在继续下个循环，就变成1+1&#x3D;2&lt;10。直至a&gt;&#x3D;10。</strong><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.2.png" alt="2"><br>结果如下：<br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.3.png" alt="3"><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.4.png" alt="4"><br><strong>这条while循环也是如上一样。</strong><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.5.png" alt="5"><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/1.6.png" alt="6"><br><font size="6"><strong>for_in循环</strong></font><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/2.1.png" alt="7"><br><strong>将Python分别取出赋值，再用变量item输出。</strong><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/2.2.png" alt="8"><br>第一条可回去看上期，为什么会得出下面结果；<br>第二条看下图，”_”可代替变量，再使用输出打出需要的；<br>第三条是求1-100之间的偶数和，变量item%2等于0便综合sum＋item；<br><strong>如果想求1-100之间的奇数和，之间去掉&#x3D;&#x3D;0即可。</strong><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/2.3.png" alt="9"><br><strong>以下是第二种方式：while循环求1-100之间的偶数和。</strong><br><img src="/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/2.4.png" alt="10"></p><p><strong><font size="6">总结：</font><br>可使用(whiel循环和for_in循环)等不同解法，结果一致。</strong></p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://example.com/2023/03/05/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-004/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Python学习日志-003</title>
