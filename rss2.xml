@@ -9,11 +9,26 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Mon, 06 Mar 2023 14:44:48 GMT</pubDate>
+    <pubDate>Mon, 06 Mar 2023 14:46:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>Python学习日志--005</title>
+      <title>Python学习日志-006</title>
+      <link>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/</link>
+      <guid>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/</guid>
+      <pubDate>Mon, 06 Mar 2023 14:46:18 GMT</pubDate>
+      
+      
+      
+      
+      
+      
+      <comments>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Python学习日志-005</title>
       <link>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/</link>
       <guid>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/</guid>
       <pubDate>Mon, 06 Mar 2023 13:35:22 GMT</pubDate>
