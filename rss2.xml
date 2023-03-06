@@ -9,7 +9,7 @@
     <atom:link href="http://example.com/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>你的微笑是我的荣幸</description>
-    <pubDate>Mon, 06 Mar 2023 14:44:15 GMT</pubDate>
+    <pubDate>Mon, 06 Mar 2023 14:44:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -18,7 +18,11 @@
       <guid>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/</guid>
       <pubDate>Mon, 06 Mar 2023 13:35:22 GMT</pubDate>
       
+      <description>&lt;p&gt;for_in例题、流程控制语句Break&lt;/p&gt;</description>
       
+      
+      
+      <content:encoded><![CDATA[<p>for_in例题、流程控制语句Break</p><span id="more"></span><p>“水仙花数”是指一个三位数，其各位数字的立方和确好等于该数本身。<br><strong>求100-999之间的水仙花数：</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/1.1.png" alt="1"><br><strong>结果如下：</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/1.2.png" alt="2"><br><font size="6"><strong>Break语句</strong></font><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/2.1.png" alt="3"><br><strong>while方法：</strong></p><p><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/2.2.png" alt="4"><br><strong>for_in方法：</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-005/2.3.png" alt="5"><br><strong>错误三次便报错；三次中有一次正确便成功，最后break结束循环。</strong></p>]]></content:encoded>
       
       
       
