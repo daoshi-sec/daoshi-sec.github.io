@@ -33,11 +33,11 @@
       <guid>http://example.com/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/</guid>
       <pubDate>Mon, 06 Mar 2023 14:46:18 GMT</pubDate>
       
-      <description>&lt;p&gt;continue语句&lt;/p&gt;</description>
+      <description>&lt;p&gt;continue语句、else语句&lt;/p&gt;</description>
       
       
       
-      <content:encoded><![CDATA[<p>continue语句</p><span id="more"></span><p><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/1.1.png" alt="1"><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/1.2.png" alt="2"><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/2.1.png" alt="3"><br><img src="/2.2.png" alt="4"></p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>continue语句、else语句</p><span id="more"></span><p><font size="6"><strong>continue语句</strong></font><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/1.1.png" alt="1"><br><strong>求1到50之间所有5的倍数：</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/1.2.png" alt="2"><br><strong>上图讲述了两种方式：</strong><br>1，普通的for_in方法；<br>2，按要求使用continue实现。<br><strong>结果如下：</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/1.3.png" alt="3"><br><font size="6"><strong>else语句</strong></font><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/2.1.png" alt="4"><br><strong>if条件表达式不成立时执行else;<br>没有碰到break时执行else；<br>碰到break即结束进程，不会执行else。</strong><br><img src="/2023/03/06/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-006/2.2.png" alt="5"></p>]]></content:encoded>
       
       
       
