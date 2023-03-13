@@ -33,7 +33,11 @@
       <guid>http://example.com/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/</guid>
       <pubDate>Thu, 09 Mar 2023 06:54:43 GMT</pubDate>
       
+      <description>&lt;p&gt;列表、列表的创建、列表的特点&lt;/p&gt;</description>
       
+      
+      
+      <content:encoded><![CDATA[<p>列表、列表的创建、列表的特点</p><span id="more"></span><p><img src="/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/1.png"><br><font size="6"><strong>列表的创建</strong></font><br><img src="/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/2.png"><br><strong>两种创建方法：</strong><br>1，使用中括号；<br>2，调用内置函数list().<br><img src="/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/2.1.png"><br><font size="6"><strong>列表的特点</strong></font><br><img src="/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/3.png"><br><strong>特点：</strong><br>1，列表的排序是按顺序有序排序的，例如:lst&#x3D;[‘hello’,’world’,98,’hello’],他得到的结果是：[‘hello’,’world’,98,’hello’]；<br>2，索引映射唯一的数据，上图中索引可以从后往前(-1)开始，也可以从前往后(0)开始；例如下图：print(lst[0],lst[4]),得到的结果为hello,hello；<br>3，列表可以存储重复数据：[‘hello’,’world’,98,’hello’]，其中hello重复了两次；<br>4,任何数据类型混存，如下图中hello和98，其中hello是str类型，98是int类型.<br><img src="/2023/03/09/Python%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97-008/3.1.png"></p>]]></content:encoded>
       
       
       
