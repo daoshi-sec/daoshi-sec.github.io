@@ -241,7 +241,7 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #b407ce 0%, #ff2d2d 100%);
+    background-image: linear-gradient(to right, #f252f5 0%, #FF9999 100%);
 }
 
 .text-color {
@@ -550,10 +550,11 @@ header .go-back i {
     height: 40vh !important;
 }
 
+/* 取消首页渐变颜色动画
 .bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+} */
 
 .bg-cover:before,
 .bg-cover:after {
