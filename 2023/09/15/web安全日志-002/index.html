@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="web安全日志--001, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志--002, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>web安全日志--001 | 爱睡懒觉的道士</title>
+    <title>web安全日志--002 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -321,12 +321,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">web安全日志--001</h1>
+                    <h1 class="description center-align post-title">web安全日志--002</h1>
                 </div>
             </div>
         </div>
@@ -476,14 +476,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    5 分
                 </div>
                 
 
@@ -503,57 +503,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="基础入门-概念名词"><a href="#基础入门-概念名词" class="headerlink" title="基础入门-概念名词"></a><font size="6"><strong>基础入门-概念名词</strong></font></h2><span id="more"></span>
+                <h2 id="基础入门-数据包拓展"><a href="#基础入门-数据包拓展" class="headerlink" title="基础入门-数据包拓展"></a><font size="6"><strong>基础入门-数据包拓展</strong></font></h2><span id="more"></span>
 
-<h3 id="一、域名"><a href="#一、域名" class="headerlink" title="一、域名"></a><font size="5"><strong>一、域名</strong></font></h3><h4 id="1-什么是域名？"><a href="#1-什么是域名？" class="headerlink" title="1. 什么是域名？"></a><font size="4"><strong>1. 什么是域名？</strong></font></h4><p>域名（英语：Domain Name），又称网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时对计算机的定位标识（有时也指地理位置）。</p>
-<p>由于IP地址具有不方便记忆并且不能显示地址组织的名称和性质等缺点，人们设计出了域名，并通过网域名称系统（DNS，Domain Name System）来将域名和IP地址相互映射，使人更方便地访问互联网，而不用去记住能够被机器直接读取的IP地址数串。</p>
-<p>比如<a target="_blank" rel="noopener" href="http://www.baidu.com,这就是一个域名,简单来说就是ip不好记,所以有了域名来方便记忆.可以联想到地址和经纬度的关系(上海/">www.baidu.com，这就是一个域名，简单来说就是ip不好记，所以有了域名来方便记忆。可以联想到地址和经纬度的关系（上海</a> ：经度 121.48 纬度 31.22）</p>
-<h4 id="2-域名在哪里注册？"><a href="#2-域名在哪里注册？" class="headerlink" title="2. 域名在哪里注册？"></a><font size="4"><strong>2. 域名在哪里注册？</strong></font></h4><p>找个域名注册商的网站（比如阿里、万网），搜索想要的域名（由于国内并非所有域名都支持备案，目前提供主流可备案域名有：</p>
-<pre class=" language-bash"><code class="language-bash">$ .com, .cn, .com.cn, .net, .top, .wang, .vip, .company, .org.cn,.ac.cn, .site, .online, .ren .store, .tech, .xyz, .club, .link, .pro, .red, .info, .biz, .ltd, .gov.cn, .mobi, .city 等"
+<h3 id="一、网站解析对应"><a href="#一、网站解析对应" class="headerlink" title="一、网站解析对应"></a><font size="5"><strong>一、网站解析对应</strong></font></h3><p>●涉及到的攻击层面？（源码，搭建平台，系统，网络层等）<br>●涉及到的安全问题？（目录，敏感文件，弱口令，IP及域名等）</p>
+<h3 id="二、HTTP-S数据包"><a href="#二、HTTP-S数据包" class="headerlink" title="二、HTTP&#x2F;S数据包"></a><font size="5"><strong>二、HTTP&#x2F;S数据包</strong></font></h3><p><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/1.png"></p>
+<pre class=" language-bash"><code class="language-bash">Request请求数据包
+Response返回数据包
+proxy代理服务器
 </code></pre>
-<p>填写域名资料。若你是以公司名义注册域名，则需要填写企业资料、联系人信息；若你是以个人名义注册，请切换到个人栏，填写个人信息。域名英文信息将会根据你填写的中文自动翻译，请核对是否有误，若有误请及时进行修改。</p>
-<p>确认域名账单。确认域名注册人信息、账单无误后，使用支付宝或微信扫码支付即可完成注册。</p>
-<p>域名实名验证。因国内法律法规要求，域名注册后需要进行实名认证，通过认证后即可正式生效。若审核有误，请及时进行修改，再次提交审核。</p>
-<p>域名备案及绑定网站。如果你需要在国内上线，则需要进行网站备案。</p>
-<h4 id="3-什么是子域名、二级域名、多级域名？"><a href="#3-什么是子域名、二级域名、多级域名？" class="headerlink" title="3. 什么是子域名、二级域名、多级域名？"></a><font size="4"><strong>3. 什么是子域名、二级域名、多级域名？</strong></font></h4><p>例如<a target="_blank" rel="noopener" href="http://www.dns0755.net是dns0755.net的子域名,而dns0755.net又是net的子域名.国际顶级域名的子域名叫做二级域名./">www.dns0755.net是dns0755.net的子域名，而dns0755.net又是net的子域名。国际顶级域名的子域名叫做二级域名。</a></p>
-<p>如A.com是一级域名，A.B.com则是二级域名。一级域名较二级域名级别更高，而二级域名则是依附于一级域名下的附属分区域名，即二级域名是一级域名的细分层级。</p>
-<p>通过网址上【.】数量来判断域名层级，有多少【.】就为几级域名，如A.com是一级域名，A.B.com则是二级域名。</p>
-<p>如：baidu.com 是百度的顶级域名，zhidao.baidu.com 是二级域名，zhidao.zhidao.baidu.com 是三（多）级域名，*.baidu.com 是泛域名。</p>
-<h4 id="4-域名发现对于安全测试意义？"><a href="#4-域名发现对于安全测试意义？" class="headerlink" title="4. 域名发现对于安全测试意义？"></a><font size="4"><strong>4. 域名发现对于安全测试意义？</strong></font></h4><p>进行渗透测试时，其主域名找不到漏洞时，就可以尝试去测试收集到的子域名，有可能测试子域名网站时会有意向不到的效果，然后可以由此横向到主网站。</p>
-<h3 id="二、DNS与CDN"><a href="#二、DNS与CDN" class="headerlink" title="二、DNS与CDN"></a><font size="5"><strong>二、DNS与CDN</strong></font></h3><h4 id="1-什么是DNS？"><a href="#1-什么是DNS？" class="headerlink" title="1. 什么是DNS？"></a><font size="4"><strong>1. 什么是DNS？</strong></font></h4><p>域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53。当前，对于每一级域名长度的限制是63个字符，域名总长度则不能超过253个字符。</p>
-<h4 id="2-本地HOSTS与DNS的关系？"><a href="#2-本地HOSTS与DNS的关系？" class="headerlink" title="2. 本地HOSTS与DNS的关系？"></a><font size="4"><strong>2. 本地HOSTS与DNS的关系？</strong></font></h4><p>Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行IP地址的解析。</p>
-<p>需要注意的是，Hosts文件配置的映射是静态的，如果网络上的计算机更改了请及时更新IP地址，否则将不能访问。</p>
-<p>例：先打开cmd终端，输入命令 ping <a href="http://www.baidu.com，得到的结果如下图：">www.baidu.com，得到的结果如下图：</a></p>
-<p><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/1.png"></p>
-<p>在hosts文件（图中黄色框内为hosts文件绝对路径）最后加上下图红色框内的内容，并ctrl+s保存<br><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/2.png"></p>
-<p>再次ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 时会发现解析的ip变为你hosts文件中的了（当然了，访问不了）。<br><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/3.png"></p>
-<h4 id="3-CDN是什么？与DNS的关系？"><a href="#3-CDN是什么？与DNS的关系？" class="headerlink" title="3. CDN是什么？与DNS的关系？"></a><font size="4"><strong>3. CDN是什么？与DNS的关系？</strong></font></h4><p>CDN的全称是Content Delivery Network，即内容分发网络。CDN的基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上（单纯只使用DNS解析，直接PING就会显示出自己的真实IP,如果又使用CDN，PING出来的IP就不是用户的真实IP而是CDN服务器的IP节点。需要绕过CDN后去找真实IP地址：拓展：判断是否存在CDN并绕过，寻找真实IP）。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。<br><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/4.png"><br>扩展：DNS和CDN的区别与联系<a target="_blank" rel="noopener" href="https://www.dns.com/supports/710.html">https://www.dns.com/supports/710.html</a></p>
-<h4 id="4-常见的DNS安全攻击有哪些？"><a href="#4-常见的DNS安全攻击有哪些？" class="headerlink" title="4. 常见的DNS安全攻击有哪些？"></a><font size="4"><strong>4. 常见的DNS安全攻击有哪些？</strong></font></h4><p><strong>缓存投毒</strong><br>通常也称为域名系统投毒或DNS缓存投毒。它是利用虚假Internet地址替换掉域名系统表中的地址，进而制造破坏。当网络用户在带有该虚假地址的页面中进行搜寻，以访问某链接时，网页浏览器由于受到该虚假条目的影响而打开了不同的网页链接。在这种情况下，蠕虫、木马、浏览器劫持等恶意软件就可能会被下载到本地用户的电脑上。</p>
-<p><font size="3"><strong>DNS劫持</strong></font><br>DNS劫持又称域名劫持，是指在劫持的网络范围内拦截域名解析的请求，分析请求的域名，把审查范围以外的请求放行，否则返回假的IP地址或者什么都不做使请求失去响应，其效果就是对特定的网络不能访问或访问的是假网址。这类攻击一般通过恶意软件来更改终端用户TCP&#x2F;IP设置，将用户指向恶意DNS服务器，该DNS服务器会对域名进行解析，并最终指向钓鱼网站等被攻击者操控的服务器。</p>
-<p><font size="3"><strong>域名劫持</strong></font><br>域名劫持就是在劫持的网络范围内拦截域名解析的请求，分析请求的域名，把审查范围以外的请求放行，否则直接返回假的IP地址或者什么也不做使得请求失去响应，其效果就是对特定的网址不能访问或访问的是假网址。一旦您的域名被劫持，用户被引到假冒的网站进而无法正常浏览网页，用户可能被诱骗到冒牌网站进行登录等操作导致泄露隐私数据。</p>
-<p><font size="3"><strong>DNS DDoS攻击</strong></font><br>针对DNS的DDoS攻击通过控制大批僵尸网络利用真实DNS协议栈发起大量域名查询请求，利用工具软件伪造源IP发送海量DNS查询，发送海量DNS查询报文导致网络带宽耗尽而无法传送正常DNS查询请求。发送大量非法域名查询报文引起DNS服务器持续进行迭代查询，从而达到较少的攻击流量消耗大量服务器资源的目的。</p>
-<p><font size="3"><strong>反射式DNS放大攻击</strong></font><br>所有放大攻击都利用了攻击者和目标Web资源之间的带宽消耗差异，由于每个机器人都要求使用欺骗性IP地址打开DNS解析器，该IP地址已更改为目标受害者的真实源IP地址，然后目标会从DNS解析器接收响应。为了创建大量流量，攻击者以尽可能从DNS解析器生成响应的方式构造请求。结果，目标接收到攻击者初始流量的放大，并且他们的网络被虚假流量阻塞，导致拒绝服务。</p>
-<p>当面对各种DNS攻击，墨者安全建议专业的高防DNS防劫持服务，保障服务器的稳定运行，从容应对各种DNS攻击，避免因DNS攻击造成在线业务中断，给企业带来重大损失。</p>
-<h3 id="三、脚本语言"><a href="#三、脚本语言" class="headerlink" title="三、脚本语言"></a><font size="5"><strong>三、脚本语言</strong></font></h3><h4 id="1-常见的脚本语言类型有哪些？"><a href="#1-常见的脚本语言类型有哪些？" class="headerlink" title="1. 常见的脚本语言类型有哪些？"></a><font size="4"><strong>1. 常见的脚本语言类型有哪些？</strong></font></h4><p>asp php aspx jsp javaweb pl py cgi等</p>
-<h4 id="2-不同脚本类型与安全漏洞的关系？"><a href="#2-不同脚本类型与安全漏洞的关系？" class="headerlink" title="2. 不同脚本类型与安全漏洞的关系？"></a><font size="4"><strong>2. 不同脚本类型与安全漏洞的关系？</strong></font></h4><p>不同的脚本语言的编写规则不一样，程序产生的漏洞自然也不一样（代码审计）。</p>
-<h4 id="3-漏洞挖掘代码审计与脚本类型的关系？"><a href="#3-漏洞挖掘代码审计与脚本类型的关系？" class="headerlink" title="3. 漏洞挖掘代码审计与脚本类型的关系？"></a><font size="4"><strong>3. 漏洞挖掘代码审计与脚本类型的关系？</strong></font></h4><p>同上</p>
-<h3 id="四、后门"><a href="#四、后门" class="headerlink" title="四、后门"></a><font size="5"><strong>四、后门</strong></font></h3><h4 id="1-什么是后门？有那些后门？"><a href="#1-什么是后门？有那些后门？" class="headerlink" title="1. 什么是后门？有那些后门？"></a><font size="4"><strong>1. 什么是后门？有那些后门？</strong></font></h4><p>后门程序一般是指那些绕过安全性控制而获取对程序或系统访问权的程序方法。类别：网页、线程插入、扩展、C&#x2F;S后门。</p>
-<h4 id="2-后门在安全测试中的实际意义？"><a href="#2-后门在安全测试中的实际意义？" class="headerlink" title="2. 后门在安全测试中的实际意义？"></a><font size="4"><strong>2. 后门在安全测试中的实际意义？</strong></font></h4><p>例如后门藏在网页上、软件内，悄无声息的进行攻击者想要的操作。</p>
-<h4 id="3-关于后门需要了解那些？（玩法，免杀）"><a href="#3-关于后门需要了解那些？（玩法，免杀）" class="headerlink" title="3. 关于后门需要了解那些？（玩法，免杀）"></a><font size="4"><strong>3. 关于后门需要了解那些？（玩法，免杀）</strong></font></h4><p>免杀，简单来讲就是绕过杀毒软件等。</p>
-<h3 id="五、WEB"><a href="#五、WEB" class="headerlink" title="五、WEB"></a><font size="5"><strong>五、WEB</strong></font></h3><h4 id="1-WEB的组成架构模型？"><a href="#1-WEB的组成架构模型？" class="headerlink" title="1. WEB的组成架构模型？"></a><font size="4"><strong>1. WEB的组成架构模型？</strong></font></h4><p>网站源码：分脚本类型，分应用方向<br>操作系统：windows linux<br>中间件（搭建平台）：apache iis tomcat nginx等<br>数据库：access mysql mssql oracle sybase db2 postsql等</p>
-<h4 id="2-架构漏洞安全测试简要介绍？"><a href="#2-架构漏洞安全测试简要介绍？" class="headerlink" title="2.架构漏洞安全测试简要介绍？"></a><font size="4"><strong>2.架构漏洞安全测试简要介绍？</strong></font></h4><h4 id="3-为什么要从WEB层面为主为首？"><a href="#3-为什么要从WEB层面为主为首？" class="headerlink" title="3.为什么要从WEB层面为主为首？"></a><font size="4"><strong>3.为什么要从WEB层面为主为首？</strong></font></h4><p>用户接触web层面最多，大部分都是从web页面入手慢慢渗透到服务器。直接从操作系统入手不太现实（大部分情况下接触不到）。</p>
-<h3 id="六、WEB相关安全漏洞"><a href="#六、WEB相关安全漏洞" class="headerlink" title="六、WEB相关安全漏洞"></a><font size="5"><strong>六、WEB相关安全漏洞</strong></font></h3><p>● WEB源码类对应漏洞<br>SQL注入，文件上传，XSS，代码执行，变量覆盖，逻辑漏洞，反序列化等</p>
-<p>● WEB中间件对应漏洞<br>未授权访问</p>
-<p>● WEB数据库对应漏洞<br>内核漏洞</p>
-<p>● WEB系统层对应漏洞<br>远程代码执行，提权</p>
-<p>● 其他第三方对应漏洞<br>第三方软件漏洞</p>
-<p>● APP或PC应用结合类</p>
-<p>● owasp top10</p>
-<h3 id="七、演示案例"><a href="#七、演示案例" class="headerlink" title="七、演示案例"></a><font size="5"><strong>七、演示案例</strong></font></h3><h4 id="1-多级域名的枚举查找（原理，方式）"><a href="#1-多级域名的枚举查找（原理，方式）" class="headerlink" title="1. 多级域名的枚举查找（原理，方式）"></a><font size="4"><strong>1. 多级域名的枚举查找（原理，方式）</strong></font></h4><p>layer子域名挖掘机、Maltego（kali自带）、各类挖掘子域名的网站：如 <a target="_blank" rel="noopener" href="https://www.t1h2ua.cn/tools/">https://www.t1h2ua.cn/tools/</a></p>
-<h4 id="2-DNS解析修改后分析（本地或服务）"><a href="#2-DNS解析修改后分析（本地或服务）" class="headerlink" title="2. DNS解析修改后分析（本地或服务）"></a><font size="4"><strong>2. DNS解析修改后分析（本地或服务）</strong></font></h4><p>把自己电脑的DNS服务的改成手动获取，并换dns（比如先8.8.8.8，再114.114.114.114），分别ping同一网站，看解析出来的ip是否不同。</p>
-<h4 id="3-EXE后门功能及危害及类似WEB后门"><a href="#3-EXE后门功能及危害及类似WEB后门" class="headerlink" title="3. EXE后门功能及危害及类似WEB后门"></a><font size="4"><strong>3. EXE后门功能及危害及类似WEB后门</strong></font></h4><p>Quasar后门程序（.exe）生成并使用：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44930903/article/details/111600982">https://blog.csdn.net/qq_44930903/article/details/111600982</a><br>web后门：beef、WSExploer抓包、wireshark抓包等</p>
-<h4 id="4-APP类结合WEB协议，PC类结合WEB协议"><a href="#4-APP类结合WEB协议，PC类结合WEB协议" class="headerlink" title="4. APP类结合WEB协议，PC类结合WEB协议"></a><font size="4"><strong>4. APP类结合WEB协议，PC类结合WEB协议</strong></font></h4><p>Burp Suite抓app的包，然后改包发送等；<br>Apk数据提取（安卓逆向工具）：下载下方资源、解压，然后把一个apk文件放入到apps文件夹，运行exe文件，之后会生成results文件，apk的数据就在这里。</p>
-<h3 id="八、涉及资源"><a href="#八、涉及资源" class="headerlink" title="八、涉及资源"></a><font size="5"><strong>八、涉及资源</strong></font></h3><p>● 逍遥模拟器：<a target="_blank" rel="noopener" href="http://www.xyaz.cn/">http://www.xyaz.cn</a><br>● WSExplorer抓包工具：<a target="_blank" rel="noopener" href="http://www.downcc.com/soft/11196.html">http://www.downcc.com/soft/11196.html</a><br>● Quasar后门程序生成：<a target="_blank" rel="noopener" href="https://github.com/quasar/QuasarRAT/releases">https://github.com/quasar/QuasarRAT/releases</a><br>● Apk数据提取：<a target="_blank" rel="noopener" href="https://github.com/TheKingOfDuck/ApkAnalyser">https://github.com/TheKingOfDuck/ApkAnalyser</a></p>
+<h4 id="HTTP-HTTPS具体区别？"><a href="#HTTP-HTTPS具体区别？" class="headerlink" title="HTTP&#x2F;HTTPS具体区别？"></a><font size="4"><strong>HTTP&#x2F;HTTPS具体区别？</strong></font></h4><p><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/2.png"></p>
+<h4 id="HTTP简要通信过程"><a href="#HTTP简要通信过程" class="headerlink" title="HTTP简要通信过程*"></a><font size="4"><em>HTTP简要通信过程</em>*</font></h4><p><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/3.png"></p>
+<pre class=" language-bash"><code class="language-bash">建立连接——<span class="token operator">></span>发送请求数据包——<span class="token operator">></span>返回响应数据包——<span class="token operator">></span>关闭连接
+1.浏览器建立与web服务器之间的连接
+2.浏览器将请求数据打包（生成请求数据包）并发送到web服务器
+3.web服务器将处理结果打包（生成响应数据包）并发送给浏览器
+4.web服务器关闭连接
+</code></pre>
+<h3 id="三、Request请求数据包数据格式"><a href="#三、Request请求数据包数据格式" class="headerlink" title="三、Request请求数据包数据格式"></a><font size="5"><strong>三、Request请求数据包数据格式</strong></font></h3><h4 id="Request请求数据包数据格式"><a href="#Request请求数据包数据格式" class="headerlink" title="Request请求数据包数据格式"></a><font size="4"><strong>Request请求数据包数据格式</strong></font></h4><p>● 请求行：请求类型&#x2F;请求资源路径、协议的版本和类<br>● 请求头：一些键值对，浏览器与web服务器之间都可以发送，特定的某种含义<br>● 空行：请求头与请求体之间用一个空行隔开；<br>● 请求体：要发送的数据(一般post提交会使用)；例：user&#x3D;123&amp;pass&#x3D;123</p>
+<h5 id="1-请求行"><a href="#1-请求行" class="headerlink" title="1.请求行"></a><font size="3"><strong>1.请求行</strong></font></h5><p>请求行由三个标记组成：请求方法、请求URL和HTTP版本，它们用空格分享。<br>例如：GET &#x2F;index.html HTTP&#x2F;1.1</p>
+<p>HTTP 规划定义了8种可能的请求方法：<br>● GET：检索URL中标识资源的一个简单请求<br>● HEAD：与GET方法相同，服务器只返回状态行和头标，并不返回请求文档<br>● POST：服务器接受被写入客户端输出流中的数据的请求<br>● PUT：服务器保存请求数据作为指定URL新内容的请求 DELETE：服务器删除URL中命令的资源的请求<br>● OPTIONS：关于服务器支持的请求方法信息的请求<br>● TRACE：web服务器反馈Http请求和其头标的请求<br>● CONNECT ：已文档化，但当前未实现的一个方法，预留做隧道处理</p>
+<h5 id="2-请求头"><a href="#2-请求头" class="headerlink" title="2.请求头"></a><font size="3"><strong>2.请求头</strong></font></h5><p>由关键字&#x2F;值对组成，每行一对，关键字和值用冒号分享。请求头标通知服务器腾于客户端的功能和标识。</p>
+<p>● HOST: 主机或域名地址<br>● Accept：指浏览器或其他客户可以接爱的MIME文件格式。Servlet可以根据它判断并返回适当的文件格式<br>● User-Agent：是客户浏览器名称<br>● Host：对应网址URL中的Web名称和端口号<br>● Accept-Langeuage：指出浏览器可以接受的语言种类，如en或en-us，指英语<br>● connection：用来告诉服务器是否可以维持固定的HTTP连接。http是无连接的，HTTP&#x2F;1.1使用Keep-Alive为默认值，这样，当浏览器需要多个文件时(比如一个HTML文件和相关的图形文件)，不需要每次都建立连接<br>● Cookie：浏览器用这个属性向服务器发送Cookie。Cookie是在浏览器中寄存的小型数据体，它可以记载和服务器相关的用户信息，也可以用来实现会话功能<br>● Referer：表明产生请求的网页URL。如比从网页&#x2F;icconcept&#x2F;index.jsp中点击一个链接到网页&#x2F;icwork&#x2F;search，在向服务器发送的GET&#x2F;icwork&#x2F;search中的请求中，Referer是<a target="_blank" rel="noopener" href="http://hostname:8080/icconcept/index.jsp%E3%80%82%E8%BF%99%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E8%B7%9F%E8%B8%AAWeb%E8%AF%B7%E6%B1%82%E6%98%AF%E4%BB%8E%E4%BB%80%E4%B9%88%E7%BD%91%E7%AB%99%E6%9D%A5%E7%9A%84">http://hostname:8080/icconcept/index.jsp。这个属性可以用来跟踪Web请求是从什么网站来的</a><br>● Content-Type：用来表名request的内容类型。可以用HttpServletRequest的getContentType()方法取得<br>● Accept-Charset：指出浏览器可以接受的字符编码。英文浏览器的默认值是ISO-8859-1<br>● Accept-Encoding：指出浏览器可以接受的编码方式。编码方式不同于文件格式，它是为了压缩文件并加速文件传递速度。浏览器在接收到Web响应之后先解码，然后再检查文件格式</p>
+<h5 id="3-空行"><a href="#3-空行" class="headerlink" title="3.空行"></a><font size="3"><strong>3.空行</strong></font></h5><p>最后一个请求头标之后是空行，发送回车符和退行，通知服务器以下不再有头标。</p>
+<h5 id="4-请求数据"><a href="#4-请求数据" class="headerlink" title="4.请求数据"></a><font size="3"><strong>4.请求数据</strong></font></h5><p>使用POST传送，最常使用的是 Content-Type 和 Content-Length 头标。</p>
+<h3 id="四、Response返回数据包数据格式"><a href="#四、Response返回数据包数据格式" class="headerlink" title="四、Response返回数据包数据格式"></a><font size="5"><strong>四、Response返回数据包数据格式</strong></font></h3><h4 id="一个响应由四个部分组成；状态行、响应头标、空行、响应数据。"><a href="#一个响应由四个部分组成；状态行、响应头标、空行、响应数据。" class="headerlink" title="一个响应由四个部分组成；状态行、响应头标、空行、响应数据。"></a><font size="4"><strong>一个响应由四个部分组成；状态行、响应头标、空行、响应数据。</strong></font></h4><p>● 状态行：协议版本、数字形式的状态代码和状态描述，个元素之间以空格分隔<br>● 响应头标：包含服务器类型、日期、长度、内容类型等<br>● 空行：响应头与响应体之间用空行隔开<br>● 响应数据：浏览器会将实体内容中的数据取出来，生成相应的页面</p>
+<h4 id="HTTP响应码"><a href="#HTTP响应码" class="headerlink" title="HTTP响应码"></a><font size="4"><strong>HTTP响应码</strong></font></h4><p>1xx：信息，请求收到，继续处理<br>2xx：成功，行为被成功地接受、理解和采纳<br>3xx：重定向，为了完成请求，必须进一步执行的动作<br>4xx：客户端错误<br>5xx：服务器错误</p>
+<p>200 存在文件<br>403 存在文件夹<br>3xx 均可能存在<br>404 不存在文件及文件夹<br>500 均可能存在</p>
+<p>1.响应头标<br>像请求头标一样，它们指出服务器的功能，标识出响应数据的细节。</p>
+<p>2.空行<br>最后一个响应头标之后是一个空行，发送回车符和退行，表明服务器以下不再有头标。</p>
+<p>3.响应数据<br>HTML文档和图像等，也就是HTML本身。</p>
+<h3 id="五、涉及演示案例"><a href="#五、涉及演示案例" class="headerlink" title="五、涉及演示案例"></a><font size="5"><strong>五、涉及演示案例</strong></font></h3><p>Burpsuite抓包修改测试</p>
+<h4 id="敏感文件扫描工具简要实现"><a href="#敏感文件扫描工具简要实现" class="headerlink" title="敏感文件扫描工具简要实现"></a><font size="4"><strong>敏感文件扫描工具简要实现</strong></font></h4><p>  御剑web目录扫描工具（还有一款铸剑，功能更多），扫描时可以配合wireshark抓包分析（筛选条件：扫描的ip或域名）。<br><img src="/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/4.png"></p>
+<h3 id="第三方检测修改实现XSS攻击"><a href="#第三方检测修改实现XSS攻击" class="headerlink" title="第三方检测修改实现XSS攻击"></a><font size="4"><strong>第三方检测修改实现XSS攻击</strong></font></h3><p>  bp抓包修改信息（比如访问ip.chinaz.com，会看到你的ip等信息，用bp抓包，改包，比如改user-agent，然后再forward，会发现信息改变）</p>
+<h5 id="CTF或实际应用中部分考题解析（mozhe）"><a href="#CTF或实际应用中部分考题解析（mozhe）" class="headerlink" title="CTF或实际应用中部分考题解析（mozhe）"></a><font size="4"><strong>CTF或实际应用中部分考题解析（mozhe）</strong></font></h5><ol>
+<li>伪造User-Agent(例如伪造成手机客户端等等) </li>
+<li>伪造referer</li>
+<li>伪造ip（查一下php获取ip的方法，改X-forwarded-For，配合bp的Intruder功能实现许多ip不断访问对方url，各种投票的刷票也可以使用这个思路）</li>
+</ol>
+<h3 id="六、涉及资源"><a href="#六、涉及资源" class="headerlink" title="六、涉及资源"></a><font size="5"><strong>六、涉及资源</strong></font></h3><p>● <a target="_blank" rel="noopener" href="https://www.mozhe.cn/">https://www.mozhe.cn/</a><br>● <a target="_blank" rel="noopener" href="https://www.ddosi.com/b261/">https://www.ddosi.com/b261/</a></p>
 
                 
             </div>
@@ -580,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/">http://example.com/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/</a>
+                    <a href="http://example.com/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/">http://example.com/2023/09/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -793,19 +780,19 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/09/16/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-002/">
+                <a href="/2023/09/16/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-003/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="web安全日志--002">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web安全日志-003">
                         
-                        <span class="card-title">web安全日志--002</span>
+                        <span class="card-title">web安全日志-003</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础入门-数据包拓展
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -842,32 +829,44 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/09/13/hello-world/">
+                <a href="/2023/09/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="web安全日志--001">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">web安全日志--001</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            基础入门-概念名词
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
