@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -506,7 +506,66 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="信息收集-架构-搭建-WAF等"><a href="#信息收集-架构-搭建-WAF等" class="headerlink" title="信息收集-架构,搭建,WAF等"></a><font size="6"><strong>信息收集-架构,搭建,WAF等</strong></font></h2><span id="more"></span>
+
+<h3 id="一、前言说明"><a href="#一、前言说明" class="headerlink" title="一、前言说明"></a><font size="5"><strong>一、前言说明</strong></font></h3><p>前言：在安全测试中，信息收集是非常重要的一个环节，此环节的信息将影响到后续的成功几率，掌握信息的多少将决定发现漏洞机会大小，换言之决定着是否能完成目标的测试任务。也可以很直接的跟大家说:渗透测试的思路就是从信息收集这里开始，你与大牛的差距也是从这里开始的!<br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/1.png"></p>
+<h3 id="二、站点搭建分析"><a href="#二、站点搭建分析" class="headerlink" title="二、站点搭建分析"></a><font size="5"><strong>二、站点搭建分析</strong></font></h3><h4 id="1、搭建习惯-目录型站点"><a href="#1、搭建习惯-目录型站点" class="headerlink" title="1、搭建习惯-目录型站点"></a><font size="4"><strong>1、搭建习惯-目录型站点</strong></font></h4><pre class=" language-bash"><code class="language-bash">简单的理解就是主站上面存在其他的cms程序
+例如：
+    学生网站的上面通过后台扫描探针发现有一个bbs的目录一点击发现是一个bbs的论坛网站如：www.xxx.com/bbs
+ 我们把这个成为目录型网站、可以有两种找到漏洞的思路一个是主站的漏洞另外的一个是bbs上面的漏洞
+</code></pre>
+<h4 id="2、搭建习惯-端口类站点"><a href="#2、搭建习惯-端口类站点" class="headerlink" title="2、搭建习惯-端口类站点"></a><font size="4"><strong>2、搭建习惯-端口类站点</strong></font></h4><p><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/2.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/3.png"><br>有的站点不是使用的是默认的站点80而是其他的端口、可以使用shodan这种工具去收集端口</p>
+<h4 id="3、搭建习惯-子域名站点"><a href="#3、搭建习惯-子域名站点" class="headerlink" title="3、搭建习惯-子域名站点"></a><font size="4"><strong>3、搭建习惯-子域名站点</strong></font></h4><p><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/4.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/5.png"><br>备注：现在的主流网站都是采用的这种模式且子域名和网站之间很有可能是不在同一台的服务器上面。</p>
+<h4 id="4、搭建习惯-类似域名站点"><a href="#4、搭建习惯-类似域名站点" class="headerlink" title="4、搭建习惯-类似域名站点"></a><font size="4"><strong>4、搭建习惯-类似域名站点</strong></font></h4><p>有些公司由于业务的发展将原来的域名弃用、选择了其他的域名但是我们访问他的旧的域名还是能够访问、有的是二级域名的更换而有的是顶级域名的更换<br>可以通过他的旧的域名找到一些突破口<br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/6.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/7.png"><br>例如：京东的网站是jd.com 那么他就有可能是采用了jd.net jd.cn等域名我们采用社工的方式去尝试获取他的相关域名信息</p>
+<h4 id="5、搭建习惯-旁注-c段站点"><a href="#5、搭建习惯-旁注-c段站点" class="headerlink" title="5、搭建习惯-旁注,c段站点"></a><font size="4"><strong>5、搭建习惯-旁注,c段站点</strong></font></h4><p>旁注：同一个服务器上面存在多个站点、但是你要攻击的是A网站由于各种原因不能完成安全测试。就通过测试B网站进入服务器然后在攻击A网站最终实现目的。<br>C段：不同的服务器上面存在不同的网站，通过扫描发现与你渗透测试的是同一个网段最终拿下服务器、然后通过内网渗透的方式拿下渗透服务器。<br>在线工具：<a target="_blank" rel="noopener" href="https://www.webscan.cc/">https://www.webscan.cc/</a><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/8.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/9.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/10.png"><br>通过旁注查询可以发现同一个服务器上面有两个站点可以通过对另外的一个站点进行突破。</p>
+<h4 id="6、搭建习惯-搭建软件特征站点"><a href="#6、搭建习惯-搭建软件特征站点" class="headerlink" title="6、搭建习惯-搭建软件特征站点"></a><font size="4"><strong>6、搭建习惯-搭建软件特征站点</strong></font></h4><p>有的网站是借助于第三方的集成搭建工具实现例如：PHPstudy、宝塔等环境这样的集成环境搭建的危害就是泄露了详细的版本信息。<br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/11.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/12.png"><br>phpstudy搭建了之后在默认的站点安装了phpmyadmin有的网站没有做安全性直接可以通过用户名：root密码：root 登录进入</p>
+<h3 id="三、WAF防护分析"><a href="#三、WAF防护分析" class="headerlink" title="三、WAF防护分析"></a><font size="5"><strong>三、WAF防护分析</strong></font></h3><h4 id="1、什么是wAF应用"><a href="#1、什么是wAF应用" class="headerlink" title="1、什么是wAF应用?"></a><font size="4"><strong>1、什么是wAF应用?</strong></font></h4><p>Web应用防护系统（也称为：网站应用级入侵防御系统。英文：Web Application Firewall，简称： WAF）。利用国际上公认的一种说法：Web应用防火墙是通过执行一系列针对HTTP&#x2F;HTTPS的安全策略来专门为Web应用提供保护的一款产品。</p>
+<h4 id="2、如何快速识别WAF"><a href="#2、如何快速识别WAF" class="headerlink" title="2、如何快速识别WAF?"></a><font size="4"><strong>2、如何快速识别WAF?</strong></font></h4><p>1、采用工具wafwoof<br>获取地址：<a target="_blank" rel="noopener" href="https://codeload.github.com/EnableSecurity/wafw00f/zip/refs/heads/master">https://codeload.github.com/EnableSecurity/wafw00f/zip/refs/heads/master</a><br>安装之前一定要有python的环境不然安装不上</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># unzip wafw00f-master.zip</span>
+<span class="token comment" spellcheck="true"># python3.8 setup.py install</span>
+<span class="token comment" spellcheck="true"># ls -ld wafw00f</span>
+drwxr-xr-x 6 root root 4096  6月 10 17:22 wafw00f
+<span class="token comment" spellcheck="true"># cd wafw00f </span>
+<span class="token comment" spellcheck="true">#python main.py https://www.hlszsb.com/</span>
+
+<span class="token punctuation">[</span>*<span class="token punctuation">]</span> Checking https://www.hlszsb.com/
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Generic Detection results:
+<span class="token punctuation">[</span>-<span class="token punctuation">]</span> No WAF detected by the generic detection
+<span class="token punctuation">[</span>~<span class="token punctuation">]</span> Number of requests: 7
+</code></pre>
+<p>wafw00f的缺点判断的不是特别的准确存在误报或识别不出的情况。</p>
+<p>2、在有些网站的请求信息当中有的网站没有做安全信息上面留下了waf的相关信息<br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/13.png"></p>
+<p>3、使用nmap指纹检测</p>
+<pre class=" language-bash"><code class="language-bash">nmap --script<span class="token operator">==</span>http-waf-fingerprint
+
+nmap --script<span class="token operator">=</span>http-waf-detec
+</code></pre>
+<p>4、identYwaf<br>参考地址：<a target="_blank" rel="noopener" href="https://github.com/stamparm/identywaf">https://github.com/stamparm/identywaf</a></p>
+<pre class=" language-bash"><code class="language-bash">C:\Users\admin\Desktop\security\软件\identYwaf-master<span class="token operator">></span>python identYwaf.py https://www.manjaro.cn/
+                                    __ __
+ ____  ___      ___  ____   ______ <span class="token operator">|</span>  T  T __    __   ____  _____
+l    j<span class="token operator">|</span>   \    /  _<span class="token punctuation">]</span><span class="token operator">|</span>    \ <span class="token operator">|</span>      T<span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">||</span>  T__T  T /    T<span class="token operator">|</span>   __<span class="token operator">|</span>
+ <span class="token operator">|</span>  T <span class="token operator">|</span>    \  /  <span class="token punctuation">[</span>_ <span class="token operator">|</span>  _  Yl_j  l_j<span class="token operator">|</span>  ~  <span class="token operator">||</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>Y  o  <span class="token operator">||</span>  l_
+ <span class="token operator">|</span>  <span class="token operator">|</span> <span class="token operator">|</span>  D  YY    _<span class="token punctuation">]</span><span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>___  <span class="token operator">||</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">||</span>     <span class="token operator">||</span>   _<span class="token operator">|</span>
+ j  l <span class="token operator">|</span>     <span class="token operator">||</span>   <span class="token punctuation">[</span>_ <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">|</span>     <span class="token operator">!</span> \      / <span class="token operator">|</span>  <span class="token operator">|</span>  <span class="token operator">||</span>  <span class="token punctuation">]</span>
+<span class="token operator">|</span>____jl_____jl_____jl__j__j  l__j  l____/   \_/\_/  l__j__jl__j  <span class="token punctuation">(</span>1.0.134<span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span>o<span class="token punctuation">]</span> initializing handlers<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>i<span class="token punctuation">]</span> checking <span class="token function">hostname</span> <span class="token string">'www.manjaro.cn'</span><span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>i<span class="token punctuation">]</span> running basic heuristic test<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>i<span class="token punctuation">]</span> rejected summary: 200 <span class="token punctuation">(</span><span class="token string">'&lt;title>����ҳ��&lt;/title>'</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span>-<span class="token punctuation">]</span> non-blind match: -
+<span class="token punctuation">[</span>i<span class="token punctuation">]</span> running payload tests<span class="token punctuation">..</span>. <span class="token punctuation">(</span>45/45<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> results: <span class="token string">'.xx.xxxxx..xxxxxxxx.xxx.x...x.xxx......x..xxx'</span>
+<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> hardness: hard <span class="token punctuation">(</span>60%<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> blocked categories: SQLi, XSS, XPATHi, XXE, PHPi, PT
+<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> signature: <span class="token string">'90fa:RVZXu261OEhCWapBYKcPk4JzWOpohM4JiUcMr2RXg1uQJbX3uhdOnthtOj+hX7AA16FcPhJOdLoXo2tKaK99n+i7c4RmkgI2FZjxtDtAeq+c3qA4chW1XaTD'</span>
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> blind match: <span class="token string">'Safedog'</span> <span class="token punctuation">(</span>100%<span class="token punctuation">)</span>
+</code></pre>
+<p>与wafwoof相比运行速度慢，比较稳定推荐还是使用这一款工具。</p>
+<h4 id="3、识别wAF对于安全测试的意义"><a href="#3、识别wAF对于安全测试的意义" class="headerlink" title="3、识别wAF对于安全测试的意义?"></a><font size="4"><strong>3、识别wAF对于安全测试的意义?</strong></font></h4><p>对于一个网站要是使用了waf而渗透人员没有识别直接使用工具进行扫描有可能会导致waf将你的ip地址拉入黑名单而不能访问。而识别waf在于有针对性行的绕过各个厂商的waf可能存在着不同的绕过思路。</p>
+<h3 id="四、涉及资源："><a href="#四、涉及资源：" class="headerlink" title="四、涉及资源："></a><font size="5"><strong>四、涉及资源：</strong></font></h3><p><a target="_blank" rel="noopener" href="https://www.shodan.io/">https://www.shodan.io/</a><br><a target="_blank" rel="noopener" href="https://www.webscan.cc/">https://www.webscan.cc/</a><br><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">https://github.com/EnableSecurity/wafw00f</a></p>
+
                 
             </div>
             <hr/>
@@ -1069,7 +1128,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.1k</span>&nbsp;字
+                class="white-color">11.5k</span>&nbsp;字
             
             
             
