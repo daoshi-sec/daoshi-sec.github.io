@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-25T11:59:59.141Z</updated>
+  <updated>2023-09-25T12:04:08.582Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,115 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>web安全日志-012</title>
+    <link href="http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/"/>
+    <id>http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/</id>
+    <published>2023-09-25T12:17:13.000Z</published>
+    <updated>2023-09-25T12:04:08.582Z</updated>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-011</title>
+    <link href="http://example.com/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/"/>
+    <id>http://example.com/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/</id>
+    <published>2023-09-24T14:01:35.000Z</published>
+    <updated>2023-09-25T12:04:07.063Z</updated>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-010</title>
+    <link href="http://example.com/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/"/>
+    <id>http://example.com/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/</id>
+    <published>2023-09-23T15:54:12.000Z</published>
+    <updated>2023-09-25T12:04:05.935Z</updated>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-009</title>
+    <link href="http://example.com/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/"/>
+    <id>http://example.com/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/</id>
+    <published>2023-09-22T14:38:29.000Z</published>
+    <updated>2023-09-25T12:04:04.901Z</updated>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-008</title>
+    <link href="http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/"/>
+    <id>http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/</id>
+    <published>2023-09-21T15:01:26.000Z</published>
+    <updated>2023-09-25T12:04:02.606Z</updated>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-007</title>
+    <link href="http://example.com/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/"/>
+    <id>http://example.com/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/</id>
+    <published>2023-09-20T14:25:22.000Z</published>
+    <updated>2023-09-25T14:06:55.798Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;信息收集-CDN绕过&quot;&gt;&lt;a href=&quot;#信息收集-CDN绕过&quot; class=&quot;headerlink&quot; title=&quot;信息收集-CDN绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;信息收集-CDN绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>web安全日志-006</title>
-    <link href="http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/"/>
-    <id>http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</id>
-    <published>2023-09-21T15:32:54.000Z</published>
-    <updated>2023-09-25T11:59:59.141Z</updated>
+    <link href="http://example.com/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/"/>
+    <id>http://example.com/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</id>
+    <published>2023-09-19T15:32:54.000Z</published>
+    <updated>2023-09-25T12:03:56.436Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;基础入门-加密编码算法&quot;&gt;&lt;a href=&quot;#基础入门-加密编码算法&quot; class=&quot;headerlink&quot; title=&quot;基础入门-加密编码算法&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;基础入门-加密编码算法&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>

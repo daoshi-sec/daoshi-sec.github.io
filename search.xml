@@ -4,11 +4,161 @@
   
     
     <entry>
-      <title>web安全日志-006</title>
-      <link href="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/"/>
-      <url>/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</url>
+      <title>web安全日志-012</title>
+      <link href="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/"/>
+      <url>/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/</url>
       
-        <content type="html"><![CDATA[<h2 id="基础入门-加密编码算法"><a href="#基础入门-加密编码算法" class="headerlink" title="基础入门-加密编码算法"></a><font size="6"><strong>基础入门-加密编码算法</strong></font></h2><span id="more"></span><h3 id="一、前言知识"><a href="#一、前言知识" class="headerlink" title="一、前言知识"></a><font size="5"><strong>一、前言知识</strong></font></h3><p>前言:在渗透测试中，常见的密码等敏感信息会采用加密处理，其中作为安全测试人员必须要了解常见的加密方式，才能为后续的安全测试做好准备，本次课程将讲解各种加密编码等知识，便于后期的学习和发展。</p><h4 id="1、加密解密"><a href="#1、加密解密" class="headerlink" title="1、加密解密"></a><font size="4"><strong>1、加密解密</strong></font></h4><p>加密软件<br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/1.png"><br>解密软件<br><a href="https://www.cmd5.com/">https://www.cmd5.com/</a><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/2.png"></p><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#常见加密编码等算法解析</span>MD5，SHA，ASC，进制，时间戳，URL，BASE64，Unescape，AES，DES等<span class="token comment" spellcheck="true">#常见加密形式算法解析</span>直接加密，带salt，带密码，带偏移，带位数，带模式，带干扰，自定义组合等<span class="token comment" spellcheck="true">#常见解密方式（针对)</span>枚举，自定义逆向算法，可逆向<span class="token comment" spellcheck="true">#了解常规加密算法的特性</span>长度位数，字符规律，代码分析，搜索获取等</code></pre><h4 id="2、时间戳"><a href="#2、时间戳" class="headerlink" title="2、时间戳"></a><font size="4"><strong>2、时间戳</strong></font></h4><p>在线转换工具：<a href="https://tool.lu/timestamp/">https://tool.lu/timestamp/</a><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/3.png"><br>时间戳通常是用在用户的注册、登录、注销等情况</p><h4 id="3、URL编码"><a href="#3、URL编码" class="headerlink" title="3、URL编码"></a><font size="4"><strong>3、URL编码</strong></font></h4><p><a href="https://www.cnblogs.com/cxygg/p/9278542.html">https://www.cnblogs.com/cxygg/p/9278542.html</a></p><table>    <thead>        <tr>            <th>序号</th>            <th>特殊字符</th>            <th>含义</th>            <th>十六进制值</th>        </tr>    </thead>    <tbody>        <tr>            <td>1</td>            <td>+</td>            <td>URL 中+号表示空格</td>            <td>%2B</td>        </tr>        <tr>            <td>2</td>            <td>空格</td>            <td>URL中的空格可以用+号或者编码</td>            <td>%20</td>        </tr>        <tr>            <td>3</td>            <td>/</td>            <td>分隔目录和子目录</td>            <td>%2F</td>        </tr>        <tr>            <td>4</td>            <td>?</td>            <td>分隔实际的 URL 和参数</td>            <td>%3F</td>        </tr>        <tr>            <td>5</td>            <td>%</td>            <td>指定特殊字符</td>            <td>%25</td>        </tr>        <tr>            <td>6</td>            <td>#</td>            <td>表示书签</td>            <td>%23</td>        </tr>        <tr>            <td>7</td>            <td>&</td>            <td>URL 中指定的参数间的分隔符</td>            <td>%26</td>        </tr>        <tr>            <td>8</td>            <td>=</td>            <td>URL 中+号表示空格</td>            <td>%3D</td>        </tr>    </tbody></table><h4 id="4、base64编码"><a href="#4、base64编码" class="headerlink" title="4、base64编码"></a><font size="4"><strong>4、base64编码</strong></font></h4><p><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/4.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/5.png"><br>base64编码的特点：随着编码的文本增加而增加、由大小写和数字组成且字符结尾一般有两个等号<br>一般在代码中为了安全会使用base64进行编码</p><h4 id="5、unescape编码"><a href="#5、unescape编码" class="headerlink" title="5、unescape编码"></a><font size="4"><strong>5、unescape编码</strong></font></h4><p><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/6.png"><br>和URL编码有点像<br>特点：一般是%U+四个数字对应着两个字符、主要运用于网站web应用</p><h4 id="4、AES加密"><a href="#4、AES加密" class="headerlink" title="4、AES加密"></a><font size="4"><strong>4、AES加密</strong></font></h4><p>aes在逐渐的取代md5值、在解密的过程中一定要知道密码和偏移量不然是借不出来的。<br>在线工具：<a href="http://tool.chacuo.net/cryptaes">http://tool.chacuo.net/cryptaes</a><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/7.png"><br><img src="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/8.png"></p><h3 id="二、演示案例："><a href="#二、演示案例：" class="headerlink" title="二、演示案例："></a><font size="5"><strong>二、演示案例：</strong></font></h3><h4 id="✧-某CTF比赛题目解析"><a href="#✧-某CTF比赛题目解析" class="headerlink" title="✧ 某CTF比赛题目解析"></a><font size="4"><strong>✧ 某CTF比赛题目解析</strong></font></h4><p>脚本自定义算法组合逆向</p><h4 id="✧-某CMS密码加密解密"><a href="#✧-某CMS密码加密解密" class="headerlink" title="✧ 某CMS密码加密解密"></a><font size="4"><strong>✧ 某CMS密码加密解密</strong></font></h4><p>MD5+salt<br>部分CMS密码加密形式-wp,dz等</p><h4 id="✧-某URL加密地址的漏洞测试"><a href="#✧-某URL加密地址的漏洞测试" class="headerlink" title="✧ 某URL加密地址的漏洞测试"></a><font size="4"><strong>✧ 某URL加密地址的漏洞测试</strong></font></h4><p>AES+Base64+自定义<br>观察参数值加密字符串，下载源代码分析，函数定义AES加密，涉及模式CBC,128位，加密密码，偏移量，两次base64减去常规一次，填充模式。（_mozhe）</p><p>ZUlJOGMzSmVMMHQwZHhNN3diM056Zz09<br>eII8c3JeL0t0dxM7wb3Nzg&#x3D;&#x3D;</p><h4 id="✧-某实际应用URL地址参数加密"><a href="#✧-某实际应用URL地址参数加密" class="headerlink" title="✧ 某实际应用URL地址参数加密"></a><font size="4"><strong>✧ 某实际应用URL地址参数加密</strong></font></h4><p>#搜素特定关键字加密字符串</p><h3 id="三、涉及资源："><a href="#三、涉及资源：" class="headerlink" title="三、涉及资源："></a><font size="5"><strong>三、涉及资源：</strong></font></h3><p><a href="https://www.mozhe.cn/">https://www.mozhe.cn</a><br><a href="https://www.cmd5.com/">https://www.cmd5.com</a><br><a href="http://tool.chacuo.net/cryptaes">http://tool.chacuo.net/cryptaes</a><br><a href="https://ctf.bugku.com/challenges">https://ctf.bugku.com/challenges</a><br><a href="https://www.cr173.com/soft/21692.html">https://www.cr173.com/soft/21692.html</a><br><a href="https://gitee.com/ComsenzDiscuz/DiscuzX">https://gitee.com/ComsenzDiscuz/DiscuzX</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-011</title>
+      <link href="/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/"/>
+      <url>/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-010</title>
+      <link href="/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/"/>
+      <url>/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-009</title>
+      <link href="/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/"/>
+      <url>/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-008</title>
+      <link href="/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/"/>
+      <url>/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-007</title>
+      <link href="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/"/>
+      <url>/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/</url>
+      
+        <content type="html"><![CDATA[<h2 id="信息收集-CDN绕过"><a href="#信息收集-CDN绕过" class="headerlink" title="信息收集-CDN绕过"></a><font size="6"><strong>信息收集-CDN绕过</strong></font></h2><span id="more"></span><h3 id="一前言知识"><a href="#一前言知识" class="headerlink" title="一前言知识"></a><font size="5"><strong>一前言知识</strong></font></h3><p>前言：CDN的全称是Content Delivery Network，即内容分发网络。CDN是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。但在安全测试过程中，若目标存在CDN服务，将会影响到后续的安全测试过程。</p><p><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/1.png"></p><h3 id="二、如何判断目标存在CDN服务"><a href="#二、如何判断目标存在CDN服务" class="headerlink" title="二、如何判断目标存在CDN服务?"></a><font size="5"><strong>二、如何判断目标存在CDN服务?</strong></font></h3><pre class=" language-bash"><code class="language-bash">利用多节点技术进行请求返回判断    http://ping.chinaz.com/     http://ping.aizhan.com/  http://ce.cloud.360.cn/</code></pre><p>如果ping的结果只有一个那么就没有CDN、要是不止一个则可以判断为有CDN<br>没有使用CDN</p><p><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/2.png"><br>使用CDN<br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/3.png"></p><h3 id="三、CDN对于安全测试有那些影响"><a href="#三、CDN对于安全测试有那些影响" class="headerlink" title="三、CDN对于安全测试有那些影响?"></a><font size="5"><strong>三、CDN对于安全测试有那些影响?</strong></font></h3><pre class=" language-bash"><code class="language-bash">    cdn会隐藏服务器真实的ip地址，无法对目标网站的操作系统进行渗透，但cdn站点又可以理解为是目标站点的镜像站点（大多数都是静态cdn加速），拥有相同的网站架构，且cdn服务器可与站点服务器进行交互，因此sql注入，xss等漏洞的挖掘并不受太大影响。</code></pre><h3 id="四、目前常见的CDN绕过技术有哪些"><a href="#四、目前常见的CDN绕过技术有哪些" class="headerlink" title="四、目前常见的CDN绕过技术有哪些?"></a><font size="5"><strong>四、目前常见的CDN绕过技术有哪些?</strong></font></h3><pre class=" language-bash"><code class="language-bash">子域名查询：                    因为有些主站是做了CDN服务而子站是没有做CDN服务邮件服务查询                    因为邮箱大部分都是内部人在访问、而且访问的量也不是很大，一般是没有做CDN。国外地址请求                    因为很多的企业没有在国外部署CDN，要是用国外的地址请求、就容易找到他的真实地址。遗留文件、扫描全网                    如PHPinfo信息当中会遗留出ip地址黑暗引擎搜索                    fofa、傻蛋、谛听、zoomeye、censys特定文件dns历史记录，以量打量<span class="token comment" spellcheck="true">#CDN真实IP地址获取后绑定指向地址</span>更改本地HOSTS解析指向文件奇淫技巧    fackcdn w8fuckcdnzmap</code></pre><h3 id="五、案例演示获取真实ip"><a href="#五、案例演示获取真实ip" class="headerlink" title="五、案例演示获取真实ip"></a><font size="5"><strong>五、案例演示获取真实ip</strong></font></h3><h4 id="1、以学而思网站为例"><a href="#1、以学而思网站为例" class="headerlink" title="1、以学而思网站为例"></a><font size="4"><strong>1、以学而思网站为例</strong></font></h4><p><a href="http://www.xueersi.com/">www.xueersi.com</a></p><p><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/4.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/5.png"></p><p>xuersi.com<br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/6.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/7.png"></p><p>备注：通过对比发现xueersi.com没有使用cdn直接获取到了真实的IP地址、而其中的IP地址71、72是负载均衡的访问入口。</p><p>验证获取到ip是否可信可以采用第三方的ip地址查询工具经行验证。<br><a href="https://get-site-ip.com/">https://get-site-ip.com/</a></p><p><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/8.png"></p><h4 id="2、www-sp910-com"><a href="#2、www-sp910-com" class="headerlink" title="2、www.sp910.com"></a><font size="4"><strong>2、<a href="http://www.sp910.com/">www.sp910.com</a></strong></font></h4><p><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/9.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/10.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/11.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/12.png"><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/13.png"></p><h4 id="3、cdn网站"><a href="#3、cdn网站" class="headerlink" title="3、cdn网站"></a><font size="4"><strong>3、cdn网站</strong></font></h4><p><a href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a><br><img src="/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/14.png"></p><h3 id="六、涉及资源："><a href="#六、涉及资源：" class="headerlink" title="六、涉及资源："></a><font size="5"><strong>六、涉及资源：</strong></font></h3><p><a href="https://www.shodan.io/">https://www.shodan.io</a><br><a href="https://x.threatbook.cn/">https://x.threatbook.cn</a> 历史域名解析<br><a href="http://ping.chinaz.com/">http://ping.chinaz.com</a><br><a href="https://www.get-site-ip.com/">https://www.get-site-ip.com/</a> 查真实ip<br><a href="https://asm.ca.com/en/ping.php">https://asm.ca.com/en/ping.php</a> 海外ping<br><a href="https://github.com/Tai7sy/fuckcdn">https://github.com/Tai7sy/fuckcdn</a><br><a href="https://github.com/boy-hack/w8fuckcdn">https://github.com/boy-hack/w8fuckcdn</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzA5MzQ3MDE1NQ==&mid=2653939118&idx=1&sn=945b81344d9c89431a8c413ff633fc3a&chksm=8b86290abcf1a01cdc00711339884602b5bb474111d3aff2d465182702715087e22c852c158f&token=268417143&lang=zh_CN#rd">https://mp.weixin.qq.com/s?__biz=MzA5MzQ3MDE1NQ==&amp;mid=2653939118&amp;idx=1&amp;sn=945b81344d9c89431a8c413ff633fc3a&amp;chksm=8b86290abcf1a01cdc00711339884602b5bb474111d3aff2d465182702715087e22c852c158f&amp;token=268417143&amp;lang=zh_CN#rd</a> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>web安全日志-006</title>
+      <link href="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/"/>
+      <url>/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基础入门-加密编码算法"><a href="#基础入门-加密编码算法" class="headerlink" title="基础入门-加密编码算法"></a><font size="6"><strong>基础入门-加密编码算法</strong></font></h2><span id="more"></span><h3 id="一、前言知识"><a href="#一、前言知识" class="headerlink" title="一、前言知识"></a><font size="5"><strong>一、前言知识</strong></font></h3><p>前言:在渗透测试中，常见的密码等敏感信息会采用加密处理，其中作为安全测试人员必须要了解常见的加密方式，才能为后续的安全测试做好准备，本次课程将讲解各种加密编码等知识，便于后期的学习和发展。</p><h4 id="1、加密解密"><a href="#1、加密解密" class="headerlink" title="1、加密解密"></a><font size="4"><strong>1、加密解密</strong></font></h4><p>加密软件<br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/1.png"><br>解密软件<br><a href="https://www.cmd5.com/">https://www.cmd5.com/</a><br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/2.png"></p><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#常见加密编码等算法解析</span>MD5，SHA，ASC，进制，时间戳，URL，BASE64，Unescape，AES，DES等<span class="token comment" spellcheck="true">#常见加密形式算法解析</span>直接加密，带salt，带密码，带偏移，带位数，带模式，带干扰，自定义组合等<span class="token comment" spellcheck="true">#常见解密方式（针对)</span>枚举，自定义逆向算法，可逆向<span class="token comment" spellcheck="true">#了解常规加密算法的特性</span>长度位数，字符规律，代码分析，搜索获取等</code></pre><h4 id="2、时间戳"><a href="#2、时间戳" class="headerlink" title="2、时间戳"></a><font size="4"><strong>2、时间戳</strong></font></h4><p>在线转换工具：<a href="https://tool.lu/timestamp/">https://tool.lu/timestamp/</a><br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/3.png"><br>时间戳通常是用在用户的注册、登录、注销等情况</p><h4 id="3、URL编码"><a href="#3、URL编码" class="headerlink" title="3、URL编码"></a><font size="4"><strong>3、URL编码</strong></font></h4><p><a href="https://www.cnblogs.com/cxygg/p/9278542.html">https://www.cnblogs.com/cxygg/p/9278542.html</a></p><table>    <thead>        <tr>            <th>序号</th>            <th>特殊字符</th>            <th>含义</th>            <th>十六进制值</th>        </tr>    </thead>    <tbody>        <tr>            <td>1</td>            <td>+</td>            <td>URL 中+号表示空格</td>            <td>%2B</td>        </tr>        <tr>            <td>2</td>            <td>空格</td>            <td>URL中的空格可以用+号或者编码</td>            <td>%20</td>        </tr>        <tr>            <td>3</td>            <td>/</td>            <td>分隔目录和子目录</td>            <td>%2F</td>        </tr>        <tr>            <td>4</td>            <td>?</td>            <td>分隔实际的 URL 和参数</td>            <td>%3F</td>        </tr>        <tr>            <td>5</td>            <td>%</td>            <td>指定特殊字符</td>            <td>%25</td>        </tr>        <tr>            <td>6</td>            <td>#</td>            <td>表示书签</td>            <td>%23</td>        </tr>        <tr>            <td>7</td>            <td>&</td>            <td>URL 中指定的参数间的分隔符</td>            <td>%26</td>        </tr>        <tr>            <td>8</td>            <td>=</td>            <td>URL 中+号表示空格</td>            <td>%3D</td>        </tr>    </tbody></table><h4 id="4、base64编码"><a href="#4、base64编码" class="headerlink" title="4、base64编码"></a><font size="4"><strong>4、base64编码</strong></font></h4><p><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/4.png"><br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/5.png"><br>base64编码的特点：随着编码的文本增加而增加、由大小写和数字组成且字符结尾一般有两个等号<br>一般在代码中为了安全会使用base64进行编码</p><h4 id="5、unescape编码"><a href="#5、unescape编码" class="headerlink" title="5、unescape编码"></a><font size="4"><strong>5、unescape编码</strong></font></h4><p><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/6.png"><br>和URL编码有点像<br>特点：一般是%U+四个数字对应着两个字符、主要运用于网站web应用</p><h4 id="4、AES加密"><a href="#4、AES加密" class="headerlink" title="4、AES加密"></a><font size="4"><strong>4、AES加密</strong></font></h4><p>aes在逐渐的取代md5值、在解密的过程中一定要知道密码和偏移量不然是借不出来的。<br>在线工具：<a href="http://tool.chacuo.net/cryptaes">http://tool.chacuo.net/cryptaes</a><br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/7.png"><br><img src="/2023/09/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/8.png"></p><h3 id="二、演示案例："><a href="#二、演示案例：" class="headerlink" title="二、演示案例："></a><font size="5"><strong>二、演示案例：</strong></font></h3><h4 id="✧-某CTF比赛题目解析"><a href="#✧-某CTF比赛题目解析" class="headerlink" title="✧ 某CTF比赛题目解析"></a><font size="4"><strong>✧ 某CTF比赛题目解析</strong></font></h4><p>脚本自定义算法组合逆向</p><h4 id="✧-某CMS密码加密解密"><a href="#✧-某CMS密码加密解密" class="headerlink" title="✧ 某CMS密码加密解密"></a><font size="4"><strong>✧ 某CMS密码加密解密</strong></font></h4><p>MD5+salt<br>部分CMS密码加密形式-wp,dz等</p><h4 id="✧-某URL加密地址的漏洞测试"><a href="#✧-某URL加密地址的漏洞测试" class="headerlink" title="✧ 某URL加密地址的漏洞测试"></a><font size="4"><strong>✧ 某URL加密地址的漏洞测试</strong></font></h4><p>AES+Base64+自定义<br>观察参数值加密字符串，下载源代码分析，函数定义AES加密，涉及模式CBC,128位，加密密码，偏移量，两次base64减去常规一次，填充模式。（_mozhe）</p><p>ZUlJOGMzSmVMMHQwZHhNN3diM056Zz09<br>eII8c3JeL0t0dxM7wb3Nzg&#x3D;&#x3D;</p><h4 id="✧-某实际应用URL地址参数加密"><a href="#✧-某实际应用URL地址参数加密" class="headerlink" title="✧ 某实际应用URL地址参数加密"></a><font size="4"><strong>✧ 某实际应用URL地址参数加密</strong></font></h4><p>#搜素特定关键字加密字符串</p><h3 id="三、涉及资源："><a href="#三、涉及资源：" class="headerlink" title="三、涉及资源："></a><font size="5"><strong>三、涉及资源：</strong></font></h3><p><a href="https://www.mozhe.cn/">https://www.mozhe.cn</a><br><a href="https://www.cmd5.com/">https://www.cmd5.com</a><br><a href="http://tool.chacuo.net/cryptaes">http://tool.chacuo.net/cryptaes</a><br><a href="https://ctf.bugku.com/challenges">https://ctf.bugku.com/challenges</a><br><a href="https://www.cr173.com/soft/21692.html">https://www.cr173.com/soft/21692.html</a><br><a href="https://gitee.com/ComsenzDiscuz/DiscuzX">https://gitee.com/ComsenzDiscuz/DiscuzX</a></p>]]></content>
       
       
       <categories>
