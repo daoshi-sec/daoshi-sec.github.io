@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-21T15:32:54.418Z</updated>
+  <updated>2023-09-25T11:59:59.141Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,11 +21,17 @@
     <link href="http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/"/>
     <id>http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-006/</id>
     <published>2023-09-21T15:32:54.000Z</published>
-    <updated>2023-09-21T15:32:54.418Z</updated>
+    <updated>2023-09-25T11:59:59.141Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;基础入门-加密编码算法&quot;&gt;&lt;a href=&quot;#基础入门-加密编码算法&quot; class=&quot;headerlink&quot; title=&quot;基础入门-加密编码算法&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;基础入门-加密编码算法&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
     
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -34,7 +40,7 @@
     <link href="http://example.com/2023/09/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/"/>
     <id>http://example.com/2023/09/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-005/</id>
     <published>2023-09-18T14:40:06.000Z</published>
-    <updated>2023-09-21T15:55:54.037Z</updated>
+    <updated>2023-09-21T16:47:42.223Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;基础入门-系统及数据库&quot;&gt;&lt;a href=&quot;#基础入门-系统及数据库&quot; class=&quot;headerlink&quot; title=&quot;基础入门-系统及数据库&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;基础入门-系统及数据库&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
