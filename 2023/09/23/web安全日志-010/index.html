@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    571
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -506,7 +506,90 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="信息收集-资产监控拓展"><a href="#信息收集-资产监控拓展" class="headerlink" title="信息收集-资产监控拓展"></a><font size="6"><strong>信息收集-资产监控拓展</strong></font></h2><span id="more"></span>
+
+<p><img src="/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/1.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Github监控</span>
+  便于收集整理最新exp或poc
+  便于发现相关测试目标的资产
+
+<span class="token comment" spellcheck="true"># 各种子域名查询</span>
+<span class="token comment" spellcheck="true"># DNS,备案,证书</span>
+<span class="token comment" spellcheck="true"># 全球节点请求cdn</span>
+  枚举爆破或解析子域名对应
+  便于发现管理员相关的注册信息
+
+<span class="token comment" spellcheck="true">#黑暗引擎相关搜索</span>
+    fofa, shodan, zoomeye
+  
+<span class="token comment" spellcheck="true">#微信公众号接口获取</span>
+
+<span class="token comment" spellcheck="true"># 内部群内部资源</span>
+</code></pre>
+<h3 id="一、GitHub项目监控"><a href="#一、GitHub项目监控" class="headerlink" title="一、GitHub项目监控"></a><font size="5"><strong>一、GitHub项目监控</strong></font></h3><p>server酱：<a target="_blank" rel="noopener" href="http://sc.ftqq.com/3.version">http://sc.ftqq.com/3.version</a><br>GitHub项目监控地址：<a target="_blank" rel="noopener" href="https://github.com/weixiao9188/wechat_push">https://github.com/weixiao9188/wechat_push</a></p>
+<h4 id="1、监控最新的EXP发布及其他"><a href="#1、监控最新的EXP发布及其他" class="headerlink" title="1、监控最新的EXP发布及其他"></a><font size="4"><strong>1、监控最新的EXP发布及其他</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Title: wechat push CVE-2020</span>
+<span class="token comment" spellcheck="true"># Date: 2020-5-9</span>
+<span class="token comment" spellcheck="true"># Exploit Author: weixiao9188</span>
+<span class="token comment" spellcheck="true"># Version: 4.0</span>
+<span class="token comment" spellcheck="true"># Tested on: Linux,windows</span>
+<span class="token comment" spellcheck="true"># coding:UTF-8</span>
+<span class="token function">import</span> requests
+<span class="token function">import</span> json
+<span class="token function">import</span> <span class="token function">time</span>
+<span class="token function">import</span> os
+<span class="token function">import</span> pandas as pd
+time_sleep <span class="token operator">=</span> 20 <span class="token comment" spellcheck="true">#每隔20秒爬取一次</span>
+while<span class="token punctuation">(</span>True<span class="token punctuation">)</span>:
+    headers <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        <span class="token string">"User-Agent"</span><span class="token keyword">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400"</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token comment" spellcheck="true">#判断文件是否存在</span>
+    datas <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    response1<span class="token operator">=</span>None
+    response2<span class="token operator">=</span>None
+    <span class="token keyword">if</span> os.path.exists<span class="token punctuation">(</span><span class="token string">"olddata.csv"</span><span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#如果文件存在则每次爬取10个</span>
+        <span class="token function">df</span> <span class="token operator">=</span> pd.read_csv<span class="token punctuation">(</span><span class="token string">"olddata.csv"</span>, header<span class="token operator">=</span>None<span class="token punctuation">)</span>
+        datas <span class="token operator">=</span> df.where<span class="token punctuation">(</span>df.notnull<span class="token punctuation">(</span><span class="token punctuation">)</span>,None<span class="token punctuation">)</span>.values.tolist<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#将提取出来的数据中的nan转化为None</span>
+        response1 <span class="token operator">=</span> requests.get<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">"https://api.github.com/search/repositories?q=CVE-2020&amp;sort=updated&amp;per_page=10"</span>,
+                                 headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+        response2 <span class="token operator">=</span> requests.get<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">"https://api.github.com/search/repositories?q=RCE&amp;ssort=updated&amp;per_page=10"</span>,
+                                 headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+
+    else:
+        <span class="token comment" spellcheck="true">#不存在爬取全部</span>
+        datas <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        response1 <span class="token operator">=</span> requests.get<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">"https://api.github.com/search/repositories?q=CVE-2020&amp;sort=updated&amp;order=desc"</span>,headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+        response2 <span class="token operator">=</span> requests.get<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">"https://api.github.com/search/repositories?q=RCE&amp;ssort=updated&amp;order=desc"</span>,headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+
+    data1 <span class="token operator">=</span> json.loads<span class="token punctuation">(</span>response1.text<span class="token punctuation">)</span>
+    data2 <span class="token operator">=</span> json.loads<span class="token punctuation">(</span>response2.text<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token punctuation">[</span>data1<span class="token punctuation">[</span><span class="token string">"items"</span><span class="token punctuation">]</span>,data2<span class="token punctuation">[</span><span class="token string">"items"</span><span class="token punctuation">]</span><span class="token punctuation">]</span>:
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> j:
+            s <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"name":i['name'],"html":i['html_url'],"description":i['description']&amp;#125;</span>
+            s1 <span class="token operator">=</span><span class="token punctuation">[</span>i<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span>,i<span class="token punctuation">[</span><span class="token string">'html_url'</span><span class="token punctuation">]</span>,i<span class="token punctuation">[</span><span class="token string">'description'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+            <span class="token keyword">if</span> s1 not <span class="token keyword">in</span> datas:
+                <span class="token comment" spellcheck="true">#print(s1)</span>
+                <span class="token comment" spellcheck="true">#print(datas)</span>
+                params <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+                     <span class="token string">"text"</span>:s<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span>,
+                    <span class="token string">"desp"</span><span class="token keyword">:</span><span class="token string">" 链接:"</span>+str<span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token string">"html"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>+<span class="token string">"\n简介"</span>+str<span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token string">"description"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+                print<span class="token punctuation">(</span><span class="token string">"当前推送为"</span>+str<span class="token punctuation">(</span>s<span class="token punctuation">)</span>+<span class="token string">"\n"</span><span class="token punctuation">)</span>
+                print<span class="token punctuation">(</span>params<span class="token punctuation">)</span>
+                requests.get<span class="token punctuation">(</span><span class="token string">"https://sc.ftqq.com/XXXX.send"</span>,params<span class="token operator">=</span>params,timeout<span class="token operator">=</span>10<span class="token punctuation">)</span>
+                <span class="token comment" spellcheck="true">#time.sleep(1)#以防推送太猛</span>
+                print<span class="token punctuation">(</span><span class="token string">"推送完成!"</span><span class="token punctuation">)</span>
+                datas.append<span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+            else:
+                pass
+                <span class="token comment" spellcheck="true">#print("数据已处在!")</span>
+    pd.DataFrame<span class="token punctuation">(</span>datas<span class="token punctuation">)</span>.to_csv<span class="token punctuation">(</span><span class="token string">"olddata.csv"</span>,header<span class="token operator">=</span>None,index<span class="token operator">=</span>None<span class="token punctuation">)</span>
+    time.sleep<span class="token punctuation">(</span>time_sleep<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="常见的子域名收集方法"><a href="#常见的子域名收集方法" class="headerlink" title="常见的子域名收集方法"></a><font size="4"><strong>常见的子域名收集方法</strong></font></h4><p><img src="/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/2.png"></p>
+<h3 id="二、黑暗引擎使用"><a href="#二、黑暗引擎使用" class="headerlink" title="二、黑暗引擎使用"></a><font size="5"><strong>二、黑暗引擎使用</strong></font></h3><p>fofa:<a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a><br><img src="/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/3.png"><br>zoomeye:<a target="_blank" rel="noopener" href="https://www.zoomeye.org/">https://www.zoomeye.org/</a><br><img src="/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/4.png"></p>
+<h3 id="三、涉及资源："><a href="#三、涉及资源：" class="headerlink" title="三、涉及资源："></a><font size="5"><strong>三、涉及资源：</strong></font></h3><p><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh</a><br><a target="_blank" rel="noopener" href="https://dnsdb.io/">https://dnsdb.io</a><br><a target="_blank" rel="noopener" href="http://sc.ftqq.com/3.version">http://sc.ftqq.com/3.version</a><br><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a><br><a target="_blank" rel="noopener" href="https://github.com/bit4woo/teemo">https://github.com/bit4woo/teemo</a><br><a target="_blank" rel="noopener" href="https://securitytrails.com/domain/www.baidu.com/history/a">https://securitytrails.com/domain/www.baidu.com/history/a</a></p>
+
                 
             </div>
             <hr/>
@@ -1069,7 +1152,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.7k</span>&nbsp;字
+                class="white-color">12.3k</span>&nbsp;字
             
             
             
