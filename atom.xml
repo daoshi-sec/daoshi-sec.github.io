@@ -47,11 +47,17 @@
     <link href="http://example.com/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/"/>
     <id>http://example.com/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/</id>
     <published>2023-09-26T15:45:54.000Z</published>
-    <updated>2023-09-26T15:45:54.112Z</updated>
+    <updated>2023-09-28T15:02:19.495Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-SQL-注入-二&quot;&gt;&lt;a href=&quot;#WEB漏洞-SQL-注入-二&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-SQL 注入(二)&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-SQL 注入(二)&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
     
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -60,10 +66,10 @@
     <link href="http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/"/>
     <id>http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/</id>
     <published>2023-09-25T12:17:13.000Z</published>
-    <updated>2023-09-28T14:08:13.691Z</updated>
+    <updated>2023-09-28T14:18:46.334Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-SQL-注入&quot;&gt;&lt;a href=&quot;#WEB漏洞-SQL-注入&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-SQL 注入&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-SQL 注入&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-SQL-注入-一&quot;&gt;&lt;a href=&quot;#WEB漏洞-SQL-注入-一&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-SQL 注入(一)&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-SQL 注入(一)&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     

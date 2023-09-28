@@ -32,8 +32,8 @@
     <!-- 黑夜模式样式 css -->
     <link rel="stylesheet" type="text/css" href="/css/day-night.css">
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱睡懒觉的道士" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="爱睡懒觉的道士" type="application/atom+xml">
+</head>
 
 
 
@@ -506,7 +506,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="WEB漏洞-SQL-注入"><a href="#WEB漏洞-SQL-注入" class="headerlink" title="WEB漏洞-SQL 注入"></a><font size="6"><strong>WEB漏洞-SQL 注入</strong></font></h2><span id="more"></span>
+                <h2 id="WEB漏洞-SQL-注入-一"><a href="#WEB漏洞-SQL-注入-一" class="headerlink" title="WEB漏洞-SQL 注入(一)"></a><font size="6"><strong>WEB漏洞-SQL 注入(一)</strong></font></h2><span id="more"></span>
 
 <h3 id="一、前言知识"><a href="#一、前言知识" class="headerlink" title="一、前言知识"></a><font size="5"><strong>一、前言知识</strong></font></h3><p>前言：在本系列课程学习中，SQL注入漏洞将是重点部分，其中SQL注入又非常复杂，区分各种数据库类型，提交方法，数据类型等注入，我们需要按部就班的学习，才能学会相关SQL注入的核心。同样此类漏洞是WEB安全中严重的安全漏洞，学习如何利用，挖掘，修复也是很重要的。<br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/1.png"></p>
 <h3 id="二、SQL注入原理"><a href="#二、SQL注入原理" class="headerlink" title="二、SQL注入原理"></a><font size="5"><strong>二、SQL注入原理</strong></font></h3><h4 id="●1-理解SQL注入"><a href="#●1-理解SQL注入" class="headerlink" title="●1.理解SQL注入"></a><font size="4"><strong>●1.理解SQL注入</strong></font></h4><p>  SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的sql服务器加以解析和执行。由于sql语句本身的多样性，以及可用于构造sql语句的编程方法很多，因此凡是构造sql语句的步骤均存在被攻击的潜在风险。Sql注入的方式主要是直接将代码插入参数中，这些参数会被置入sql命令中加以执行。间接的攻击方式是将恶意代码插入字符串中，之后将这些字符串保存到数据库的数据表中或将其当成元数据。当将存储的字符串置入动态sql命令中时，恶意代码就将被执行。</p>
@@ -932,7 +932,7 @@ table_schema									<span class="token comment" spellcheck="true">#数据库名
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-SQL 注入(二)
                         
                     </div>
                     <div class="publish-info">
@@ -941,11 +941,23 @@ table_schema									<span class="token comment" spellcheck="true">#数据库名
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1232,7 +1244,7 @@ table_schema									<span class="token comment" spellcheck="true">#数据库名
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.8k</span>&nbsp;字
+                class="white-color">18.7k</span>&nbsp;字
             
             
             
