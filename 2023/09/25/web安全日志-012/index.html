@@ -479,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
 
@@ -506,7 +506,182 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-SQL-注入"><a href="#WEB漏洞-SQL-注入" class="headerlink" title="WEB漏洞-SQL 注入"></a><font size="6"><strong>WEB漏洞-SQL 注入</strong></font></h2><span id="more"></span>
+
+<h3 id="一、前言知识"><a href="#一、前言知识" class="headerlink" title="一、前言知识"></a><font size="5"><strong>一、前言知识</strong></font></h3><p>前言：在本系列课程学习中，SQL注入漏洞将是重点部分，其中SQL注入又非常复杂，区分各种数据库类型，提交方法，数据类型等注入，我们需要按部就班的学习，才能学会相关SQL注入的核心。同样此类漏洞是WEB安全中严重的安全漏洞，学习如何利用，挖掘，修复也是很重要的。<br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/1.png"></p>
+<h3 id="二、SQL注入原理"><a href="#二、SQL注入原理" class="headerlink" title="二、SQL注入原理"></a><font size="5"><strong>二、SQL注入原理</strong></font></h3><h4 id="●1-理解SQL注入"><a href="#●1-理解SQL注入" class="headerlink" title="●1.理解SQL注入"></a><font size="4"><strong>●1.理解SQL注入</strong></font></h4><p>  SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的sql服务器加以解析和执行。由于sql语句本身的多样性，以及可用于构造sql语句的编程方法很多，因此凡是构造sql语句的步骤均存在被攻击的潜在风险。Sql注入的方式主要是直接将代码插入参数中，这些参数会被置入sql命令中加以执行。间接的攻击方式是将恶意代码插入字符串中，之后将这些字符串保存到数据库的数据表中或将其当成元数据。当将存储的字符串置入动态sql命令中时，恶意代码就将被执行。</p>
+<p>  如果web应用未对动态构造的sql语句使用的参数进行正确性审查（即便使用了参数化技术），攻击者就很可能会修改后台sql语句的构造。如果攻击者能够修改sql语句，那么该语句将与应用的用户具有相同的权限。当使用sql服务器执行与操作系统交互命令时，该进程将与执行命令的组件（如数据库服务器、应用服务器或web服务器）拥有相同的权限，这种权限的级别通常很高。如果攻击者执行以上恶意代码的插入操作成功，那么用户数据库服务器或者整个应用会遭到破坏，甚至被控制。 </p>
+<h4 id="●2-sql注入的产生过程及常见原因"><a href="#●2-sql注入的产生过程及常见原因" class="headerlink" title="●2.sql注入的产生过程及常见原因"></a><font size="4"><strong>●2.sql注入的产生过程及常见原因</strong></font></h4><p>  <strong>○2.1产生过程</strong><br>  大多数的web应用都需要与数据库进行交互，并且大多数web应用编程语言（如ASP、C##、.NET、Java和PHP）均提供了可编程的方法来与数据库连接并进行交互。如果web应用开发人员无法确保在将从web表单，cookie及输入参数等收到的值传递给sql查询（该查询在数据库服务器上执行）之前已经对其进行过验证，那么通常会出现sql注入漏洞，如果攻击者能够控制发送给sql查询的输入，并且能够操纵该输入将其解析为代码而非数据，那么攻击者就很有可能有能力在后台数据库执行该代码。</p>
+<p>  <strong>○2.2常见的sql注入产生原因</strong><br>  基于此，SQL注入的产生原因通常表现在以下几方面：①转义字符处理不合适；②不安全的数据库配置；③不合理的查询集处理；④不当的错误处理；⑤多个提交处理不当。 </p>
+<p>  <strong>○2.2.1不当的处理类型</strong><br>  Sql数据库将单引号字符（’）解析成代码与数据间的分界线：单引号外面的内容军事需要运行的代码，而用单引号引起来的内容均是数据。因为只需要简单的在URL或WEB页面的字段中输入一个单引号，就能很快速的识别出web站点是否会受到sql注入攻击。 </p>
+<p>  <strong>○2.2.2不安全的数据库配置</strong><br>  数据库带有很多默认的用户预安装内容。SQL Server使用声名狼藉的“sa”作为数据库系统管理员账户，MySQL使用“root”和“anonymous”用户账户，Oracle则在创建数据库时通常会创建SYS、SYSTEM、DBSNMP和OUTLN账户。这些并非是全部的账号，知识比较出名的账户中的一部分，还有很多其他的账户。其他账户同样按默认方式进行预设，口令总所周知。</p>
+<p>这就带来了很大的安全风险，攻击者利用sql注入漏洞时，通常会常识访问数据库的元数据，比如内部的数据库和表的名称、列的数据类型和访问权限，例如MySQL服务器的元数据位于information_schema虚拟数据库中，可通过show databases；和show tables；命令访问。所有的MySQL用户均有权限访问该数据库中的表，但只能查看表中那些与该用户访问权限相对应的对象的行。</p>
+<p>  <strong>○2.2.3不合理的查询集处理</strong><br>  有时需要使用动态的sql语句对某些复杂的应用进行编码，因为程序开发阶段可能还不知道要查询的表或字段（或者不存在）。比如与大型数据库交互的应用，这些数据库在定期创建的表中的数据由于应用已经产生了输入，因而开发人员会信任该数据，攻击者可以使用自己的表和字段数据来替换应用产生的值，从而影响系统的返回值。</p>
+<p>  <strong>○2.2.4不当的错误处理</strong><br>  错误处理不当会为web站点带来很多安全方面的问题。最常见的问题是将详细的内部错误消息（如错误代码，数据库转存储）显示给用户或攻击。这些错误消息会泄露实现细节，为攻击者提供与网站潜在缺陷相关的重要线索。 </p>
+<p>  <strong>○2.2.5多个提交处理不当</strong><br>  大型的web开发项目会出现这样的问题：有些开发人员会对输入进行验证，而一些开发人员则不以为然。对于开发人员，团队，甚至公司来说，彼此独立工作的情形并不少见，很难保证项目中每个人都遵循相同的标准。</p>
+<p>应用打开发人员还倾向于围绕用户来设计应用，他们尽可能的使用预期的处理流程来引导用户，认为用户将遵循他们已经设计好的逻辑顺序。</p>
+<p>例如：当用户已到达一系列表单中的第三个表单时，他们会期望用户肯定已经完成第一个和第二个表达。但实际上，借助URL乱序来请求资源，能够非常容易的避开预期的数据流程。 </p>
+<h3 id="三、mysql注入"><a href="#三、mysql注入" class="headerlink" title="三、mysql注入"></a><font size="5"><strong>三、mysql注入</strong></font></h3><p><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/2.png"></p>
+<h3 id="四、忍者系统安装"><a href="#四、忍者系统安装" class="headerlink" title="四、忍者系统安装"></a><font size="5"><strong>四、忍者系统安装</strong></font></h3><p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35258210/article/details/115457883">https://blog.csdn.net/qq_35258210/article/details/115457883</a></p>
+<p>将镜像下载好使用VM安装，我给该系统分配了70个G硬盘，6G内存<br>镜像下载链接：链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1CAw9ztIUhCZgydNWHHWINg">https://pan.baidu.com/s/1CAw9ztIUhCZgydNWHHWINg</a> 密码: a33b</p>
+<p><strong>注意：</strong><br>1、刚开始安装的时候vm可能无法读取到镜像、在进入的时候按enter键，其余的步骤和上面的博客一致、不在赘述。安装完成后截图,由于忍者系统是基于win10开发的而内存也给的相对比较大在使用的过程中很有可能出现卡顿的情况建议使用vm player打开忍者系统。</p>
+<p>2、开始使用的时候忍者系统有两个网卡建议禁用两个让其中的一个通信<br>密码：toor<br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/3.png"><br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/4.png"><br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/5.png"></p>
+<h3 id="五、sql注入靶场搭建"><a href="#五、sql注入靶场搭建" class="headerlink" title="五、sql注入靶场搭建"></a><font size="5"><strong>五、sql注入靶场搭建</strong></font></h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@oldjiang ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker pull acgpiano/sqli-labs</span>
+<span class="token punctuation">[</span>root@oldjiang ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker run -dt --name sqli -p 80:80 -p 13306:3306 --rm acgpiano/sqli-labs</span>
+<span class="token punctuation">[</span>root@oldjiang ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker exec -it sqli /bin/bash</span>
+</code></pre>
+<p><strong>●访问</strong><br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/6.png"><br><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/7.png"><br><strong>●查看源代码</strong></p>
+<pre class=" language-bash"><code class="language-bash">root@1f9ac3840241:/<span class="token comment" spellcheck="true"># cat /var/www/html/Less-2/index.php</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html PUBLIC <span class="token string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="token string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>html xmlns<span class="token operator">=</span><span class="token string">"http://www.w3.org/1999/xhtml"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+<span class="token operator">&lt;</span>meta http-equiv<span class="token operator">=</span><span class="token string">"Content-Type"</span> content<span class="token operator">=</span><span class="token string">"text/html; charset=utf-8"</span> /<span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>Less-2 **Error Based- Intiger**<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>body bgcolor<span class="token operator">=</span><span class="token string">"#000000"</span><span class="token operator">></span>
+
+
+
+
+<span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token string">" margin-top:60px;color:#FFF; font-size:23px; text-align:center"</span><span class="token operator">></span>Welcome<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span><span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span><span class="token operator">&lt;</span>font color<span class="token operator">=</span><span class="token string">"#FF0000"</span><span class="token operator">></span> Dhakkan <span class="token operator">&lt;</span>/font<span class="token operator">></span><span class="token operator">&lt;</span>br<span class="token operator">></span>
+<span class="token operator">&lt;</span>font size<span class="token operator">=</span><span class="token string">"3"</span> color<span class="token operator">=</span><span class="token string">"#FFFF00"</span><span class="token operator">></span>
+
+
+<span class="token operator">&lt;</span>?php
+//including the Mysql connect parameters.
+include<span class="token punctuation">(</span><span class="token string">"../sql-connections/sql-connect.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+error_reporting<span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+// take the variables
+if<span class="token punctuation">(</span>isset<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">))</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+<span class="token variable">$id</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+//logging the connection parameters to a <span class="token function">file</span> <span class="token keyword">for</span> analysis.
+<span class="token variable">$fp</span><span class="token operator">=</span>fopen<span class="token punctuation">(</span><span class="token string">'result.txt'</span>,<span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+fwrite<span class="token punctuation">(</span><span class="token variable">$fp</span>,<span class="token string">'ID:'</span><span class="token keyword">.</span><span class="token variable">$id</span><span class="token keyword">.</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+fclose<span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+// connectivity
+<span class="token variable">$sql</span><span class="token operator">=</span><span class="token string">"SELECT * FROM users WHERE id=<span class="token variable">$id</span> LIMIT 0,1"</span><span class="token punctuation">;</span>
+<span class="token variable">$result</span><span class="token operator">=</span>mysql_query<span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$row</span> <span class="token operator">=</span> mysql_fetch_array<span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        if<span class="token punctuation">(</span><span class="token variable">$row</span><span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        <span class="token keyword">echo</span> <span class="token string">"&lt;font size='5' color= '#99FF00'>"</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string">'Your Login name:'</span><span class="token keyword">.</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">'username'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string">"&lt;br>"</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string">'Your Password:'</span> <span class="token keyword">.</span><span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">'password'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string">"&lt;/font>"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        <span class="token keyword">else</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        <span class="token keyword">echo</span> <span class="token string">'&lt;font color= "#FFFF00">'</span><span class="token punctuation">;</span>
+        print_r<span class="token punctuation">(</span>mysql_error<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string">"&lt;/font>"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        <span class="token keyword">else</span>
+                <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+                <span class="token keyword">echo</span> <span class="token string">"Please input the ID as parameter with numeric value"</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+
+?<span class="token operator">></span>
+
+
+<span class="token operator">&lt;</span>/font<span class="token operator">></span> <span class="token operator">&lt;</span>/div<span class="token operator">></span><span class="token operator">&lt;</span>/br<span class="token operator">></span><span class="token operator">&lt;</span>/br<span class="token operator">></span><span class="token operator">&lt;</span>/br<span class="token operator">></span><span class="token operator">&lt;</span>center<span class="token operator">></span>
+<span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"../images/Less-2.jpg"</span> /<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<p><strong>备注：</strong>在上面的代码中可以看到$sql&#x3D;”SELECT * FROM users WHERE id&#x3D;$id LIMIT 0,1”;直接传递的变量$id带入sql语句中执行没有做任何的限制，这样为恶意代码插入执行创造了条件。通过修改带入的代码执行的语句最终达到SQL注入获取敏感信息</p>
+<p><strong>● 在数据库中执行:</strong><br>id&#x3D;-1 是为了让回显的结果为空执行后面union的字句。</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> * from <span class="token function">users</span><span class="token punctuation">;</span>
++----+----------+------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> password   <span class="token operator">|</span>
++----+----------+------------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Dumb     <span class="token operator">|</span> Dumb       <span class="token operator">|</span>
+<span class="token operator">|</span>  2 <span class="token operator">|</span> Angelina <span class="token operator">|</span> I-kill-you <span class="token operator">|</span>
+<span class="token operator">|</span>  3 <span class="token operator">|</span> Dummy    <span class="token operator">|</span> p@ssword   <span class="token operator">|</span>
+<span class="token operator">|</span>  4 <span class="token operator">|</span> secure   <span class="token operator">|</span> crappy     <span class="token operator">|</span>
+<span class="token operator">|</span>  5 <span class="token operator">|</span> stupid   <span class="token operator">|</span> stupidity  <span class="token operator">|</span>
+<span class="token operator">|</span>  6 <span class="token operator">|</span> superman <span class="token operator">|</span> genious    <span class="token operator">|</span>
+<span class="token operator">|</span>  7 <span class="token operator">|</span> batman   <span class="token operator">|</span> mob<span class="token operator">!</span>le     <span class="token operator">|</span>
+<span class="token operator">|</span>  8 <span class="token operator">|</span> admin    <span class="token operator">|</span> admin      <span class="token operator">|</span>
+<span class="token operator">|</span>  9 <span class="token operator">|</span> admin1   <span class="token operator">|</span> admin1     <span class="token operator">|</span>
+<span class="token operator">|</span> 10 <span class="token operator">|</span> admin2   <span class="token operator">|</span> admin2     <span class="token operator">|</span>
+<span class="token operator">|</span> 11 <span class="token operator">|</span> admin3   <span class="token operator">|</span> admin3     <span class="token operator">|</span>
+<span class="token operator">|</span> 12 <span class="token operator">|</span> dhakkan  <span class="token operator">|</span> dumbo      <span class="token operator">|</span>
+<span class="token operator">|</span> 14 <span class="token operator">|</span> admin4   <span class="token operator">|</span> admin4     <span class="token operator">|</span>
++----+----------+------------+
+13 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> * from emails<span class="token punctuation">;</span>
++----+------------------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> email_id               <span class="token operator">|</span>
++----+------------------------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Dumb@dhakkan.com       <span class="token operator">|</span>
+<span class="token operator">|</span>  2 <span class="token operator">|</span> Angel@iloveu.com       <span class="token operator">|</span>
+<span class="token operator">|</span>  3 <span class="token operator">|</span> Dummy@dhakkan.local    <span class="token operator">|</span>
+<span class="token operator">|</span>  4 <span class="token operator">|</span> secure@dhakkan.local   <span class="token operator">|</span>
+<span class="token operator">|</span>  5 <span class="token operator">|</span> stupid@dhakkan.local   <span class="token operator">|</span>
+<span class="token operator">|</span>  6 <span class="token operator">|</span> superman@dhakkan.local <span class="token operator">|</span>
+<span class="token operator">|</span>  7 <span class="token operator">|</span> batman@dhakkan.local   <span class="token operator">|</span>
+<span class="token operator">|</span>  8 <span class="token operator">|</span> admin@dhakkan.com      <span class="token operator">|</span>
++----+------------------------+
+8 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 LIMIT 0,1<span class="token punctuation">;</span>			<span class="token comment" spellcheck="true">#显示的结果为空、因为没有id=-1的字段</span>
+Empty <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+
+mysql<span class="token operator">></span> SELECT * FROM <span class="token function">users</span> WHERE id<span class="token operator">=</span>-1 union  <span class="token keyword">select</span> 1,email_id,3 from emails LIMIT 0,1<span class="token punctuation">;</span>
++----+------------------+----------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username         <span class="token operator">|</span> password <span class="token operator">|</span>
++----+------------------+----------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Dumb@dhakkan.com <span class="token operator">|</span> 3        <span class="token operator">|</span>
++----+------------------+----------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>● 在网页中执行</strong><br>%20在网页的URL编码中为空格，在id&#x3D;-2添加代码：union  select 1,email_id,3 from emails</p>
+<p><img src="/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/8.png"></p>
+<p><strong>总结：</strong>可控变量，带入数据库查询，变量未存在过滤或过滤不严谨。</p>
+<p>测试题:参数x有注入，以下那个注入测试正确?</p>
+<pre class=" language-bash"><code class="language-bash">a. www.xiaodi8.com/news.php?y<span class="token operator">=</span>1 and 1<span class="token operator">=</span>1<span class="token operator">&amp;</span>x<span class="token operator">=</span>2
+b. www.xiaodi8.com/news.php?y<span class="token operator">=</span>1<span class="token operator">&amp;</span>x<span class="token operator">=</span>2 and 1<span class="token operator">=</span>1
+c. www .xiaodi8.com/news.php?y<span class="token operator">=</span>1 and 1<span class="token operator">=</span>1<span class="token operator">&amp;</span>x<span class="token operator">=</span>2 and 1<span class="token operator">=</span>1
+d. www .xiaodi8.com/news.php?xx<span class="token operator">=</span>1 and 1<span class="token operator">=</span>1<span class="token operator">&amp;</span>xxx<span class="token operator">=</span>2 and 1<span class="token operator">=</span>1
+</code></pre>
+<p><strong>●判断是否存在注入点</strong></p>
+<pre class=" language-bash"><code class="language-bash">1、逻辑值
+    and 1 <span class="token operator">=</span> 1		页面正常
+    and 1 <span class="token operator">=</span> 2		页面异常
+    则可能存在注入点
+
+2、order by
+        通过order by 判断注入的字段数
+</code></pre>
+<p><strong>●信息收集</strong></p>
+<pre class=" language-bash"><code class="language-bash">数据库版本：version<span class="token punctuation">(</span><span class="token punctuation">)</span>
+数据库名字：database<span class="token punctuation">(</span><span class="token punctuation">)</span>
+数据库用户：user<span class="token punctuation">(</span><span class="token punctuation">)</span>
+操作系统：@@version_compile_os
+</code></pre>
+<p><strong>●版本探测的意义</strong></p>
+<pre class=" language-bash"><code class="language-bash">在mysql5.0以后的版本存在一个information_schema数据库、里面存储记录数据库名、表名、列名的数据库
+相当于可以通过information_schema这个数据库获取到数据库下面的表名和列名。
+</code></pre>
+<p><strong>●获取相关信息</strong></p>
+<pre class=" language-bash"><code class="language-bash">information_schema.tables			<span class="token comment" spellcheck="true">#information_schema下面的所有表名</span>
+information_schema.columns		<span class="token comment" spellcheck="true">#information_schema下面所有的列名</span>
+table_name										<span class="token comment" spellcheck="true">#表名</span>
+column_name										<span class="token comment" spellcheck="true">#列名</span>
+table_schema									<span class="token comment" spellcheck="true">#数据库名</span>
+</code></pre>
+<h3 id="六、涉及资源："><a href="#六、涉及资源：" class="headerlink" title="六、涉及资源："></a><font size="5"><strong>六、涉及资源：</strong></font></h3><p><a target="_blank" rel="noopener" href="https://github.com/Audi-1/sqli-labs">https://github.com/Audi-1/sqli-labs</a></p>
+<p>忍者安全测试系统-禁用软盘安装<br><a target="_blank" rel="noopener" href="https://www.mozhe.cn/bug/detail/elRHc1BCd2VIckQxbjduMG9BVCtkZz09bW96aGUmozhe">https://www.mozhe.cn/bug/detail/elRHc1BCd2VIckQxbjduMG9BVCtkZz09bW96aGUmozhe</a></p>
+
                 
             </div>
             <hr/>
@@ -1057,7 +1232,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">12.9k</span>&nbsp;字
+                class="white-color">15.8k</span>&nbsp;字
             
             
             
