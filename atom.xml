@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-01T10:04:13.331Z</updated>
+  <updated>2023-10-01T10:23:29.067Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2023/10/01/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-018/"/>
     <id>http://example.com/2023/10/01/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-018/</id>
     <published>2023-10-01T15:15:27.000Z</published>
-    <updated>2023-10-01T10:04:13.331Z</updated>
+    <updated>2023-10-01T10:23:29.067Z</updated>
     
     
     
@@ -34,7 +34,7 @@
     <link href="http://example.com/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/"/>
     <id>http://example.com/2023/09/30/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-017/</id>
     <published>2023-09-30T14:35:25.000Z</published>
-    <updated>2023-10-01T10:18:39.463Z</updated>
+    <updated>2023-10-01T10:23:26.966Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-二次-加解密-DNS等注入&quot;&gt;&lt;a href=&quot;#WEB漏洞-二次-加解密-DNS等注入&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-二次,加解密,DNS等注入&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-二次,加解密,DNS等注入&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
@@ -53,7 +53,7 @@
     <link href="http://example.com/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/"/>
     <id>http://example.com/2023/09/29/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-016/</id>
     <published>2023-09-29T12:50:22.000Z</published>
-    <updated>2023-10-01T10:03:46.500Z</updated>
+    <updated>2023-10-01T10:23:30.695Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-查询方式及报错盲注&quot;&gt;&lt;a href=&quot;#WEB漏洞-查询方式及报错盲注&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-查询方式及报错盲注&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-查询方式及报错盲注&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
