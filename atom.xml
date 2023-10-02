@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-01T10:23:29.067Z</updated>
+  <updated>2023-10-02T12:14:16.099Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,11 +21,17 @@
     <link href="http://example.com/2023/10/01/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-018/"/>
     <id>http://example.com/2023/10/01/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-018/</id>
     <published>2023-10-01T15:15:27.000Z</published>
-    <updated>2023-10-01T10:23:29.067Z</updated>
+    <updated>2023-10-02T12:14:16.099Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-堆叠及WAF绕过注入&quot;&gt;&lt;a href=&quot;#WEB漏洞-堆叠及WAF绕过注入&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-堆叠及WAF绕过注入&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-堆叠及WAF绕过注入&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
     
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
