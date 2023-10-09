@@ -73,11 +73,17 @@
     <link href="http://example.com/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/"/>
     <id>http://example.com/2023/10/05/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-022/</id>
     <published>2023-10-05T14:37:09.000Z</published>
-    <updated>2023-10-09T12:30:53.683Z</updated>
+    <updated>2023-10-09T14:09:12.189Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-文件上传之内容逻辑数组绕过&quot;&gt;&lt;a href=&quot;#WEB漏洞-文件上传之内容逻辑数组绕过&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-文件上传之内容逻辑数组绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-文件上传之内容逻辑数组绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
     
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -86,10 +92,10 @@
     <link href="http://example.com/2023/10/04/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-021/"/>
     <id>http://example.com/2023/10/04/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-021/</id>
     <published>2023-10-04T15:23:46.000Z</published>
-    <updated>2023-10-09T13:28:34.581Z</updated>
+    <updated>2023-10-09T13:51:42.969Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-文件上传之基础及过滤方式F&quot;&gt;&lt;a href=&quot;#WEB漏洞-文件上传之基础及过滤方式F&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-文件上传之基础及过滤方式F&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-文件上传之基础及过滤方式F&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-文件上传之后端黑白名单绕过&quot;&gt;&lt;a href=&quot;#WEB漏洞-文件上传之后端黑白名单绕过&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-文件上传之后端黑白名单绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-文件上传之后端黑白名单绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
