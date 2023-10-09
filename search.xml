@@ -47,9 +47,21 @@
       <link href="/2023/10/06/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-023/"/>
       <url>/2023/10/06/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-023/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="WEB漏洞-文件上传之解析漏洞编辑器安全"><a href="#WEB漏洞-文件上传之解析漏洞编辑器安全" class="headerlink" title="WEB漏洞-文件上传之解析漏洞编辑器安全"></a><font size="6"><strong>WEB漏洞-文件上传之解析漏洞编辑器安全</strong></font></h2><span id="more"></span><pre class=" language-bash"><code class="language-bash">各个平台解析漏洞讲解IIS,Apache , Nginx各个wEB编辑器安全讲解https://navisec.it/编辑器漏洞手册/各个cMS文件上传简要讲解wordpress, phpcms</code></pre><h3 id="一、apache解析漏洞"><a href="#一、apache解析漏洞" class="headerlink" title="一、apache解析漏洞"></a><font size="5"><strong>一、apache解析漏洞</strong></font></h3><p>环境搭建：<a href="https://vulhub.org/#/environments/httpd/apache_parsing_vulnerability/">https://vulhub.org/#/environments/httpd/apache_parsing_vulnerability/</a></p><pre class=" language-bash"><code class="language-bash">jiang@ubuntu:/opt/vulhub/vulhub-master/httpd/apache_parsing_vulnerability$ docker-compose up -d/home/jiang/.local/lib/python2.7/site-packages/paramiko/transport.py:33: CryptographyDeprecationWarning: Python 2 is no longer supported by the Python core team. Support <span class="token keyword">for</span> it is now deprecated <span class="token keyword">in</span> cryptography, and will be removed <span class="token keyword">in</span> the next release.  from cryptography.hazmat.backends <span class="token function">import</span> default_backendStarting apache_parsing_vulnerability_apache_1 <span class="token punctuation">..</span>. <span class="token keyword">done</span></code></pre><p><img src="/1.png"><br><img src="/2.png"></p><h3 id="二、常见的编辑器"><a href="#二、常见的编辑器" class="headerlink" title="二、常见的编辑器"></a><font size="5"><strong>二、常见的编辑器</strong></font></h3><pre class=" language-bash"><code class="language-bash">fckeditorexpueditor 漏洞利用</code></pre><p>在网上找fckeditor漏洞inurl:fckeditor site:edu.cn<br><a href="https://blog.csdn.net/eldn__/article/details/9197521">https://blog.csdn.net/eldn__/article/details/9197521</a></p><h3 id="三、几种常见CMS文件上传简要演示"><a href="#三、几种常见CMS文件上传简要演示" class="headerlink" title="三、几种常见CMS文件上传简要演示"></a><font size="5"><strong>三、几种常见CMS文件上传简要演示</strong></font></h3><pre class=" language-bash"><code class="language-bash">通达oA系统https://pan.baidu.com/s/15gcdBuOFrN1F9xVN7Q7GSA 密码enqx</code></pre><h3 id="四、贴近实际应用下的以上知识点演示"><a href="#四、贴近实际应用下的以上知识点演示" class="headerlink" title="四、贴近实际应用下的以上知识点演示"></a><font size="5"><strong>四、贴近实际应用下的以上知识点演示</strong></font></h3><pre class=" language-bash"><code class="language-bash">判断中间件平台，编辑器类型或CMS名称进行测试</code></pre><h3 id="五、涉及资源"><a href="#五、涉及资源" class="headerlink" title="五、涉及资源"></a><font size="5"><strong>五、涉及资源</strong></font></h3><p><a href="https://www.jb51.net/softs/75619.html">https://www.jb51.net/softs/75619.html</a><br><a href="https://pan.baidu.com/share/init?surl=5gcdBuOFrN1F9xVN7Q7GSA">https://pan.baidu.com/share/init?surl=5gcdBuOFrN1F9xVN7Q7GSA</a> enqx</p>]]></content>
       
       
+      <categories>
+          
+          <category> web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
       
     </entry>
     
