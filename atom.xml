@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-09T17:17:18.229Z</updated>
+  <updated>2023-10-18T12:49:22.754Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,137 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web安全日志-035</title>
+    <link href="http://example.com/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/"/>
+    <id>http://example.com/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/</id>
+    <published>2023-10-18T13:23:37.000Z</published>
+    <updated>2023-10-18T12:49:22.754Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-034</title>
+    <link href="http://example.com/2023/10/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-034/"/>
+    <id>http://example.com/2023/10/17/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-034/</id>
+    <published>2023-10-17T14:56:43.000Z</published>
+    <updated>2023-10-18T12:49:11.552Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-033</title>
+    <link href="http://example.com/2023/10/16/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-033/"/>
+    <id>http://example.com/2023/10/16/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-033/</id>
+    <published>2023-10-16T12:26:19.000Z</published>
+    <updated>2023-10-18T12:49:00.695Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-032</title>
+    <link href="http://example.com/2023/10/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-032/"/>
+    <id>http://example.com/2023/10/15/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-032/</id>
+    <published>2023-10-15T15:22:33.000Z</published>
+    <updated>2023-10-18T12:48:45.707Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-031</title>
+    <link href="http://example.com/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/"/>
+    <id>http://example.com/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/</id>
+    <published>2023-10-14T13:12:54.000Z</published>
+    <updated>2023-10-18T12:48:23.923Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-030</title>
+    <link href="http://example.com/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/"/>
+    <id>http://example.com/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/</id>
+    <published>2023-10-13T14:24:31.000Z</published>
+    <updated>2023-10-18T12:48:05.648Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-029</title>
+    <link href="http://example.com/2023/10/12/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-029/"/>
+    <id>http://example.com/2023/10/12/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-029/</id>
+    <published>2023-10-12T13:36:12.000Z</published>
+    <updated>2023-10-18T13:09:44.821Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之WAF绕过及安全修复&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之WAF绕过及安全修复&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之WAF绕过及安全修复&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之WAF绕过及安全修复&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-028</title>
+    <link href="http://example.com/2023/10/11/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-028/"/>
+    <id>http://example.com/2023/10/11/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-028/</id>
+    <published>2023-10-11T15:40:22.000Z</published>
+    <updated>2023-10-18T13:09:34.654Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之WAF绕过及安全修复&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之WAF绕过及安全修复&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之WAF绕过及安全修复&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之WAF绕过及安全修复&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web安全日志-027</title>
+    <link href="http://example.com/2023/10/10/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-027/"/>
+    <id>http://example.com/2023/10/10/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-027/</id>
+    <published>2023-10-10T14:36:11.000Z</published>
+    <updated>2023-10-18T12:56:46.062Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之代码及httponly绕过&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之代码及httponly绕过&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之代码及httponly绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之代码及httponly绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>web安全日志-026</title>
@@ -215,177 +346,6 @@
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-查询方式及报错盲注&quot;&gt;&lt;a href=&quot;#WEB漏洞-查询方式及报错盲注&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-查询方式及报错盲注&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-查询方式及报错盲注&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-015</title>
-    <link href="http://example.com/2023/09/28/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-015/"/>
-    <id>http://example.com/2023/09/28/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-015/</id>
-    <published>2023-09-28T14:25:57.000Z</published>
-    <updated>2023-10-01T07:19:13.880Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-Oracle-MongoDB等注入&quot;&gt;&lt;a href=&quot;#WEB漏洞-Oracle-MongoDB等注入&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-Oracle,MongoDB等注入&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-Oracle,MongoDB等注入&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-014</title>
-    <link href="http://example.com/2023/09/27/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-014/"/>
-    <id>http://example.com/2023/09/27/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-014/</id>
-    <published>2023-09-27T14:42:31.000Z</published>
-    <updated>2023-09-29T12:38:16.045Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-类型及提交注入&quot;&gt;&lt;a href=&quot;#WEB漏洞-类型及提交注入&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-类型及提交注入&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-类型及提交注入&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-013</title>
-    <link href="http://example.com/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/"/>
-    <id>http://example.com/2023/09/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-013/</id>
-    <published>2023-09-26T15:45:54.000Z</published>
-    <updated>2023-09-29T12:26:43.534Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-SQL-注入-二&quot;&gt;&lt;a href=&quot;#WEB漏洞-SQL-注入-二&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-SQL 注入(二)&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-SQL 注入(二)&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-012</title>
-    <link href="http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/"/>
-    <id>http://example.com/2023/09/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-012/</id>
-    <published>2023-09-25T12:17:13.000Z</published>
-    <updated>2023-09-28T14:18:46.334Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-SQL-注入-一&quot;&gt;&lt;a href=&quot;#WEB漏洞-SQL-注入-一&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-SQL 注入(一)&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-SQL 注入(一)&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-011</title>
-    <link href="http://example.com/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/"/>
-    <id>http://example.com/2023/09/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-011/</id>
-    <published>2023-09-24T14:01:35.000Z</published>
-    <updated>2023-09-26T15:44:39.185Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-必懂知识点&quot;&gt;&lt;a href=&quot;#WEB漏洞-必懂知识点&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-必懂知识点&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-必懂知识点&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-010</title>
-    <link href="http://example.com/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/"/>
-    <id>http://example.com/2023/09/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-010/</id>
-    <published>2023-09-23T15:54:12.000Z</published>
-    <updated>2023-09-26T14:58:55.419Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;信息收集-资产监控拓展&quot;&gt;&lt;a href=&quot;#信息收集-资产监控拓展&quot; class=&quot;headerlink&quot; title=&quot;信息收集-资产监控拓展&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;信息收集-资产监控拓展&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-009</title>
-    <link href="http://example.com/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/"/>
-    <id>http://example.com/2023/09/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-009/</id>
-    <published>2023-09-22T14:38:29.000Z</published>
-    <updated>2023-09-26T14:42:15.748Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;信息收集-APP及其他资产等&quot;&gt;&lt;a href=&quot;#信息收集-APP及其他资产等&quot; class=&quot;headerlink&quot; title=&quot;信息收集-APP及其他资产等&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;信息收集-APP及其他资产等&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-008</title>
-    <link href="http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/"/>
-    <id>http://example.com/2023/09/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-008/</id>
-    <published>2023-09-21T15:01:26.000Z</published>
-    <updated>2023-09-26T15:00:39.670Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;信息收集-架构-搭建-WAF等&quot;&gt;&lt;a href=&quot;#信息收集-架构-搭建-WAF等&quot; class=&quot;headerlink&quot; title=&quot;信息收集-架构,搭建,WAF等&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;信息收集-架构,搭建,WAF等&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-007</title>
-    <link href="http://example.com/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/"/>
-    <id>http://example.com/2023/09/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-007/</id>
-    <published>2023-09-20T14:25:22.000Z</published>
-    <updated>2023-09-26T15:00:35.486Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;信息收集-CDN绕过&quot;&gt;&lt;a href=&quot;#信息收集-CDN绕过&quot; class=&quot;headerlink&quot; title=&quot;信息收集-CDN绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;信息收集-CDN绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
