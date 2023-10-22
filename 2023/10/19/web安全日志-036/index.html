@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="wen安全日志-036, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志-036, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>wen安全日志-036 | 爱睡懒觉的道士</title>
+    <title>web安全日志-036 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">wen安全日志-036</h1>
+                    <h1 class="description center-align post-title">web安全日志-036</h1>
                 </div>
             </div>
         </div>
@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -457,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-22
+                    2023-10-19
                 </div>
                 
 
@@ -466,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -493,7 +497,178 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-逻辑越权之找回机制及接口爆破"><a href="#WEB漏洞-逻辑越权之找回机制及接口爆破" class="headerlink" title="WEB漏洞-逻辑越权之找回机制及接口爆破"></a><font size="6"><strong>WEB漏洞-逻辑越权之找回机制及接口爆破</strong></font></h2><span id="more"></span>
+
+<h3 id="一、思维导图"><a href="#一、思维导图" class="headerlink" title="一、思维导图"></a><font size="5"><strong>一、思维导图</strong></font></h3><p><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/1.png"><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/2.png"></p>
+<h3 id="二、演示案例"><a href="#二、演示案例" class="headerlink" title="二、演示案例"></a><font size="5"><strong>二、演示案例</strong></font></h3><p>● 验证码识别插件及工具操作演示-实例。<br>● 验证码绕过本地及远程验证-本地及实例<br>● Token客户端回显绕过登录爆破演示-<br>● 本地某URL下载接口ID值调用遍历测试-实例<br>● Callback自定义返回调用安全-漏洞测试-实例<br>● 补:上述在实战中如何做到漏洞发现-bp功能点</p>
+<p><strong>验证码安全</strong></p>
+<p>● 分类: 图片，手机或邮箱，语音，视频，操作等<br>● 原理: 验证生成或验证过程中的逻辑问题<br>● 危害: 账户权限泄漏，短信轰炸，遍历，任意用户操作等<br>● 漏洞: 客户端回显(已讲)，验证码复用，验证码爆破(已讲)，绕过等</p>
+<p><strong>token 安全</strong><br>● 基本上述同理，主要是验证中可存在绕过可继续后续测试<br>● token 爆破，token 客户端回显等  </p>
+<p><strong>验证码识别插件工具使用</strong><br>● captcha-killer<br>● Pkav_Http_Fuzz<br>● reCAPTCHA 等  </p>
+<p><strong>接口安全问题</strong><br>● 调用，遍历，未授权，篡改等<br>● 调用案例：短信轰炸<br>● 遍历案列：UID 等遍历<br>● callback 回调 JSONP<br>● 参数篡改：墨者靶场  </p>
+<p><strong>水平越权</strong></p>
+<pre class=" language-bash"><code class="language-bash">未授权访问：
+与越权漏洞区别
+Jboss 未授权访问
+Jenkins 未授权访问
+ldap 未授权访问
+Redis 未授权访问
+elasticsearch 未授权访问
+MenCache 未授权访问
+Mongodb 未授权访问
+Rsync 未授权访问
+Zookeeper 未授权访问
+Docker 未授权访问
+</code></pre>
+<h3 id="三、涉及资源："><a href="#三、涉及资源：" class="headerlink" title="三、涉及资源："></a><font size="5"><strong>三、涉及资源：</strong></font></h3><pre class=" language-bash"><code class="language-bash">https://www.lanzous.com/i1z2s3e 或者 https://sec.kim/wp-content/uploads/2021/01/PKAV-HTTP-Fuzzer-1.5.6.zip
+
+https://www.cnblogs.com/nul1/p/12071115.html
+
+https://github.com/c0ny1/captcha-killer/releases/tag/0.1.2
+
+https://github.com/bit4woo/reCAPTCHA/releases/tag/v1.0
+</code></pre>
+<h3 id="四、工具操作演示"><a href="#四、工具操作演示" class="headerlink" title="四、工具操作演示"></a><font size="5"><strong>四、工具操作演示</strong></font></h3><h4 id="Pkav-Http-Fuzz工具"><a href="#Pkav-Http-Fuzz工具" class="headerlink" title="Pkav_Http_Fuzz工具"></a><font size="4"><strong>Pkav_Http_Fuzz工具</strong></font></h4><pre class=" language-bash"><code class="language-bash">https://www.lanzous.com/i1z2s3e 或者 https://sec.kim/wp-content/uploads/2021/01/PKAV-HTTP-Fuzzer-1.5.6.zip
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://manage.yyxueche.com//panel/login.php">https://manage.yyxueche.com//panel/login.php</a></p>
+<p><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/3.png"></p>
+<p>获取到验证码地址：<a target="_blank" rel="noopener" href="https://manage.yyxueche.com/panel/verify_code_cn.php">https://manage.yyxueche.com/panel/verify_code_cn.php</a><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/4.png"></p>
+<p>优点:简单好用<br>缺点:不能配合burp使用</p>
+<h4 id="captcha-killer"><a href="#captcha-killer" class="headerlink" title="captcha-killer"></a><font size="4"><strong>captcha-killer</strong></font></h4><p> <a target="_blank" rel="noopener" href="https://github.com/c0ny1/captcha-killer/releases/tag/0.1.2">https://github.com/c0ny1/captcha-killer/releases/tag/0.1.2</a><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/5.png"></p>
+<p>工具使用介绍：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nul1/p/12071115.html">https://www.cnblogs.com/nul1/p/12071115.html</a><br>插件要配合百度AI文字识别使用。<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/6.png"></p>
+<p>由于穷后面的实验没得法继续做</p>
+<h3 id="五、pikachu爆破"><a href="#五、pikachu爆破" class="headerlink" title="五、pikachu爆破"></a><font size="5"><strong>五、pikachu爆破</strong></font></h3><h4 id="on-server"><a href="#on-server" class="headerlink" title="on server"></a><font size="4"><strong>on server</strong></font></h4><p>将数据包的用户名修改重复发送看回显的值是否发生变化。可以看出验证码存在复用的问题。<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/7.png"><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/8.png"></p>
+<p>原因是没有销毁这个验证码。这个验证码存储在SESSION中。</p>
+<h4 id="onclient"><a href="#onclient" class="headerlink" title="onclient"></a><font size="4"><strong>onclient</strong></font></h4><p><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/9.png"></p>
+<p>在前端验证当中有的程序员会单独写一个js文件然后去加载<script src="1.js"></script> </p>
+<h4 id="token"><a href="#token" class="headerlink" title="token"></a><font size="4"><strong>token</strong></font></h4><pre class=" language-bash"><code class="language-bash">1、Token的引入：Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。
+
+2、Token的定义：Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。
+
+3、使用Token的目的：Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。
+</code></pre>
+<p>抓包发送到intruder模块当中<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/10.png"></p>
+<p><font color=red>在表达式中输入value&#x3D;’然后点击refetch response 找到value后的token值复制，最后点击ok</font></p>
+<p><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/11.png"><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/12.png"></p>
+<p>设置线程数新版的burp和老版burp的差异，其实这里面还有很多的文章可以做，这里不展开叙述了。<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/13.png"></p>
+<p>然后设置payloads<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/14.png"><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/15.png"></p>
+<p>最后start，看到成功<br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/16.png"><br><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/17.png"></p>
+<p>总结：其实token的爆破还是非常麻烦的因为要爆破的东西非常多，如用户名，密码、token、要是字典比较大的话那么一时半会根本是爆破不完的。</p>
+<p>由于之前对Pitchfork攻击类型不熟悉。在网上看了关于四种的攻击类型，作简要的陈述。</p>
+<h4 id="1、Sniper（狙击手模式）"><a href="#1、Sniper（狙击手模式）" class="headerlink" title="1、Sniper（狙击手模式）"></a><font size="4"><strong>1、Sniper（狙击手模式）</strong></font></h4><p>针对单一密码，假设确定了两个位置A和B，然后密码包payload里有两个密码1、2，那么攻击模式如下：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Attack No.</th>
+            <th>Position A</th>
+            <th>Position B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>null</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>null</td>
+        </tr>
+         <tr>
+            <td>2</td>
+            <td>null</td>
+            <td>1</td>
+        </tr>
+         <tr>
+            <td>3</td>
+            <td>null</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>     
+
+<h4 id="2、Battering-ram（攻城锤模式）"><a href="#2、Battering-ram（攻城锤模式）" class="headerlink" title="2、Battering ram（攻城锤模式）"></a><font size="4"><strong>2、Battering ram（攻城锤模式）</strong></font></h4><p>于sniper模式不同的地方在于，同样情况下，攻击次数减半，每次两个位置<br>用同样的密码，如表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Attack No.</th>
+            <th>Position A</th>
+            <th>Position B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 id="3、Pitchfork（叉子模式）"><a href="#3、Pitchfork（叉子模式）" class="headerlink" title="3、Pitchfork（叉子模式）"></a><font size="4"><strong>3、Pitchfork（叉子模式）</strong></font></h4><p>跟前两种不同的地方在于，可以多组密码本payload，又于battering ram相同的地方在于，一一对应，现在添加包含3、4的密码本payload，暴力破解过程如表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Attack No.</th>
+            <th>Position A</th>
+            <th>Position B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 id="4、Cluster-bomb（炸弹模式"><a href="#4、Cluster-bomb（炸弹模式" class="headerlink" title="4、Cluster bomb（炸弹模式"></a><font size="4"><strong>4、Cluster bomb（炸弹模式</strong></font></h4><p>跟叉子模式相似的是多个密码本对应多个位置，不同的是不再是一一对应，而是交叉组合，每一个密码本里的密码都对应于另一密码本所有密码，如表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Attack No.</th>
+            <th>Position A</th>
+            <th>Position B</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>4</td>
+        </tr>
+        <tr>Z
+            <td>3</td>
+            <td>2</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="六、接口回调安全问题例"><a href="#六、接口回调安全问题例" class="headerlink" title="六、接口回调安全问题例"></a><font size="5"><strong>六、接口回调安全问题例</strong></font></h3><p><img src="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/18.png"><br>callback容易产生跨站漏洞：inurl:callback<br>那么这些漏洞该怎么发现呢？可以使用bp爬虫</p>
+
                 
             </div>
             <hr/>
@@ -519,7 +694,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/10/22/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/">http://example.com/2023/10/22/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/</a>
+                    <a href="http://example.com/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/">http://example.com/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,7 +731,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -728,13 +907,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/22/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-037/">
+                <a href="/2023/10/20/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-037/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="wen安全日志-037">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="web安全日志-037">
                         
-                        <span class="card-title">wen安全日志-037</span>
+                        <span class="card-title">web安全日志-037</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -745,7 +924,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-20
                         </span>
                         <span class="publish-author">
                             
@@ -777,7 +956,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-逻辑越权之找回机制及接口爆破
                         
                     </div>
                     <div class="publish-info">
@@ -791,6 +970,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1028,7 +1215,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">52.1k</span>&nbsp;字
+                class="white-color">55.7k</span>&nbsp;字
             
             
             

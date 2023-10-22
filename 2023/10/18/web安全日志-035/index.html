@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -466,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    605
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -493,7 +497,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-逻辑越权之找回机制及接口爆破"><a href="#WEB漏洞-逻辑越权之找回机制及接口爆破" class="headerlink" title="WEB漏洞-逻辑越权之找回机制及接口爆破"></a><font size="6"><strong>WEB漏洞-逻辑越权之找回机制及接口爆破</strong></font></h2><span id="more"></span>
+
+<p><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/1.png"></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#找回重置机制</span>
+客户端回显，Response 状态值，验证码爆破，找回流程绕过等
+
+<span class="token comment" spellcheck="true">#接口调用乱用</span>
+短信轰炸，来电轰炸等
+</code></pre>
+<h3 id="一、演示案例"><a href="#一、演示案例" class="headerlink" title="一、演示案例"></a><font size="5"><strong>一、演示案例</strong></font></h3><p>● 找回密码验证码逻辑-爆破测试-实例<br>● 墨者靶场密码重置-验证码套用-靶场<br>● 手机邮箱验证码逻辑-客户端回显-实例<br>● 绑定手机验证码逻辑-Rep 状态值篡改-实例<br>● 某 APP 短信轰炸接口乱用-实例接口调用发包  </p>
+<h3 id="二、涉及资源"><a href="#二、涉及资源" class="headerlink" title="二、涉及资源"></a><font size="5"><strong>二、涉及资源</strong></font></h3><pre class=" language-bash"><code class="language-bash">http://downcode.com/downcode/j_16621.shtml
+
+https://pan.baidu.com/share/init?surl<span class="token operator">=</span>P73QFmEhY6f350CvmnOJNg 提取码小
+
+https://pan.baidu.com/share/init?surl<span class="token operator">=</span>N963jFjTefNc6Gnso-RHmw 提取码xiao
+
+https://www.mozhe.cn/bug/detail/K2sxTTVYaWNncUE1cTdyNXIyTklHdz09bW96aGUmozhe
+</code></pre>
+<h3 id="三、墨者靶场"><a href="#三、墨者靶场" class="headerlink" title="三、墨者靶场"></a><font size="5"><strong>三、墨者靶场</strong></font></h3><p>漏洞分析原因</p>
+<pre class=" language-bash"><code class="language-bash">第一个页面：第一个页面输入手机号，验证码
+第二个页面：重置密码
+
+刚好靶场是这么一个流程 手机号 新密码 图片验证码,短信验证码
+
+这样就行了一个后台更改数据包发送的手机号也就获取到了验证码
+</code></pre>
+<p>1、打开靶场进入操作界面，发现有一个已经注册的手机号<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/2.png"></p>
+<p>2、使用测试号码获取短信验证码<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/3.png"></p>
+<p>3、将手机号改为需要登录的手机号，点击重置，成功获取key值<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/4.png"></p>
+<p>其短信验证码5分钟内有效，只验证验证码的有效性，而没有验证验证码和手机号的一致性。所以可以越权重置。</p>
+<h3 id="四、汉川招聘网"><a href="#四、汉川招聘网" class="headerlink" title="四、汉川招聘网"></a><font size="5"><strong>四、汉川招聘网</strong></font></h3><p><a target="_blank" rel="noopener" href="http://0712zpw.com/user/user_getpass.php">http://0712zpw.com/user/user_getpass.php</a><br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/5.png"><br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/6.png"></p>
+<p>汉川招聘源码采用的是74cms，下载下来分析，切记不要直接在公网上直接开整，不然的话网安法问候<br><a target="_blank" rel="noopener" href="https://74cms.com/downloadse/show/id/52.html">https://74cms.com/downloadse/show/id/52.html</a></p>
+<h3 id="五、手机验证码"><a href="#五、手机验证码" class="headerlink" title="五、手机验证码"></a><font size="5"><strong>五、手机验证码</strong></font></h3><p><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/7.png"><br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/8.png"></p>
+<p>属于客户端回显。<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/9.png"></p>
+<p>写个手机号码，然后随便填验证码，抓包。<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/10.png"></p>
+<p>直接替换为正确的验证码就可以。或者也可以修改返回的包，<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/11.png"></p>
+<p>在上面填写正确的验证码的情况下，返回1。而填写错误的验证码会返回3，我们将3修改为1即可。<br>但是这就涉及到，这个web应用到底是怎么验证的，是以返回包来验证，还是在服务器端验证。在服务器验证的话，改为1也没用。<br>bp抓取回复的数据包<br><img src="/2023/10/18/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-035/12.png"></p>
+
                 
             </div>
             <hr/>
@@ -556,7 +597,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -728,24 +773,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/22/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/">
+                <a href="/2023/10/19/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-036/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="wen安全日志-036">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web安全日志-036">
                         
-                        <span class="card-title">wen安全日志-036</span>
+                        <span class="card-title">web安全日志-036</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-逻辑越权之找回机制及接口爆破
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-19
                         </span>
                         <span class="publish-author">
                             
@@ -754,6 +799,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -777,7 +830,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-逻辑越权之支付数据篡改安全
                         
                     </div>
                     <div class="publish-info">
@@ -791,6 +844,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1028,7 +1089,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">52.1k</span>&nbsp;字
+                class="white-color">55.7k</span>&nbsp;字
             
             
             
