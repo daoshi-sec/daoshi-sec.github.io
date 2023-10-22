@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -466,7 +470,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    255
                 </div>
                 
 
@@ -493,7 +497,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-反序列化之PHP-JAVA全解-下"><a href="#WEB漏洞-反序列化之PHP-JAVA全解-下" class="headerlink" title="WEB漏洞-反序列化之PHP&amp;JAVA全解(下)"></a><font size="6"><strong>WEB漏洞-反序列化之PHP&amp;JAVA全解(下)</strong></font></h2><span id="more"></span>
+
+<h3 id="一、思维导图"><a href="#一、思维导图" class="headerlink" title="一、思维导图"></a><font size="5"><strong>一、思维导图</strong></font></h3><p><img src="/2023/10/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-038/1.png"><br>Java中API实现：<br><img src="/2023/10/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-038/2.png"></p>
+<h3 id="二、序列化理解"><a href="#二、序列化理解" class="headerlink" title="二、序列化理解"></a><font size="5"><strong>二、序列化理解</strong></font></h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#序列化和反序列化</span>
+
+序列化<span class="token punctuation">(</span>Serialization<span class="token punctuation">)</span>: 将对象的状态信息转换为可以存储或传输的形式的过程。在序列化期间，对象将其当前状态写入到临时或持久性存储区。
+
+反序列化：从存储区中读取该数据，并将其还原为对象的过程，成为反序列化。
+</code></pre>
+<h3 id="三、演示案例"><a href="#三、演示案例" class="headerlink" title="三、演示案例"></a><font size="5"><strong>三、演示案例</strong></font></h3><p>● Java 反序列化及命令执行代码测试<br>● WebGoat_Javaweb 靶场反序列化测试  </p>
+<p><strong>补充知识点</strong><br>下方的特征可以作为序列化的标志参考:<br>一段数据以rO0AB开头，你基本可以确定这串就是JAVA序列化base64加密的数据。<br>或者如果以aced开头，那么他就是这一段java序列化的16进制。|</p>
+<h4 id="webgoat反序列"><a href="#webgoat反序列" class="headerlink" title="webgoat反序列"></a><font size="4"><strong>webgoat反序列</strong></font></h4><pre class=" language-bash"><code class="language-bash">jiang@ubuntu:~$ docker pull webgoat/webgoat-8.0
+jiang@ubuntu:~$ docker run -d -p 8080:8080 webgoat/webgoat-8.0:latest
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://10.1.1.7:8080/WebGoat/login">http://10.1.1.7:8080/WebGoat/login</a><br><img src="/2023/10/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-038/3.png"><br><img src="/2023/10/21/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-038/4.png"></p>
+
                 
             </div>
             <hr/>
@@ -556,7 +575,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -732,15 +755,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="wen安全日志-039">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="web安全日志-039">
                         
-                        <span class="card-title">wen安全日志-039</span>
+                        <span class="card-title">web安全日志-039</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-XXE&amp;XML之利用检测绕过全解
                         
                     </div>
                     <div class="publish-info">
@@ -754,6 +777,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -777,7 +808,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-逻辑越权之找回机制及接口爆破
+                            WEB漏洞-反序列化之PHP&amp;JAVA全解(上)
                         
                     </div>
                     <div class="publish-info">
@@ -1036,7 +1067,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.7k</span>&nbsp;字
+                class="white-color">58.3k</span>&nbsp;字
             
             
             

