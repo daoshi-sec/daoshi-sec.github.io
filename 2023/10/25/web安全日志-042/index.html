@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="wen安全日志-041, 爱睡懒觉的道士">
+    <meta name="keywords" content="web安全日志-042, 爱睡懒觉的道士">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>wen安全日志-041 | 爱睡懒觉的道士</title>
+    <title>web安全日志-042 | 爱睡懒觉的道士</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -324,12 +324,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">wen安全日志-041</h1>
+                    <h1 class="description center-align post-title">web安全日志-042</h1>
                 </div>
             </div>
         </div>
@@ -461,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-24
+                    2023-10-25
                 </div>
                 
 
@@ -470,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    926
+                    255
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -497,102 +497,33 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="WEB漏洞-目录遍历访问控制-XSS-等安全问题"><a href="#WEB漏洞-目录遍历访问控制-XSS-等安全问题" class="headerlink" title="WEB漏洞-目录遍历访问控制 XSS 等安全问题"></a><font size="6"><strong>WEB漏洞-目录遍历访问控制 XSS 等安全问题</strong></font></h2><span id="more"></span>
+                <h2 id="WEB漏洞-操作系统之漏洞探针类型利用修复"><a href="#WEB漏洞-操作系统之漏洞探针类型利用修复" class="headerlink" title="WEB漏洞-操作系统之漏洞探针类型利用修复"></a><font size="6"><strong>WEB漏洞-操作系统之漏洞探针类型利用修复</strong></font></h2><span id="more"></span>
 
-<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a><font size="5"><strong>一、前言</strong></font></h3><p>前言：<br>注重代码分析，熟悉 javaweb 开发结构，掌握 javaweb 代码审计流程，其次才是相关漏洞解释（因前期漏洞原理已基本讲解完毕），通过本次直播大家务必学会分析相关代码路径，结构，框架等知识点。</p>
-<h4 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a><font size="4"><strong>思维导图</strong></font></h4><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/1.png"></p>
-<h3 id="二、知识点"><a href="#二、知识点" class="headerlink" title="二、知识点"></a><font size="5"><strong>二、知识点</strong></font></h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#文件上传配合目录遍历覆盖-文件自定义文件存储地址-基于用户名存储问题</span>
-<span class="token comment" spellcheck="true">#代码解析及框架源码追踪：</span>
-第一关：
-Payload: <span class="token punctuation">..</span>/x
-第二关：
-Payload: <span class="token punctuation">..</span><span class="token punctuation">..</span>//x
+<h3 id="一、思维导图"><a href="#一、思维导图" class="headerlink" title="一、思维导图"></a><font size="5"><strong>一、思维导图</strong></font></h3><p><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/1.png"></p>
+<h3 id="二、探针"><a href="#二、探针" class="headerlink" title="二、探针"></a><font size="5"><strong>二、探针</strong></font></h3><h4 id="1、Goby"><a href="#1、Goby" class="headerlink" title="1、Goby"></a><font size="4"><strong>1、Goby</strong></font></h4><p>可以到官网下载，这里使用忍者系统虚拟机里的。<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/2.png"></p>
+<p>结果：<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/3.png"></p>
+<h4 id="2、Namp"><a href="#2、Namp" class="headerlink" title="2、Namp"></a><font size="4"><strong>2、Namp</strong></font></h4><p>Nmap –script&#x3D;vuln	默认nse插件 Nmap vulscan vulners 调用第三方库探针 加入拓展扫描模块 <a target="_blank" rel="noopener" href="https://cnblogs.com/shwang/p/12623669.html">https://cnblogs.com/shwang/p/12623669.html</a><br>扫描：<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/4.png"></p>
+<p>结果：<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/5.png"></p>
+<h4 id="3、Nessus"><a href="#3、Nessus" class="headerlink" title="3、Nessus"></a><font size="4"><strong>3、Nessus</strong></font></h4><p>下载地址<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/17uA2OmJbV_cDG2C6QnHqqA">https://pan.baidu.com/s/17uA2OmJbV_cDG2C6QnHqqA</a>  提取码：cxd4<br>安装教程在文件里有。<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/6.png"></p>
+<h3 id="三、漏洞类型"><a href="#三、漏洞类型" class="headerlink" title="三、漏洞类型"></a><font size="5"><strong>三、漏洞类型</strong></font></h3><p><strong>1、远程执行<br>2、权限提升<br>3、缓冲区溢出</strong></p>
+<h3 id="四、漏洞利用"><a href="#四、漏洞利用" class="headerlink" title="四、漏洞利用"></a><font size="5"><strong>四、漏洞利用</strong></font></h3><p>0day交易<br><a target="_blank" rel="noopener" href="https://mrxn.net/share/0day-today.html">https://mrxn.net/share/0day-today.html</a> </p>
+<h4 id="1、Searchploit使用方法"><a href="#1、Searchploit使用方法" class="headerlink" title="1、Searchploit使用方法"></a><font size="4"><strong>1、Searchploit使用方法</strong></font></h4><p><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/7.png"><br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/8.png"><br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/9.png"></p>
+<p>然后打开msfcosole，在Nessus上看一下开放的端口和漏洞。</p>
+<h4 id="2、Metasploit"><a href="#2、Metasploit" class="headerlink" title="2、Metasploit"></a><font size="4"><strong>2、Metasploit</strong></font></h4><p><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/10.png"><br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/11.png"><br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/12.png"></p>
+<p>然后看一下靶机：<br><img src="/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/13.png"></p>
+<h3 id="五、涉及资源"><a href="#五、涉及资源" class="headerlink" title="五、涉及资源"></a><font size="5"><strong>五、涉及资源</strong></font></h3><pre class=" language-bash"><code class="language-bash">涉及资源：
+https://nmap.org
+https://gobies.org
+https://www.cnvd.org.cn
+https://www.seebug.org
+https://www.exploit-db.com
+https://github.com/scipag/vulscan
+https://github.com/vulnersCom/nmap-vulners
+https://github.com/offensive-security/exploitdb
+https://www.cnblogs.com/shwang/p/12623669.html
+https://blog.csdn.net/qq_38055050/article/details/80214684
+https://pan.baidu.com/s/17uA2OmJbV_cDG2C6QnHqqA 提取码：cxd4
 </code></pre>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#不安全登录 Insecure Login-基于前端认证</span>
-<span class="token comment" spellcheck="true">#熟悉代码结构及硕源代码文件</span>
-<span class="token comment" spellcheck="true">#访问控制对象-逻辑越权</span>
-<span class="token comment" spellcheck="true">#代码分析过关逻辑</span>
-枚举用户参数对应数据库的其他数据信息
-role,userid
-通过参数值构造 URL 获取用户更多的信息
-WebGoat/IDOR/profile/2342384
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">**<span class="token comment" spellcheck="true">#XSS 跨站</span>
-代码分析结合页面解释过关
-</code></pre>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#核心知识点：Java 代码分析 === Apk_App 分析</span>
-模块引用（框架,自带等），路由地址，静态文件（html.js 等）,简易代码理解等
-</code></pre>
-<h3 id="三、演示案例："><a href="#三、演示案例：" class="headerlink" title="三、演示案例："></a><font size="5"><strong>三、演示案例：</strong></font></h3><h4 id="1、Javaweb-代码分析-目录遍历安全问题"><a href="#1、Javaweb-代码分析-目录遍历安全问题" class="headerlink" title="1、Javaweb 代码分析-目录遍历安全问题"></a><font size="4"><strong>1、Javaweb 代码分析-目录遍历安全问题</strong></font></h4><h5 id="less-1"><a href="#less-1" class="headerlink" title="less-1"></a><font size="4"><strong>less-1</strong></font></h5><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/2.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/3.png"><br>抓包查看路径</p>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/4.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/5.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/6.png"></p>
-<h5 id="less-2"><a href="#less-2" class="headerlink" title="less-2"></a><font size="4"><strong>less-2</strong></font></h5><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/7.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/8.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/9.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/10.png"></p>
-<h4 id="2、Javaweb-代码分析-前端验证安全问题"><a href="#2、Javaweb-代码分析-前端验证安全问题" class="headerlink" title="2、Javaweb 代码分析-前端验证安全问题"></a><font size="4"><strong>2、Javaweb 代码分析-前端验证安全问题</strong></font></h4><p>登录<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/11.png"><br>抓包<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/12.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/13.png"><br>查看源码<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/14.png"></p>
-<p>检查输入的账号&amp;密码是否等于CaptainJack&amp;BlackPearl等于就返回成功，否者失败！</p>
-<pre class=" language-bash"><code class="language-bash">        <span class="token keyword">return</span> username.toString<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"CaptainJack"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> password.toString<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"BlackPearl"</span><span class="token punctuation">)</span> ? this.success<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">:</span> this.failed<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/15.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/16.png"></p>
-<pre class=" language-bash"><code class="language-bash">    var _0xb7f9<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"\x43\x61\x70\x74\x61\x69\x6E\x4A\x61\x63\x6B"</span>,<span class="token string">"\x42\x6C\x61\x63\x6B\x50\x65\x61\x72\x6C"</span>,<span class="token string">"\x73\x74\x72\x69\x6E\x67\x69\x66\x79"</span>,<span class="token string">"\x73\x65\x6E\x64"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>xhttp<span class="token punctuation">[</span>_0xb7f9<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">(</span>JSON<span class="token punctuation">[</span>_0xb7f9<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;username:_0xb7f9[0],password:_0xb7f9[1]&amp;#125;))</span>
-</code></pre>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/17.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/18.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/19.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/20.png"></p>
-<p>使用CaptainJack&amp;BlackPearl登录<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/21.png"></p>
-<h4 id="3、Javaweb-代码分析-逻辑越权安全问题"><a href="#3、Javaweb-代码分析-逻辑越权安全问题" class="headerlink" title="3、Javaweb 代码分析-逻辑越权安全问题"></a><font size="4"><strong>3、Javaweb 代码分析-逻辑越权安全问题</strong></font></h4><h5 id="less-1-1"><a href="#less-1-1" class="headerlink" title="less-1"></a><font size="4"><strong>less-1</strong></font></h5><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/22.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/23.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/24.png"></p>
-<pre class=" language-bash"><code class="language-bash">String<span class="token punctuation">[</span><span class="token punctuation">]</span> diffAttribs <span class="token operator">=</span> attributes.split<span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-bash"><code class="language-bash">            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token operator">!</span>diffAttribs<span class="token punctuation">[</span>0<span class="token punctuation">]</span>.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.trim<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"userid"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span>diffAttribs<span class="token punctuation">[</span>1<span class="token punctuation">]</span>.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.trim<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"role"</span><span class="token punctuation">))</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token operator">!</span>diffAttribs<span class="token punctuation">[</span>1<span class="token punctuation">]</span>.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.trim<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"userid"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span>diffAttribs<span class="token punctuation">[</span>0<span class="token punctuation">]</span>.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.trim<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"role"</span><span class="token punctuation">))</span> ? this.failed<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"idor.diff.failure"</span><span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">:</span> this.success<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"idor.diff.success"</span><span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>可以观察到只有5个属性，只有role 和userid是隐藏未显示的属性，且代码进一步验证,输入role,userid 即可</p>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/25.png"></p>
-<h5 id="less-2-1"><a href="#less-2-1" class="headerlink" title="less-2"></a><font size="4"><strong>less-2</strong></font></h5><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/26.png"></p>
-<p>直接抓包看看源码<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/27.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/28.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/29.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/30.png"></p>
-<p>WebGoat&#x2F;IDOR&#x2F;profile&#x2F;2342384<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/31.png"></p>
-<h4 id="4、Javaweb-代码分析-XSS-跨站安全问题"><a href="#4、Javaweb-代码分析-XSS-跨站安全问题" class="headerlink" title="4、Javaweb 代码分析-XSS 跨站安全问题"></a><font size="4"><strong>4、Javaweb 代码分析-XSS 跨站安全问题</strong></font></h4><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/32.png"></p>
-<p>抓包<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/33.png"></p>
-<p>看源码<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/34.png"></p>
-<pre class=" language-bash"><code class="language-bash">        <span class="token keyword">return</span> answer_xss_1.toString<span class="token punctuation">(</span><span class="token punctuation">)</span>.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.equals<span class="token punctuation">(</span><span class="token string">"yes"</span><span class="token punctuation">)</span> ? this.success<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">:</span> this.failed<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"xss.lesson1.failure"</span><span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>直接输入yes即可<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/35.png"></p>
-<h5 id="less-2-2"><a href="#less-2-2" class="headerlink" title="less-2"></a><font size="4"><strong>less-2</strong></font></h5><p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/36.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/37.png"></p>
-<p>查看源码<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/38.png"></p>
-<pre class=" language-bash"><code class="language-bash">public class CrossSiteScriptingLesson5a extends AssignmentEndpoint <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-    public static final Predicate<span class="token operator">&lt;</span>String<span class="token operator">></span> XSS_PATTERN <span class="token operator">=</span> Pattern.compile<span class="token punctuation">(</span><span class="token string">".*&lt;script>(console\\.log|alert)\\(.*\\);?&lt;/script>.*"</span>, 2<span class="token punctuation">)</span>.asMatchPredicate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    @Autowired
-    UserSessionData userSessionData<span class="token punctuation">;</span>
-
-    public CrossSiteScriptingLesson5a<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-
-@GetMapping<span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"/CrossSiteScripting/attack5a"&amp;#125;)</span>
-    @ResponseBody
-    public AttackResult completed<span class="token punctuation">(</span>@RequestParam Integer QTY1, @RequestParam Integer QTY2, @RequestParam Integer QTY3, @RequestParam Integer QTY4, @RequestParam String field1, @RequestParam String field2<span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>XSS_PATTERN.test<span class="token punctuation">(</span>field2<span class="token punctuation">))</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-            <span class="token keyword">return</span> this.failed<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"xss-reflected-5a-failed-wrong-field"</span><span class="token punctuation">)</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
-            double totalSale <span class="token operator">=</span> <span class="token punctuation">(</span>double<span class="token punctuation">)</span>QTY1 * 69.99D + <span class="token punctuation">(</span>double<span class="token punctuation">)</span>QTY2 * 27.99D + <span class="token punctuation">(</span>double<span class="token punctuation">)</span>QTY3 * 1599.99D + <span class="token punctuation">(</span>double<span class="token punctuation">)</span>QTY4 * 299.99D<span class="token punctuation">;</span>
-            this.userSessionData.setValue<span class="token punctuation">(</span><span class="token string">"xss-reflected1-complete"</span>, <span class="token string">"false"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            StringBuffer cart <span class="token operator">=</span> new StringBuffer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            cart.append<span class="token punctuation">(</span><span class="token string">"Thank you for shopping at WebGoat. &lt;br />Your support is appreciated&lt;hr />"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            cart.append<span class="token punctuation">(</span><span class="token string">"&lt;p>We have charged credit card:"</span> + field1 + <span class="token string">"&lt;br />"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            cart.append<span class="token punctuation">(</span><span class="token string">"                             ------------------- &lt;br />"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            cart.append<span class="token punctuation">(</span><span class="token string">"                               $"</span> + totalSale<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>this.userSessionData.getValue<span class="token punctuation">(</span><span class="token string">"xss-reflected1-complete"</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-                this.userSessionData.setValue<span class="token punctuation">(</span><span class="token string">"xss-reflected1-complete"</span>, <span class="token string">"false"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>XSS_PATTERN.test<span class="token punctuation">(</span>field1<span class="token punctuation">))</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-                this.userSessionData.setValue<span class="token punctuation">(</span><span class="token string">"xss-reflected-5a-complete"</span>, <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">return</span> field1.toLowerCase<span class="token punctuation">(</span><span class="token punctuation">)</span>.contains<span class="token punctuation">(</span><span class="token string">"console.log"</span><span class="token punctuation">)</span> ? this.success<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"xss-reflected-5a-success-console"</span><span class="token punctuation">)</span>.output<span class="token punctuation">(</span>cart.toString<span class="token punctuation">(</span><span class="token punctuation">))</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">:</span> this.success<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"xss-reflected-5a-success-alert"</span><span class="token punctuation">)</span>.output<span class="token punctuation">(</span>cart.toString<span class="token punctuation">(</span><span class="token punctuation">))</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125; else &amp;#123;</span>
-                this.userSessionData.setValue<span class="token punctuation">(</span><span class="token string">"xss-reflected1-complete"</span>, <span class="token string">"false"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">return</span> this.failed<span class="token punctuation">(</span>this<span class="token punctuation">)</span>.feedback<span class="token punctuation">(</span><span class="token string">"xss-reflected-5a-failure"</span><span class="token punctuation">)</span>.output<span class="token punctuation">(</span>cart.toString<span class="token punctuation">(</span><span class="token punctuation">))</span>.build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-</code></pre>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/39.png"></p>
-<p>继续绕过xss过滤即可</p>
-<h4 id="4、拓展-安卓-APP-反编译-JAVA-代码（审计不香吗？）"><a href="#4、拓展-安卓-APP-反编译-JAVA-代码（审计不香吗？）" class="headerlink" title="4、拓展-安卓 APP 反编译 JAVA 代码（审计不香吗？）"></a><font size="4"><strong>4、拓展-安卓 APP 反编译 JAVA 代码（审计不香吗？）</strong></font></h4><p>打开decompileApk.cmd,然后把apk拖进cmd界面就行。</p>
-<p><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/40.png"><br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/41.png"></p>
-<p>idea查看源码（打不开的话右键添加为库）<br><img src="/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/42.png"></p>
 
                 
             </div>
@@ -619,7 +550,7 @@ WebGoat/IDOR/profile/2342384
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/">http://example.com/2023/10/24/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/</a>
+                    <a href="http://example.com/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/">http://example.com/2023/10/25/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -832,24 +763,24 @@ WebGoat/IDOR/profile/2342384
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/25/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-042/">
+                <a href="/2023/10/26/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-043/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="wen安全日志-042">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="web安全日志-043">
                         
-                        <span class="card-title">wen安全日志-042</span>
+                        <span class="card-title">web安全日志-043</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-操作系统之漏洞探针类型利用修复
+                            WEB漏洞-WEB 应用之漏洞探针类型利用修复
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-26
                         </span>
                         <span class="publish-author">
                             
@@ -877,24 +808,24 @@ WebGoat/IDOR/profile/2342384
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/10/23/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-040/">
+                <a href="/2023/10/24/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-041/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="web安全日志-040">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="web安全日志-041">
                         
-                        <span class="card-title">web安全日志-040</span>
+                        <span class="card-title">web安全日志-041</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WEB漏洞-JWT安全及预编译CASE注入等
+                            WEB漏洞-目录遍历访问控制 XSS 等安全问题
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-24
                             </span>
                         <span class="publish-author">
                             
@@ -1148,7 +1079,7 @@ WebGoat/IDOR/profile/2342384
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">60.7k</span>&nbsp;字
+                class="white-color">63k</span>&nbsp;字
             
             
             
