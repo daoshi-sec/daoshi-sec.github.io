@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-29T16:31:22.032Z</updated>
+  <updated>2023-10-29T16:36:14.090Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>wen安全日志-046</title>
-    <link href="http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/"/>
-    <id>http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/</id>
-    <published>2023-10-29T16:06:47.000Z</published>
-    <updated>2023-10-29T16:31:22.032Z</updated>
+    <link href="http://example.com/2023/10/29/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/"/>
+    <id>http://example.com/2023/10/29/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/</id>
+    <published>2023-10-29T15:32:34.000Z</published>
+    <updated>2023-10-29T16:36:14.090Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-信息收集之反爬虫延时代理池技术&quot;&gt;&lt;a href=&quot;#WEB漏洞-信息收集之反爬虫延时代理池技术&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-信息收集之反爬虫延时代理池技术&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-信息收集之反爬虫延时代理池技术&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
@@ -35,10 +35,10 @@
   
   <entry>
     <title>wen安全日志-045</title>
-    <link href="http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/"/>
-    <id>http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/</id>
-    <published>2023-10-29T16:05:52.000Z</published>
-    <updated>2023-10-29T16:17:24.682Z</updated>
+    <link href="http://example.com/2023/10/28/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/"/>
+    <id>http://example.com/2023/10/28/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/</id>
+    <published>2023-10-28T14:15:22.000Z</published>
+    <updated>2023-10-29T16:36:00.369Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-API-接口服务之漏洞探针类型利用修复&quot;&gt;&lt;a href=&quot;#WEB漏洞-API-接口服务之漏洞探针类型利用修复&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-API 接口服务之漏洞探针类型利用修复&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-API 接口服务之漏洞探针类型利用修复&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
