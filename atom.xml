@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-10-27T08:40:07.466Z</updated>
+  <updated>2023-10-29T16:31:22.032Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>wen安全日志-046</title>
+    <link href="http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/"/>
+    <id>http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-046/</id>
+    <published>2023-10-29T16:06:47.000Z</published>
+    <updated>2023-10-29T16:31:22.032Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-信息收集之反爬虫延时代理池技术&quot;&gt;&lt;a href=&quot;#WEB漏洞-信息收集之反爬虫延时代理池技术&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-信息收集之反爬虫延时代理池技术&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-信息收集之反爬虫延时代理池技术&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>wen安全日志-045</title>
+    <link href="http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/"/>
+    <id>http://example.com/2023/10/30/wen%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-045/</id>
+    <published>2023-10-29T16:05:52.000Z</published>
+    <updated>2023-10-29T16:17:24.682Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;WEB漏洞-API-接口服务之漏洞探针类型利用修复&quot;&gt;&lt;a href=&quot;#WEB漏洞-API-接口服务之漏洞探针类型利用修复&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-API 接口服务之漏洞探针类型利用修复&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-API 接口服务之漏洞探针类型利用修复&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    
+    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>web安全日志-044</title>
@@ -314,44 +348,6 @@
     
     
     <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之代码及httponly绕过&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之代码及httponly绕过&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之代码及httponly绕过&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之代码及httponly绕过&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-026</title>
-    <link href="http://example.com/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/"/>
-    <id>http://example.com/2023/10/09/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-026/</id>
-    <published>2023-10-09T15:30:03.000Z</published>
-    <updated>2023-10-09T17:17:18.229Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之订单及Shell箱子反杀记&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之订单及Shell箱子反杀记&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之订单及Shell箱子反杀记&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之订单及Shell箱子反杀记&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="web安全" scheme="http://example.com/categories/web%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="web安全" scheme="http://example.com/tags/web%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web安全日志-025</title>
-    <link href="http://example.com/2023/10/08/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-025/"/>
-    <id>http://example.com/2023/10/08/web%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97-025/</id>
-    <published>2023-10-08T14:49:59.000Z</published>
-    <updated>2023-10-09T14:43:07.823Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;WEB漏洞-XSS跨站之原理分类及攻击手法&quot;&gt;&lt;a href=&quot;#WEB漏洞-XSS跨站之原理分类及攻击手法&quot; class=&quot;headerlink&quot; title=&quot;WEB漏洞-XSS跨站之原理分类及攻击手法&quot;&gt;&lt;/a&gt;&lt;font size=&quot;6&quot;&gt;&lt;strong&gt;WEB漏洞-XSS跨站之原理分类及攻击手法&lt;/strong&gt;&lt;/font&gt;&lt;/h2&gt;</summary>
     
     
     
